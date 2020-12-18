@@ -11,7 +11,7 @@ const { BUILD, MINIFY } = process.env;
 const minified = MINIFY === "true";
 const production = BUILD === "production";
 const outputFile = !production
-  ? "dist/onemap-components-dev.js"
+  ? "examples/onemap/lib/onemap-components-dev.js"
   : minified
   ? "dist/index.js"
   : "dist/onemap-components-unminified.js";
@@ -61,7 +61,7 @@ export default {
         ],
       ],
       inject: !production, // dev 环境下的 样式是入住到 js 中的，其他环境不会注入
-      extract: false, // 无论是 dev 还是其他环境这个配置项都不做 样式的抽离
+      extract: true, 
     }),
     minified
       ? terser({

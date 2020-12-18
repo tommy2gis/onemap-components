@@ -1,0 +1,42 @@
+.sidebar_containtcard {
+  width: 300px !important;
+  top: 100px;
+  left: 20px;
+  height: calc(100vh - 130px);
+}
+.sidebar_containtcard .ant-drawer-body {
+  padding: 0px;
+}
+.sidebar_containtcard .ant-drawer-title {
+  color: #3484FF;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 20px;
+  border-left: 3px solid #3484FF;
+  padding-left: 4px;
+}
+
+.resources_list {
+  overflow-y: auto;
+  margin: 0px;
+}
+.resources_list .ant-collapse-header {
+  font-weight: 600;
+}
+.resources_list .foldericon {
+  margin: 0 6px;
+}
+.resources_list .ant-table-thead > tr > th,
+.resources_list .ant-table-tbody > tr > td {
+  padding: 8px;
+  border: 0px;
+}
+.resources_list .ant-table-row td {
+  background-color: #6157cc0f !important;
+}
+.resources_list .ant-table-row-selected .ant-table-selection-column {
+  border-left: 2px solid #6157cc;
+}
+.resources_list .ant-table-expanded-row td {
+  padding: 0 !important;
+}

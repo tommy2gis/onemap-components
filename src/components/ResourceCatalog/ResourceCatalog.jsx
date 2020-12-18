@@ -4,7 +4,7 @@ import SideBar from '../SideBar/SideBar'
 
 const ResourceCatalog = props => {
     return (
-        <SideBar title="资源目录" >
+        <SideBar {...props.sideprops}>
             <ResourcesList list={props.data} onSelect={props.onSelect} ></ResourcesList>
         </SideBar>
     )

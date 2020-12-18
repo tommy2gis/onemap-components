@@ -13,6 +13,7 @@
         "@babel/plugin-syntax-jsx",
         "@babel/plugin-transform-react-jsx",
         "@babel/plugin-transform-runtime",
+        "@babel/plugin-proposal-class-properties",
         "styled-jsx/babel"
       ]
   }

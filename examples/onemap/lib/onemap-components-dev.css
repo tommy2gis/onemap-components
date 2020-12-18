@@ -1,0 +1,166 @@
+.sidebar_containtcard {
+  width: 300px !important;
+  top: 100px;
+  left: 20px;
+  height: calc(100vh - 130px);
+}
+.sidebar_containtcard .ant-drawer-body {
+  padding: 0px;
+}
+.sidebar_containtcard .ant-drawer-title {
+  color: #3484FF;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 20px;
+  border-left: 3px solid #3484FF;
+  padding-left: 4px;
+}
+
+.resources_list {
+  overflow-y: auto;
+  margin: 0px;
+}
+.resources_list .ant-collapse-header {
+  font-weight: 600;
+}
+.resources_list .foldericon {
+  margin: 0 6px;
+}
+.resources_list .ant-table-thead > tr > th,
+.resources_list .ant-table-tbody > tr > td {
+  padding: 8px;
+  border: 0px;
+}
+.resources_list .ant-table-row td {
+  background-color: #6157cc0f !important;
+}
+.resources_list .ant-table-row-selected .ant-table-selection-column {
+  border-left: 2px solid #6157cc;
+}
+.resources_list .ant-table-expanded-row td {
+  padding: 0 !important;
+}
+
+.spatial_query_card {
+  width: 350px;
+  position: absolute !important;
+  right: 20px;
+  top: 160px;
+  z-index: 100;
+}
+.spatial_query_card .ant-card-body {
+  padding: 10px 15px;
+}
+.spatial_query_card .ant-card-body .ant-upload.ant-upload-drag {
+  margin-top: 10px;
+}
+.spatial_query_card .ant-radio-button-wrapper:first-child,
+.spatial_query_card .ant-radio-button-wrapper:last-child {
+  border-radius: 0;
+}
+.spatial_query_card .ant-radio-button-wrapper:not(:first-child)::before {
+  display: none;
+}
+.spatial_query_card .ant-divider {
+  margin: 6px 0px;
+  font-weight: 600;
+}
+.spatial_query_card .ant-radio-group {
+  margin: 0 10px;
+  max-height: 120px;
+  overflow-y: auto;
+}
+.spatial_query_card .ant-radio-button-wrapper {
+  margin: 4px;
+  padding: 0 4px;
+  border-radius: 4px !important;
+}
+.spatial_query_card .buffercontain {
+  margin: 20px 20px;
+  font-size: 18px;
+}
+.spatial_query_card .attr_filter {
+  margin: 10px 20px;
+}
+.spatial_query_card .ant-checkbox-wrapper {
+  font-size: 18px;
+}
+.spatial_query_card .toolbar {
+  margin: 0 10px;
+}
+.spatial_query_card .toolbar .ant-btn {
+  width: 60px;
+}
+
+.arealocation_card {
+  position: absolute;
+  z-index: 2000;
+  margin: 12px;
+  left: 400px;
+  height: 48px;
+}
+.arealocation_card .ant-dropdown-link {
+  font-size: 18px;
+  line-height: 40px;
+}
+.arealocation_card .anticon-down {
+  font-size: 20px !important;
+}
+.arealocation_card > div {
+  padding: 4px 6px;
+}
+.arealocation_card .ant-select-selection {
+  border: 0px;
+}
+.arealocation_card .ant-select-selection:focus {
+  border: 0px;
+}
+.arealocation_list {
+  width: 380px;
+  margin-top: 10px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.arealocation_list .divide {
+  height: 1px;
+  margin: 5px;
+  border-bottom: 1px solid #ccc;
+}
+.arealocation_list a {
+  margin: 0px 10px;
+  white-space: nowrap;
+  display: inline-block;
+  font-size: 14px;
+  text-decoration: none;
+  padding: 0 2px;
+  width: auto !important;
+}
+a.street {
+  color: #676767;
+}
+.arealocation_list .street {
+  width: 76px !important;
+}
+.arealocation_list a:hover {
+  background-color: #eee;
+  color: #1890ff;
+}
+.arealocation_list .ant-row-flex {
+  line-height: 30px;
+  padding-left: 14px;
+}
+.arealocation_list hr {
+  width: 90%;
+  opacity: 0.6;
+}
+@media screen and (max-width: 1366px) {
+  .arealocation_list a {
+    font-size: 12px;
+  }
+  .arealocation_list {
+    margin-top: 4px;
+  }
+  .arealocation_list .ant-row-flex {
+    line-height: 24px;
+  }
+}

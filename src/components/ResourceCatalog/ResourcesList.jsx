@@ -69,7 +69,7 @@ const ResourcesList = (props) => {
     );
   };
 
-  return <div className="resources_list">{renderList()}</div>;
+  return <div className={`${props.className||""} resources_list`}>{renderList()}</div>;
 };
 
 ResourcesList.propTypes = {};

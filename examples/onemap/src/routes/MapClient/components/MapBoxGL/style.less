@@ -1,0 +1,420 @@
+#app,
+#map {
+  width: 100%;
+ 
+#map{
+  overflow: hidden;
+}
+}
+
+body{
+  overflow: hidden;
+}
+
+::-webkit-scrollbar-button {
+  height: 0px;
+}
+
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+::-webkit-scrollbar {
+  width: 4px !important;
+  height: 8px !important;
+  background-color: #f5f5f5;
+}
+
+/*定义滚动条轨道 内阴影+圆角*/
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 1px rgba(0, 0, 0, 0);
+  box-shadow: inset 0 0 1px rgba(0, 0, 0, 0);
+  border-radius: 1px;
+  background-color: #f5f5f5;
+}
+
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb {
+  border-radius: 1px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #ccc;
+}
+
+.mapboxgl-marker{
+  cursor: pointer;
+}
+
+.ant-layout-header{
+  background: transparent;
+  padding: 0px;
+  height: 0px;
+  .login{
+    font-size: 30px;
+    color: #FFF;
+    z-index: 1002;
+    position: absolute;
+    margin: 8px 40px;
+    right: 0px;
+   }
+  .logo-bk{
+    position: absolute;
+    height: 80px;
+    width: 60px;
+    z-index: 2000;
+    background-position: center;
+    background-image:url(./assest/logo.png);
+    background-repeat: no-repeat;
+    margin: 0 20px;
+  }
+
+  .logo-label{
+    font-size: 30px;
+    color: #fff;
+    z-index: 2001;
+    line-height: 38px;
+    margin-left: 140px;
+    position: absolute;
+    margin: 20px 100px;
+  }
+  .ant-space-vertical{
+    z-index: 2000;
+    position: absolute;
+  }
+  .ant-space-item{
+    margin: 0px !important;
+   
+  
+    .logo-label-small{
+      width: 560px;
+      font-size: 22px;
+      color: #fff;
+      height: 30px;
+      line-height: 22px;
+      margin: 10px 40px 0px 40px;
+    }
+  }
+  
+  .mapheader {
+    background: #3484FF;
+    position: absolute;
+    width: 100%;
+    height: 78px;
+    z-index: 1001;
+    padding: 0 20px;
+    box-shadow: 0px 5px 11px 0px rgba(65, 66, 134, 0.1);
+   
+   .ant-menu-light{
+    right: 100px;
+    position: absolute;
+    background-color: transparent;
+    border-bottom:0px;
+    .ant-menu-item{
+      font-size: 20px;
+      color: #FFF;
+      height: 76px;
+      padding: 5px 20px;
+      letter-spacing: 2px;
+      border: 0px;
+      margin:0px;
+      .iconfont{
+        font-size: 24px;
+        margin-right: 2px;
+      }
+    }
+    .ant-menu-item-selected{
+      border-bottom: 0px !important;
+      background-color: #3875D1;
+    }
+   }
+  }
+}
+
+
+
+.yellow-6 {
+  color: #fadb14;
+}
+
+.blue-6 {
+  color: #1890ff;
+}
+
+.red-6 {
+  color: #f5222d;
+}
+
+.green-6 {
+  color: #52c41a;
+}
+
+.hidden {
+  display: none !important;
+  transition: opacity 1s linear;
+  -webkit-transition: opacity 1s linear;
+  -moz-transition: opacity 1s linear;
+  -o-transition: opacity 1s linear;
+  -ms-transition: opacity 1s linear;
+}
+.mapboxgl-map {
+  background-image: url("./assest/bg.png");
+}
+
+.MapboxGLControl {
+  box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
+    0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12) !important;
+  border: 0px !important;
+  border-radius: 2px;
+}
+
+.mapcontentmenu {
+  .ant-dropdown-menu-item {
+    span {
+      margin-right: 6px;
+    }
+  }
+}
+.mapboxgl-popup{
+  z-index: 5 !important;
+}
+
+.mapboxgl-popup-content {
+  padding: 0 !important;
+  min-width: 240px;
+  .ant-tabs-nav .ant-tabs-tab {
+    padding: 2px 16px;
+  }
+  .mapboxgl-popup-close-button {
+    outline: none;
+    color: #fff;
+    font-size: 24px;
+    line-height: 32px;
+    padding: 0 6px;
+    font-family: inherit;
+  }
+  .title {
+    padding: 0 8px 0 10px;
+    line-height: 32px;
+    font-size: 14px;
+    color: #fff;
+    min-height: 30px;
+    background-color: #1890ff;
+  }
+  .content {
+    padding: 10px;
+    max-height: 400px;
+    max-width: 400px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: #fff;
+    p{
+      margin-bottom: 2px;
+    }
+  }
+}
+
+.MapboxGLScaleControl{
+  background-color: transparent !important;
+  div{
+    box-shadow: none !important;
+  }
+}
+
+.MapboxGLZoomControl{
+  box-shadow:none !important;
+  border:0px !important;
+  bottom: 200px !important;
+  right: 20px !important;
+  button{
+    background-image:url(./assest/icons-000000@2x.png) !important;
+    box-shadow:0px 3px 5px -1px rgba(0,0,0,0.2), 0px 6px 10px 0px rgba(0,0,0,0.14), 0px 1px 18px 0px rgba(0,0,0,0.12);
+    width: 50px !important;
+    height: 50px !important;
+    margin-bottom: 10px !important;
+  }
+
+  button[id='zoomIn']{
+    background-size: 52px 520px !important;
+  }
+  button[id='zoomOut']{
+    background-position: 0px -52px !important;
+    background-size: 52px 520px !important;
+  }
+}
+
+.MapboxGLRotationControl{
+  box-shadow:none !important;
+  border:0px !important;
+  bottom: 140px !important;
+  right: 20px !important;
+  button{
+    box-shadow:0px 3px 5px -1px rgba(0,0,0,0.2), 0px 6px 10px 0px rgba(0,0,0,0.14), 0px 1px 18px 0px rgba(0,0,0,0.12);
+    width: 50px !important;
+    height: 50px !important;
+    margin-bottom: 10px !important;
+    padding: 10px !important;
+    span{
+      width: 30px !important;
+      height: 30px !important;
+    }
+  }
+    
+}
+
+
+
+.measureresultlabel{
+  cursor: inherit;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(255, 1, 3);
+  padding: 3px 5px;
+  color: rgb(51, 51, 51);
+  margin: 20px 40px;
+}
+
+
+.spider-leg-container {
+  width: 1px;
+  height: 1px;
+  overflow: display;
+  will-change: transform;
+}
+
+.spider-leg-container:hover { cursor: pointer }
+
+.spider-leg-container .spider-leg-pin {
+  position: relative;
+  z-index: 1;
+  margin-top: -10px;
+    margin-left: -10px;
+    font-size: 14px;
+    text-align: center;
+    color: #000;
+    padding-top: 3px;
+}
+
+.spider-leg-container .spider-leg-pin.default-spider-pin{
+  position: relative;
+  width: 25px;
+  height: 41px;
+  margin-left: -11.5px;
+  margin-top: -38.5px;
+  background-image: url(https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.0-beta.2/images/marker-icon.png);
+}
+
+.spider-leg-container .spider-leg-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 2px;
+  background-color: #343434;
+  opacity: 0.45;
+  transform-origin: bottom;
+  z-index: 0;
+  height: 0;
+}
+
+.spider-leg-container:hover .spider-leg-line { opacity: 1 }
+
+/* Animations specific styles */
+
+.spider-leg-container.animate {
+  -webkit-transition: margin 0.15s linear;
+  -moz-transition: margin 0.15s linear;
+  -ms-transition: margin 0.15s linear;
+  -o-transition: margin 0.15s linear;
+  transition: margin 0.15s linear;
+}
+
+.spider-leg-container.initial,
+.spider-leg-container.exit {
+  margin-left: 0 !important;
+  margin-top: 0 !important;
+  height: 0;
+}
+
+.spider-leg-container.animate .spider-leg-line {
+  -webkit-transition: all 0.15s linear;
+  -moz-transition: all 0.15s linear;
+  -ms-transition: all 0.15s linear;
+  -o-transition: all 0.15s linear;
+  transition: all 0.15s linear;
+
+  -webkit-transition-delay: inherit;
+  -moz-transition-delay: inherit;
+  -ms-transition-delay: inherit;
+  -o-transition-delay: inherit;
+  transition-delay: inherit;
+}
+
+.spider-leg-container.animate.initial .spider-leg-line,
+.spider-leg-container.animate.exit .spider-leg-line { height: 0 !important }
+
+@import "styles/stylesheet3.css";
+
+[deta-title]{
+  position: relative;
+}
+[deta-title]:after{
+  content: attr(deta-title);
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  color: #fff;
+  text-shadow: 0 -1px 0px black;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+  background: #383838;
+  border-radius: 2px;
+  padding: 3px 10px;
+  font-size: 12px;
+  white-space: nowrap;
+  transition:all .3s;
+  opacity: 0;
+  visibility: hidden;
+}
+[deta-title]:hover:after{
+  transition-delay: 100ms;
+  visibility: visible;
+  transform: translate(-50%,-6px);
+  opacity: 1;
+}
+
+.spider-leg-container:hover{
+  z-index: 2 !important;
+
+}
+
+.picture_draw{
+  top:60px
+}
+
+.mapboxgl-ctrl-top-left{
+  top:60px !important;
+  left: 370px !important;
+}
+
+.thematic_detail{
+  width: 360px;
+    position: absolute;
+    top: 100px;
+    right: 380px;
+    height: calc(100vh - 100px);
+    overflow: auto;
+    z-index: 100;
+}
+
+.viewtolocation{
+  .ant-input-number{
+      width: 120px;
+  }
+  margin-top: 20px;
+  top: 140px;
+  position: absolute;
+  right: 20px;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 2px;
+  width: 390px;
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+}
+
+.ant-image-preview-operations{
+  background: rgb(0 0 0 / 70%);
+}
