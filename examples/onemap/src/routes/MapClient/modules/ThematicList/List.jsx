@@ -2,11 +2,10 @@
  * @Author: 史涛
  * @Date: 2020-04-14 09:27:41
  * @Last Modified by: 史涛
- * @Last Modified time: 2020-12-17 11:04:19
+ * @Last Modified time: 2020-12-19 17:56:55
  */
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Collapse, Icon, Table, Slider } from "antd";
 import { connect } from "react-redux";
 import {
   loadThematicsList,
@@ -15,7 +14,7 @@ import {
   setSelectedQueryLayer,
   changeThematicOpacity,
   loadLegendJson,
-} from "./actions";
+} from "../../actions/thematics";
 import {
   addSourceAndLayers,
   removeSourceAndLayers,
@@ -26,10 +25,7 @@ import {
 
 import { ResourcesList } from "../../../../../lib/onemap-components-dev";
 import "../../../../../lib/onemap-components-dev.css";
-//import {ResourcesList} from '@tommy2gis/swsk-onemap-components'
 
-const axios = require("axios");
-import "./style.less";
 
 class List extends Component {
   static propTypes = {

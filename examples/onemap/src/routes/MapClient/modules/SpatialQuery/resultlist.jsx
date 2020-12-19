@@ -12,7 +12,7 @@ import {
   queryThematicResponces,
   setSelectedFeature,
   setRelateFeature
-} from "../ThematicList/actions.js";
+} from "../../actions/thematics.js";
 import {
   arcgisToGeoJSON
 } from "@esri/arcgis-to-geojson-utils";

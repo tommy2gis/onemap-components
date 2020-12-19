@@ -2,7 +2,7 @@
  * @Author: 史涛
  * @Date: 2019-01-05 19:33:28
  * @Last Modified by: 史涛
- * @Last Modified time: 2020-10-26 13:23:01
+ * @Last Modified time: 2020-12-19 17:02:37
  */
 
 const CHANGE_MAP3D_VIEW = "CHANGE_MAP3D_VIEW";
@@ -20,6 +20,29 @@ const ADD_LAYERS='ADD_LAYERS';
 const HIDE_ALL_THEMATIC_LAYERS='HIDE_ALL_THEMATIC_LAYERS';
 const LOAD_SYMBOLSTYLE="LOAD_SYMBOLSTYLE";
 const FILTER_OUTLET="FILTER_OUTLET";
+const AREALOCATION_RESULT = 'AREALOCATION_RESULT';
+const RESET_AREALOCATION = 'RESET_AREALOCATION';
+const SELECTED_AREA = 'SELECTED_AREA';
+
+function setAreaLocation(result) {
+    return {
+        type: AREALOCATION_RESULT,
+        result
+    };
+}
+
+function selectAreaLocation(currentarea) {
+    return {
+        type: SELECTED_AREA,
+        currentarea
+    };
+}
+
+function resetAreaLocation() {
+    return {
+        type: RESET_AREALOCATION
+    };
+}
 
 function zoomToPoint3D(pos, zoom) {
   return {
@@ -154,6 +177,11 @@ function changeMap3DView(latitude, longitude, zoom, maxZoom,minZoom, bearing, pi
 
 
 export {
+  AREALOCATION_RESULT,
+  SELECTED_AREA,
+  setAreaLocation,
+  selectAreaLocation,
+  resetAreaLocation,
   CHANGE_MAP3D_VIEW,
   changeMap3DView,
   ZOOM_TO_POINT3D,

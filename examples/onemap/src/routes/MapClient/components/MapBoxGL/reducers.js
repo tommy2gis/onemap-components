@@ -2,7 +2,7 @@
  * @Author: 史涛
  * @Date: 2019-01-05 19:31:08
  * @Last Modified by: 史涛
- * @Last Modified time: 2020-11-18 11:43:37
+ * @Last Modified time: 2020-12-19 17:04:33
  */
 
 var {
@@ -20,12 +20,21 @@ var {
   HIDE_ALL_THEMATIC_LAYERS,
   HIGHLIGHT_POINT,
   LOAD_SYMBOLSTYLE,
-  FILTER_OUTLET
+  FILTER_OUTLET,
+  AREALOCATION_RESULT,
+  RESET_AREALOCATION,
+  SELECTED_AREA
 } = require("./actions");
 
 var assign = require("object-assign");
 
-function mapboxgl(state = null, action) {
+const initialState = {
+  result: '',
+  currentarea:'',
+  resultError: null
+};
+
+function mapboxgl(state = initialState, action) {
   switch (action.type) {
     case CHANGE_MAP3D_VIEW:
       const { type, ...params } = action;
@@ -170,6 +179,24 @@ function mapboxgl(state = null, action) {
         highlightpoint: action.pos,
       });
     }
+    case AREALOCATION_RESULT: {
+      return assign({}, state, {
+        arearesult: action.result,
+          resultError: null
+      });
+  }
+
+  case RESET_AREALOCATION: {
+      return assign({}, state, {
+          arearesult: '',
+          resultError: null
+      });
+  }
+  case SELECTED_AREA: {
+      return assign({}, state, {
+          currentarea: action.currentarea,
+      });
+  }
     case ZOOM_TO_POINT3D: {
       return assign({}, state, {
         latitude: action.pos.y,

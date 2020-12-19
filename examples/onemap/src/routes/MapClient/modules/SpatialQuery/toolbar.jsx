@@ -2,7 +2,7 @@
  * @Author: 史涛
  * @Date: 2020-04-14 09:27:13
  * @Last Modified by: 史涛
- * @Last Modified time: 2020-12-17 14:53:10
+ * @Last Modified time: 2020-12-19 17:58:32
  */
 import React, { Component } from "react";
 import { connect } from "react-redux";
@@ -18,7 +18,6 @@ import {
 } from "antd";
 import { changeDrawingStatus } from "../../actions/draw";
 import turfbuffer from "@turf/buffer";
-import AttributesFillter from "./attributesfillter";
 import "./style.less";
 import {
   queryThematicResponces,
@@ -28,7 +27,7 @@ import {
   queryThematicMetaData,
   setBufferDistance,
   queryThematic,
-} from "../ThematicList/actions.js";
+} from "../../actions/thematics.js";
 import {
   geojsonToArcGIS,
   arcgisToGeoJSON,

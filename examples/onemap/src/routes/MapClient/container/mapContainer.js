@@ -2,13 +2,12 @@ import { connect } from "react-redux";
 import {bindActionCreators} from 'redux';
 import mapApp from "../components/mapApp";
 import { createSelector } from "reselect";
-import * as MapActions from "../actions/map";
 import * as MapBoxActions from "../components/MapBoxGL/actions";
 import * as DrawActions from "../actions/draw";
 import * as LayersActions from "../actions/layers";
 import * as QueryActions from "../actions/query";
 import * as ConfigActions from "../actions/config";
-import * as ThematicActions from "../modules/ThematicList/actions";
+import * as ThematicActions from "../actions/thematics";
 
 export default connect(mapStateToProps, makeMapDispatchToProps)(mapApp);
 
@@ -55,7 +54,6 @@ function makeGetActionCreators() {
         LayersActions,
         DrawActions,
         MapBoxActions,
-        MapActions,
       ].map((actions) =>
         bindActionCreators(mergeActions(actions, userActions), dispatch)
       );

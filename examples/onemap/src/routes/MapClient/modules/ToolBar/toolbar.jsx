@@ -2,24 +2,24 @@
  * @Author: 史涛
  * @Date: 2019-01-05 19:30:28
  * @Last Modified by: 史涛
- * @Last Modified time: 2020-12-18 16:24:54
+ * @Last Modified time: 2020-12-19 17:47:06
  */
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { changeZoomLevel } from "../../actions/map";
 import { changeDrawingStatus } from "../../actions/draw";
-import { selectAreaLocation } from "../AreaLocation/actions";
-import  * as mapboxActions  from "../../components/MapBoxGL/actions";
 import {
   setSelectedFeature,
   queryThematicResponces,
   showSpatialQuery,
-  showSpatialAnalysis
-} from "../ThematicList/actions";
+  showSpatialAnalysis,
+} from "../../actions/thematics";
+import {
+  AreaLocation,
+  SetLocation,
+} from "../../../../../lib/onemap-components-dev";
 import { Card, Menu, Icon, Dropdown, message, Divider } from "antd";
-import AreaLocation from "../AreaLocation/arealocation";
-import SetLocation from './setlocation';
+import quhuadata from "./data";
 import "./style.less";
 
 import * as screenfull from "screenfull";
@@ -29,22 +29,20 @@ class ToolBar extends Component {
     step: PropTypes.number,
     mapStateSource: PropTypes.string,
     currentZoom: PropTypes.number,
-    changeZoomLevel: PropTypes.func,
     map: PropTypes.object,
-    mapConfig: PropTypes.object
+    mapConfig: PropTypes.object,
   };
 
   static defaultProps = {
     step: 1,
     currentZoom: 3,
-    changeZoomLevel: () => {}
   };
 
   state = {
     juanModalVisible: false,
     screemModalVisible: false,
     isFullscreen: false,
-    mesurevisable: false
+    mesurevisable: false,
   };
 
   setJuanModalVisible(juanModalVisible) {
@@ -59,7 +57,7 @@ class ToolBar extends Component {
     this.setState({ mesurevisable });
   }
 
-  onVisibleChange = e => {
+  onVisibleChange = (e) => {
     this.setMeasureVisible(false);
   };
 
@@ -76,10 +74,9 @@ class ToolBar extends Component {
     this.props.showSpatialAnalysis(true);
   };
 
-
   onAreaMeasure = () => {
     message.info("双击结束测量");
-      this.props.changeDrawingStatus("start", "polygon", "measure", [], {});
+    this.props.changeDrawingStatus("start", "polygon", "measure", [], {});
   };
 
   handlePrint = () => {
@@ -112,6 +109,7 @@ class ToolBar extends Component {
   };
 
   render() {
+    const { mapBoxActions, mapConfig, map3d } = this.props;
     const measuremenu = (
       <Menu
         className={
@@ -135,9 +133,14 @@ class ToolBar extends Component {
     return (
       <div>
         <Card className="toolbar_card" id="toolbar_card" bordered={false}>
-          <AreaLocation mapboxActions={this.props}/>
+          <AreaLocation
+            mapBoxActions={mapBoxActions}
+            map3d={map3d}
+            mapConfig={mapConfig}
+            quhuadata={quhuadata}
+          />
           <Divider type="vertical" />
-         
+
           <Dropdown
             overlay={measuremenu}
             visible={true}
@@ -191,7 +194,11 @@ class ToolBar extends Component {
           </button>
         </Card>
         {this.state.locationshow && (
-          <SetLocation onClose={this.onLocClose}></SetLocation>
+          <SetLocation
+            map3d={map3d}
+            onClose={this.onLocClose}
+            mapBoxActions={mapBoxActions}
+          ></SetLocation>
         )}
       </div>
     );
@@ -205,12 +212,10 @@ export default connect(
       draw: state.draw,
     };
   },
-  {...mapboxActions,
-    changeZoomLevel,
+  {
     setSelectedFeature,
     queryThematicResponces,
     changeDrawingStatus,
-    selectAreaLocation,
     showSpatialQuery,
     showSpatialAnalysis,
   }

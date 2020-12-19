@@ -2,27 +2,17 @@
  * @Author: 史涛 
  * @Date: 2019-01-05 19:30:24 
  * @Last Modified by: 史涛
- * @Last Modified time: 2020-10-16 14:00:33
+ * @Last Modified time: 2020-12-19 17:41:56
  */
 
-import {
-    zoomToPoint3D,highlightPoint
-  } from "./actions";
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { Row, Col, InputNumber ,Input, Button,message } from 'antd';
-var assign = require('object-assign');
+import {InputNumber ,Input, Button,message } from 'antd';
 const InputGroup = Input.Group;
 
 export class SetLocation extends Component {
-    static propTypes = {
-        map: PropTypes.object,
-    };
-
     state = {
-        lng: 118.699,
-        lat: 32.159,
+        lng: null,
+        lat: null,
     }
     componentDidMount() {
 
@@ -41,7 +31,7 @@ export class SetLocation extends Component {
 
     onClose=()=>{
         this.props.onClose();
-        this.props.highlightPoint(null);
+        this.props.mapBoxActions.highlightPoint(null);
     }
 
     setView = ()=> {
@@ -50,12 +40,12 @@ export class SetLocation extends Component {
         }else if(!this.state.lat){
             message.info('请输入维度');
         }else{
-            this.props.zoomToPoint3D(
+            this.props.mapBoxActions.zoomToPoint3D(
                 { x: this.state.lng, y: this.state.lat},
                 16
               );
             
-            this.props.highlightPoint({ "type": "Feature",
+            this.props.mapBoxActions.highlightPoint({ "type": "Feature",
             "geometry": {"type":"Point",
             "coordinates":[this.state.lng,this.state.lat]},
             "properties": {}
@@ -66,8 +56,8 @@ export class SetLocation extends Component {
         return (
             <div className="viewtolocation">
                 <InputGroup compact>
-                    <InputNumber defaultValue={118.699}  placeholder="请输入经度" max={180} min={-180} onChange={this.changeLng} />
-                    <InputNumber defaultValue={32.159}  placeholder="请输入维度" max={90} min={-90} onChange={this.changeLat} />
+                    <InputNumber   placeholder="请输入经度" max={180} min={-180} onChange={this.changeLng} />
+                    <InputNumber   placeholder="请输入维度" max={90} min={-90} onChange={this.changeLat} />
                     <Button type="primary" onClick={() => this.setView()}>定位</Button>
                     <Button onClick={this.onClose }>关闭</Button>
                 </InputGroup>
@@ -76,6 +66,4 @@ export class SetLocation extends Component {
     }
 }
 
-export default connect((state) => {
-    return {}
-}, { zoomToPoint3D,highlightPoint})(SetLocation);
+export default SetLocation;

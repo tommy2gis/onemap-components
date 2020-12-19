@@ -2,24 +2,14 @@
  * @Author: 史涛 
  * @Date: 2019-01-05 19:30:24 
  * @Last Modified by: 史涛
- * @Last Modified time: 2020-06-19 16:18:55
+ * @Last Modified time: 2020-12-19 16:57:35
  */
 
-import {
-    zoomToPoint3D,highlightPoint
-  } from "../../components/MapBoxGL/actions";
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { Row, Col, InputNumber ,Input, Button,message } from 'antd';
-var assign = require('object-assign');
+import {InputNumber ,Input, Button,message } from 'antd';
 const InputGroup = Input.Group;
 
 export class SetLocation extends Component {
-    static propTypes = {
-        map: PropTypes.object,
-    };
-
     state = {
         lng: null,
         lat: null,
@@ -41,7 +31,7 @@ export class SetLocation extends Component {
 
     onClose=()=>{
         this.props.onClose();
-        this.props.highlightPoint(null);
+        this.props.mapBoxActions.highlightPoint(null);
     }
 
     setView = ()=> {
@@ -50,12 +40,12 @@ export class SetLocation extends Component {
         }else if(!this.state.lat){
             message.info('请输入维度');
         }else{
-            this.props.zoomToPoint3D(
+            this.props.mapBoxActions.zoomToPoint3D(
                 { x: this.state.lng, y: this.state.lat},
                 16
               );
             
-            this.props.highlightPoint({ "type": "Feature",
+            this.props.mapBoxActions.highlightPoint({ "type": "Feature",
             "geometry": {"type":"Point",
             "coordinates":[this.state.lng,this.state.lat]},
             "properties": {}
@@ -76,6 +66,4 @@ export class SetLocation extends Component {
     }
 }
 
-export default connect((state) => {
-    return {}
-}, { zoomToPoint3D,highlightPoint})(SetLocation);
+export default SetLocation;

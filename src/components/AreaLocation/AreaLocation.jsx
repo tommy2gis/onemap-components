@@ -2,7 +2,7 @@ import React from "react";
 import { Dropdown, Row, Col } from "antd";
 import "./style.less";
 
-const AreaLocation = (props) => {
+const AreaLocationComponent = (props) => {
   const menu = (
     <div className="ant-dropdown-menu arealocation_list customscrollbar">
       <Row type="flex" justify="start">
@@ -32,4 +32,4 @@ const AreaLocation = (props) => {
   );
 };
 
-export default AreaLocation;
+export default AreaLocationComponent;

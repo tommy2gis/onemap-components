@@ -23,7 +23,7 @@ const {
     IDENTIFY_THEMATICRESULT,
     QUERY_ANNOTHEMATICRESULT,
     SELECT_THEMATICTYPE
-} = require('./actions');
+} = require('../actions/thematics');
 
 const assign = require('object-assign');
 

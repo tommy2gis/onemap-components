@@ -2,7 +2,7 @@
  * @Author: 史涛
  * @Date: 2019-01-05 17:40:59
  * @Last Modified by: 史涛
- * @Last Modified time: 2020-12-18 17:44:27
+ * @Last Modified time: 2020-12-19 18:02:05
  */
 Date.prototype.Format = function (fmt) {
   //author: meizz
@@ -148,13 +148,11 @@ class mapApp extends React.Component {
 
   onDisMeasure = () => {
     message.info("双击结束测量");
-    //this.props.changeDrawingStatus('clean', '', "measure", [], {});
     this.props.drawActions.changeDrawingStatus("start", "polyline", "measure", [], {});
   };
 
   onAreaMeasure = () => {
     message.info("双击结束测量");
-    //this.props.changeDrawingStatus('clean', '', "measure", [], {});
     this.props.drawActions.changeDrawingStatus("start", "polygon", "measure", [], {});
   };
 
@@ -230,12 +228,15 @@ class mapApp extends React.Component {
             {thematics.themresult ? (
               <ResultList></ResultList>
             ) :this.state.showcatalog? (
-              <ThematicCatalog onClose={this.onCloseCatalog}></ThematicCatalog>
-              // <SideBar title="资源目录" onClose={this.onCloseCatalog}>
-              //   <ThematicList ></ThematicList>
-              // </SideBar>
+              <ThematicCatalog onClose={this.onCloseCatalog}
+              thematics={this.props.thematics}
+              thematicActions={this.props.thematicActions}
+              mapBoxActions={this.props.mapBoxActions}
+              ></ThematicCatalog>
             ):null}
-            <ToolBar></ToolBar>
+            <ToolBar map3d={this.props.map3d}
+            mapConfig={this.props.mapConfig}
+            mapBoxActions={this.props.mapBoxActions}></ToolBar>
             <SpayialAnalysis></SpayialAnalysis>
             <SpatialQuery></SpatialQuery>
             <Search></Search>

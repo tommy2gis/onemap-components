@@ -2,50 +2,28 @@
  * @Author: 史涛
  * @Date: 2020-04-14 09:27:41
  * @Last Modified by: 史涛
- * @Last Modified time: 2020-12-17 11:04:18
+ * @Last Modified time: 2020-12-19 18:02:45
  */
 import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { Collapse, Icon, Table, Slider } from "antd";
-import { connect } from "react-redux";
-import {
-  loadThematicsList,
-  showThematicLayer,
-  queryThematicMetaData,
-  setSelectedQueryLayer,
-  changeThematicOpacity,
-  loadLegendJson,
-} from "./actions";
-import {
-  addSourceAndLayers,
-  removeSourceAndLayers,
-  addSources,
-  addLayers,
-  updateLayer,
-} from "../../components/MapBoxGL/actions";
-
 import { ResourceCatalog } from "../../../../../lib/onemap-components-dev";
 import "../../../../../lib/onemap-components-dev.css";
 
 import "./style.less";
 
 class Catalog extends Component {
-  static propTypes = {
-    prop: PropTypes,
-  };
 
   state = { list: [], selectedRows: [], selectedRowKeys: [] };
 
   onOpacityChange = (record, value) => {
-    this.props.changeThematicOpacity(record.id, value);
-    this.props.updateLayer("thematic_" + record.id, {
+    this.props.thematicActions.changeThematicOpacity(record.id, value);
+    this.props.mapBoxActions.updateLayer("thematic_" + record.id, {
       paint: { "raster-opacity": value },
     });
   };
 
   onExpand = (e, record) => {
     if (!record.legend) {
-      this.props.loadLegendJson(record);
+      this.props.thematicActions.loadLegendJson(record);
     }
   };
 
@@ -65,10 +43,10 @@ class Catalog extends Component {
    * @memberof List
    */
   addThematicToStyle = (item) => {
-    this.props.showThematicLayer(item.id);
-    this.props.setSelectedQueryLayer(item.id);
+    this.props.thematicActions.showThematicLayer(item.id);
+    this.props.thematicActions.setSelectedQueryLayer(item.id);
     if (item.servicetype === "wms") {
-      this.props.addSourceAndLayers(
+      this.props.mapBoxActions.addSourceAndLayers(
         "thematic_" + item.name,
         {
           type: "raster",
@@ -90,15 +68,15 @@ class Catalog extends Component {
         }
       );
     } else if (item.servicetype === "map") {
-      this.props.updateLayer("thematic_" + item.id, {
+      this.props.mapBoxActions.updateLayer("thematic_" + item.id, {
         layout: { visibility: "visible" },
       });
-      this.props.queryThematicMetaData({
+      this.props.thematicActions.queryThematicMetaData({
         url: item.url,
         layerid: item.layers,
       });
     } else if (item.servicetype === "wmts") {
-      this.props.addSourceAndLayers(
+      this.props.mapBoxActions.addSourceAndLayers(
         "thematic_" + item.name,
         {
           type: "raster",
@@ -125,8 +103,8 @@ class Catalog extends Component {
    * @memberof List
    */
   removeThematicfromStyle = (item) => {
-    this.props.showThematicLayer(item.id);
-    this.props.updateLayer("thematic_" + item.id, {
+    this.props.thematicActions.showThematicLayer(item.id);
+    this.props.mapBoxActions.updateLayer("thematic_" + item.id, {
       layout: { visibility: "none" },
     });
   };
@@ -142,21 +120,4 @@ class Catalog extends Component {
   }
 }
 
-export default connect(
-  (state) => {
-    return { thematics: state.thematics };
-  },
-  {
-    loadThematicsList,
-    setSelectedQueryLayer,
-    addSourceAndLayers,
-    removeSourceAndLayers,
-    showThematicLayer,
-    queryThematicMetaData,
-    changeThematicOpacity,
-    loadLegendJson,
-    updateLayer,
-    addSources,
-    addLayers,
-  }
-)(Catalog);
+export default Catalog;

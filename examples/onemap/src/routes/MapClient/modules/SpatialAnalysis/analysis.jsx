@@ -16,7 +16,7 @@ import { getAnalysisList, setBufferList, setIntersectList,clearList } from "./ac
 import {zoomToPoint3D} from '../../components/MapBoxGL/actions'
 import {
   showSpatialAnalysis
-} from "../ThematicList/actions";
+} from "../../actions/thematics";
 import { changeDrawingStatus } from "../../actions/draw";
 import {
   geojsonToArcGIS,

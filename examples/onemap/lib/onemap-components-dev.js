@@ -1,5 +1,6 @@
 import React__default, { useState, useEffect, forwardRef, createElement, Component } from 'react';
-import { Drawer, Collapse, Table, Popover, Select, List, Tag, Input, InputNumber, Button, Card, Spin, Divider, Radio, Row, Checkbox, Col, Dropdown } from 'antd';
+import { Drawer, Collapse, Table, Popover, Select, List, Tag, Input, InputNumber, Button, Card, Spin, Divider, Radio, Row, Checkbox, Col, Dropdown, message } from 'antd';
+import centroid from '@turf/centroid';
 
 function createCommonjsModule(fn, module) {
 	return module = { exports: {} }, fn(module, module.exports), module.exports;
@@ -3580,7 +3581,7 @@ var SpatialQueryPanel = function SpatialQueryPanel(props) {
   }, "\u67E5\u8BE2"));
 };
 
-var AreaLocation = function AreaLocation(props) {
+var AreaLocationComponent = function AreaLocationComponent(props) {
   var menu = /*#__PURE__*/React__default.createElement("div", {
     className: "ant-dropdown-menu arealocation_list customscrollbar"
   }, /*#__PURE__*/React__default.createElement(Row, {
@@ -3612,4 +3613,199 @@ var AreaLocation = function AreaLocation(props) {
   }, props.currentArea || "全市"));
 };
 
-export { AreaLocation, AttributesFillter, ResourceCatalog, ResourcesList, SideBar, SpatialQueryPanel };
+function _createSuper$1(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1(); return function _createSuperInternal() { var Super = getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$1() { if (typeof Reflect === "undefined" || !Reflect.construct) { return false; } if (Reflect.construct.sham) { return false; } if (typeof Proxy === "function") { return true; } try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+var AreaLocation = /*#__PURE__*/function (_Component) {
+  inherits(AreaLocation, _Component);
+
+  var _super = _createSuper$1(AreaLocation);
+
+  function AreaLocation() {
+    var arguments$1 = arguments;
+
+    var _this;
+
+    classCallCheck(this, AreaLocation);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments$1[_key];
+    }
+
+    _this = _super.call.apply(_super, [this].concat(args));
+
+    defineProperty(assertThisInitialized(_this), "handleMenuClick", function (area) {
+      var _this$props = _this.props,
+          mapBoxActions = _this$props.mapBoxActions,
+          mapConfig = _this$props.mapConfig,
+          map3d = _this$props.map3d;
+
+      if (area == "全市") {
+        mapBoxActions.zoomToPoint3D({
+          x: mapConfig.center.x,
+          y: mapConfig.center.y
+        }, mapConfig.zoom);
+      }
+
+      mapBoxActions.selectAreaLocation(area);
+      mapBoxActions.updateLayer("arealocation-outline", {
+        filter: ["all", ["==", "NAME", area]]
+      });
+      map3d.arearesult.features.forEach(function (ele) {
+        if (ele.properties.NAME === area) {
+          var center = centroid(ele.geometry);
+          mapBoxActions.zoomToPoint3D({
+            x: center.geometry.coordinates[0],
+            y: center.geometry.coordinates[1]
+          }, 11.5);
+        }
+      });
+    });
+
+    return _this;
+  }
+
+  createClass(AreaLocation, [{
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      var _this$props2 = this.props,
+          mapBoxActions = _this$props2.mapBoxActions,
+          quhuadata = _this$props2.quhuadata;
+      mapBoxActions.setAreaLocation(quhuadata);
+      mapBoxActions.updateSource("arealocation", {
+        type: "geojson",
+        data: quhuadata
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this$props3 = this.props,
+          quhuadata = _this$props3.quhuadata,
+          map3d = _this$props3.map3d;
+      var quhuaarray = quhuadata.features.map(function (e) {
+        return e.properties.NAME;
+      });
+      return /*#__PURE__*/React__default.createElement("div", {
+        style: {
+          "float": "left"
+        }
+      }, /*#__PURE__*/React__default.createElement(AreaLocationComponent, {
+        areaNames: quhuaarray,
+        onMenuClick: this.handleMenuClick,
+        currentArea: map3d.currentarea
+      }));
+    }
+  }]);
+
+  return AreaLocation;
+}(Component);
+
+function _createSuper$2(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$2(); return function _createSuperInternal() { var Super = getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$2() { if (typeof Reflect === "undefined" || !Reflect.construct) { return false; } if (Reflect.construct.sham) { return false; } if (typeof Proxy === "function") { return true; } try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+var InputGroup = Input.Group;
+var SetLocation = /*#__PURE__*/function (_Component) {
+  inherits(SetLocation, _Component);
+
+  var _super = _createSuper$2(SetLocation);
+
+  function SetLocation() {
+    var arguments$1 = arguments;
+
+    var _this;
+
+    classCallCheck(this, SetLocation);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments$1[_key];
+    }
+
+    _this = _super.call.apply(_super, [this].concat(args));
+
+    defineProperty(assertThisInitialized(_this), "state", {
+      lng: null,
+      lat: null
+    });
+
+    defineProperty(assertThisInitialized(_this), "changeLng", function (e) {
+      _this.setState({
+        lng: Number(e)
+      });
+    });
+
+    defineProperty(assertThisInitialized(_this), "changeLat", function (e) {
+      _this.setState({
+        lat: Number(e)
+      });
+    });
+
+    defineProperty(assertThisInitialized(_this), "onClose", function () {
+      _this.props.onClose();
+
+      _this.props.mapBoxActions.highlightPoint(null);
+    });
+
+    defineProperty(assertThisInitialized(_this), "setView", function () {
+      if (!_this.state.lng) {
+        message.info('请输入经度');
+      } else if (!_this.state.lat) {
+        message.info('请输入维度');
+      } else {
+        _this.props.mapBoxActions.zoomToPoint3D({
+          x: _this.state.lng,
+          y: _this.state.lat
+        }, 16);
+
+        _this.props.mapBoxActions.highlightPoint({
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [_this.state.lng, _this.state.lat]
+          },
+          "properties": {}
+        });
+      }
+    });
+
+    return _this;
+  }
+
+  createClass(SetLocation, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {}
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      return /*#__PURE__*/React__default.createElement("div", {
+        className: "viewtolocation"
+      }, /*#__PURE__*/React__default.createElement(InputGroup, {
+        compact: true
+      }, /*#__PURE__*/React__default.createElement(InputNumber, {
+        placeholder: "\u8BF7\u8F93\u5165\u7ECF\u5EA6",
+        max: 180,
+        min: -180,
+        onChange: this.changeLng
+      }), /*#__PURE__*/React__default.createElement(InputNumber, {
+        placeholder: "\u8BF7\u8F93\u5165\u7EF4\u5EA6",
+        max: 90,
+        min: -90,
+        onChange: this.changeLat
+      }), /*#__PURE__*/React__default.createElement(Button, {
+        type: "primary",
+        onClick: function onClick() {
+          return _this2.setView();
+        }
+      }, "\u5B9A\u4F4D"), /*#__PURE__*/React__default.createElement(Button, {
+        onClick: this.onClose
+      }, "\u5173\u95ED")));
+    }
+  }]);
+
+  return SetLocation;
+}(Component);
+
+export { AreaLocation, AttributesFillter, ResourceCatalog, ResourcesList, SetLocation, SideBar, SpatialQueryPanel };

@@ -1,19 +1,11 @@
 import React, { Component } from "react";
 import {
-  // defaultMapStyle,
-  // MapBlueStyle,
-  // MapDarkStyle,
   IMAGEMapStyle,
   ROADMapStyle
 } from "../../components/MapBoxGL/mapstyle";
-import { loadStyle, changStyle,zoomToPoint3D} from "../../components/MapBoxGL/actions";
-import { changeMapModule } from "../../actions/map";
-import {switchLayerVisiable} from '../../actions/config'
+import { changStyle} from "../../components/MapBoxGL/actions";
 import { connect } from "react-redux";
-import { Avatar, Radio, Popover } from "antd";
-
-// import SpeedDial from "@material-ui/lab/SpeedDial";
-// import SpeedDialAction from "@material-ui/lab/SpeedDialAction";
+import { Radio } from "antd";
 import "./style.less";
 
 class layerswitch extends Component {
@@ -24,10 +16,8 @@ class layerswitch extends Component {
     const index = e.target.value;
     if (index == 3) {
       this.props.changStyle(IMAGEMapStyle);
-      this.props.changeMapModule("image");
     } else if (index == 4) {
       this.props.changStyle(ROADMapStyle);
-      this.props.changeMapModule("road");
     }
   };
 
@@ -70,10 +60,6 @@ export default connect(
     return { map: state.map,mapConfig:state.mapConfig};
   },
   {
-    loadStyle,
-    changeMapModule,
-    switchLayerVisiable,
-    zoomToPoint3D,
     changStyle
   }
 )(layerswitch);
