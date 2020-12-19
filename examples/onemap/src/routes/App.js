@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import {ConfigProvider } from 'antd';
 import zh_CN from 'antd/lib/locale-provider/zh_CN';
 import store from '../store/createStore';
-
+import 'antd/dist/antd.less';
 
 const App = () => (
     <Provider store={store}>

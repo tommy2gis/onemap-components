@@ -2,7 +2,7 @@
  * @Author: 史涛
  * @Date: 2019-01-05 17:40:59
  * @Last Modified by: 史涛
- * @Last Modified time: 2020-12-19 18:02:05
+ * @Last Modified time: 2020-12-19 22:35:40
  */
 Date.prototype.Format = function (fmt) {
   //author: meizz
@@ -28,9 +28,10 @@ Date.prototype.Format = function (fmt) {
       );
   return fmt;
 };
+
 import { UserOutlined } from "@ant-design/icons";
 import "../../../themes/iconfont/iconfont.css";
-import { Layout, Space, Button, Drawer, Menu, message } from "antd";
+import { Layout, Space, Collapse, Drawer, Menu, message } from "antd";
 const { Header, Content } = Layout;
 import PropTypes from "prop-types";
 import React from "react";
@@ -39,11 +40,14 @@ import { defaultMapStyle, ROADMapStyle } from "./MapBoxGL/mapstyle";
 import { createFromIconfontCN } from "@ant-design/icons";
 import LayerSwitch from "../modules/LayerSwitch/layerswitch";
 import SideBar from "../modules/SideBar/panel";
-import ThematicList from "../modules/ThematicList/List";
-import ThematicCatalog from "../modules/ThematicList/catalog";
-import ResultList from "../modules/SpatialQuery/resultlist";
+import {
+  ResourceCatalog,
+  SpatialQuery,
+  ResultList1
+} from "../../../../lib/onemap-components-dev";
+
+ //import ResultList from "../modules/SpatialQuery/resultlist";
 import ToolBar from "../modules/ToolBar/toolbar";
-import SpatialQuery from "../modules/SpatialQuery/toolbar";
 import SpayialAnalysis from "../modules/SpatialAnalysis/analysis";
 import Search from "../modules/Search/index";
 import SearchList from "../modules/Search/resultlist";
@@ -51,7 +55,7 @@ import axios from "axios";
 const MapIcon = createFromIconfontCN({
   scriptUrl: "mapiconfont/iconfont.js", // 在 iconfont.cn 上生成
 });
-
+import "../../../../lib/onemap-components-dev.css";
 import "../components/MapBoxGL/assest/mapiconfont/iconfont.css";
 
 class mapApp extends React.Component {
@@ -105,7 +109,7 @@ class mapApp extends React.Component {
     StreetViewVisible: false,
     drawervisible: false,
     locationshow: false,
-    showcatalog:false,
+    showcatalog: false,
     resize: 0,
   };
 
@@ -133,7 +137,9 @@ class mapApp extends React.Component {
         this.props.mapBoxActions.addSources(
           renderlist.filter((e) => e.servicetype === "map")
         );
-        this.props.mapBoxActions.addLayers(renderlist.filter((e) => e.servicetype === "map"));
+        this.props.mapBoxActions.addLayers(
+          renderlist.filter((e) => e.servicetype === "map")
+        );
       })
       .catch((e) => {});
   };
@@ -148,12 +154,24 @@ class mapApp extends React.Component {
 
   onDisMeasure = () => {
     message.info("双击结束测量");
-    this.props.drawActions.changeDrawingStatus("start", "polyline", "measure", [], {});
+    this.props.drawActions.changeDrawingStatus(
+      "start",
+      "polyline",
+      "measure",
+      [],
+      {}
+    );
   };
 
   onAreaMeasure = () => {
     message.info("双击结束测量");
-    this.props.drawActions.changeDrawingStatus("start", "polygon", "measure", [], {});
+    this.props.drawActions.changeDrawingStatus(
+      "start",
+      "polygon",
+      "measure",
+      [],
+      {}
+    );
   };
 
   onLocClose = () => {
@@ -175,15 +193,15 @@ class mapApp extends React.Component {
     this.props.thematicActions.showSpatialAnalysis(true);
   };
 
-  handleCatalog= () => {
-    this.setState({showcatalog:true})
+  handleCatalog = () => {
+    this.setState({ showcatalog: true });
   };
-  onCloseCatalog= () => {
-    this.setState({showcatalog:false})
+  onCloseCatalog = () => {
+    this.setState({ showcatalog: false });
   };
 
-  onCloseSearch= () => {
-    this.props.queryActions.resetQuery()
+  onCloseSearch = () => {
+    this.props.queryActions.resetQuery();
   };
 
   render() {
@@ -193,7 +211,7 @@ class mapApp extends React.Component {
         <Layout>
           <Header>
             <div className="mapheader">
-              <Menu mode="horizontal" >
+              <Menu mode="horizontal">
                 <Menu.Item key="1" onClick={this.handleCatalog}>
                   <i className="iconfont icon-yingxiangditu"></i>资源目录
                 </Menu.Item>
@@ -210,40 +228,59 @@ class mapApp extends React.Component {
             <div className="logo-label">如皋生态功能区空间信息管理系统</div>
           </Header>
           <Content>
-            <MapBoxMap 
-            query={this.props.query}
-            map3d={this.props.map3d}
-            thematics={this.props.thematics}
-            toolbar={this.props.toolbar}
-            mapConfig={this.props.mapConfig}
-            draw={this.props.draw}
-            analysis={this.props.analysis}
-            thematicActions={this.props.thematicActions}
-            queryActions={this.props.queryActions}
-            layersActions={this.props.layersActions}
-            mapBoxActions={this.props.mapBoxActions}
-            drawActions={this.props.drawActions}
-             />
+            <MapBoxMap
+              query={this.props.query}
+              map3d={this.props.map3d}
+              thematics={this.props.thematics}
+              toolbar={this.props.toolbar}
+              mapConfig={this.props.mapConfig}
+              draw={this.props.draw}
+              analysis={this.props.analysis}
+              thematicActions={this.props.thematicActions}
+              queryActions={this.props.queryActions}
+              layersActions={this.props.layersActions}
+              mapBoxActions={this.props.mapBoxActions}
+              drawActions={this.props.drawActions}
+            />
             <LayerSwitch></LayerSwitch>
             {thematics.themresult ? (
-              <ResultList></ResultList>
-            ) :this.state.showcatalog? (
-              <ThematicCatalog onClose={this.onCloseCatalog}
-              thematics={this.props.thematics}
-              thematicActions={this.props.thematicActions}
+              <ResultList1  thematics={this.props.thematics}
+              thematicActions={this.props.thematicActions}></ResultList1>
+            ) : this.state.showcatalog ? (
+              <ResourceCatalog
+                sideprops={{
+                  title: "资源目录",
+                  placement: "left",
+                  visible: true,
+                  onClose: this.onCloseCatalog,
+                }}
+                thematics={this.props.thematics}
+                thematicActions={this.props.thematicActions}
+                mapBoxActions={this.props.mapBoxActions}
+              ></ResourceCatalog>
+            ) : null}
+            <ToolBar
+              map3d={this.props.map3d}
+              mapConfig={this.props.mapConfig}
               mapBoxActions={this.props.mapBoxActions}
-              ></ThematicCatalog>
-            ):null}
-            <ToolBar map3d={this.props.map3d}
-            mapConfig={this.props.mapConfig}
-            mapBoxActions={this.props.mapBoxActions}></ToolBar>
+            ></ToolBar>
             <SpayialAnalysis></SpayialAnalysis>
-            <SpatialQuery></SpatialQuery>
+            <SpatialQuery
+              thematics={this.props.thematics}
+              draw={this.props.draw}
+              drawActions={this.props.drawActions}
+              thematicActions={this.props.thematicActions}
+            ></SpatialQuery>
             <Search></Search>
-            {query.result&&<SideBar className="sidebar_containtcard queryresult_drawer" title="查询结果" onClose={this.onCloseSearch}>
-            <SearchList></SearchList>
-            </SideBar>
-            }
+            {query.result && (
+              <SideBar
+                className="sidebar_containtcard queryresult_drawer"
+                title="查询结果"
+                onClose={this.onCloseSearch}
+              >
+                <SearchList></SearchList>
+              </SideBar>
+            )}
           </Content>
         </Layout>
       );

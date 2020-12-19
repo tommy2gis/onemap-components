@@ -6,7 +6,7 @@
  */
 import React, { Component } from "react";
 import { ResourceCatalog } from "../../../../../lib/onemap-components-dev";
-import "../../../../../lib/onemap-components-dev.css";
+
 
 import "./style.less";
 

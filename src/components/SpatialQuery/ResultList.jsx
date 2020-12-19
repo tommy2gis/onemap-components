@@ -2,7 +2,7 @@
  * @Author: 史涛 
  * @Date: 2020-04-14 09:27:06 
  * @Last Modified by: 史涛
- * @Last Modified time: 2020-12-19 22:29:18
+ * @Last Modified time: 2020-12-19 22:12:25
  */
 import React, { Component } from "react";
 import { Card, Icon, Collapse } from "antd";
@@ -10,6 +10,7 @@ import arcgisX from "@tommy2gis/arcgis-x";
 import {
   arcgisToGeoJSON
 } from "@esri/arcgis-to-geojson-utils";
+import "./style.less";
 
 
 class ResultList extends Component {
@@ -90,7 +91,8 @@ class ResultList extends Component {
     return list;
   }
   render() {
-    const { themresult} = this.props.thematics;
+    const { themresult,querygeometry} = this.props.thematics;
+    const {show}=this.state;
     if (themresult&&themresult.features.length>0) {
       return (
         <Card

@@ -2,17 +2,15 @@
  * @Author: 史涛
  * @Date: 2020-04-14 09:27:13
  * @Last Modified by: 史涛
- * @Last Modified time: 2020-12-19 21:46:34
+ * @Last Modified time: 2020-12-19 21:54:53
  */
 import React, { Component } from "react";
 import turfbuffer from "@turf/buffer";
-import {
-  geojsonToArcGIS,
-} from "@esri/arcgis-to-geojson-utils";
+import { geojsonToArcGIS } from "@esri/arcgis-to-geojson-utils";
 
-import { SpatialQueryPanel } from "../../../../../lib/onemap-components-dev";
+import SpatialQueryPanel  from "./SpatialQueryPanel";
 
-class ToolBar extends Component {
+class SpatialQuery extends Component {
   state = { wherestr: null };
   onSpatialQuery = (type) => {
     this.props.drawActions.changeDrawingStatus("start", type, "spatial", [], {});
@@ -138,4 +136,4 @@ class ToolBar extends Component {
   }
 }
 
-export default ToolBar;
+export default SpatialQuery;

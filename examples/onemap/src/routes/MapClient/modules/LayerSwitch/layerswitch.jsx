@@ -24,11 +24,7 @@ class layerswitch extends Component {
 
 
   render() {
-    const content = (
-      <div className="layer-switch-slider">
-       
-      </div>
-    );
+
 
     return (
       <div className="mapandlayer_change">
@@ -57,7 +53,7 @@ class layerswitch extends Component {
 
 export default connect(
   state => {
-    return { map: state.map,mapConfig:state.mapConfig};
+    return { map: state.map};
   },
   {
     changStyle

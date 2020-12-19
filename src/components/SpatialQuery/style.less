@@ -1,55 +1,72 @@
-.spatial_query_card{
-    width: 350px;
-    position: absolute !important;
-    right: 20px;
-    top: 160px;
-    z-index: 100;
-    .ant-card-body {
-      padding: 10px 15px;
-      .ant-upload.ant-upload-drag{
-        margin-top: 10px;
-      }
+
+.spatial_query_card {
+  width: 350px;
+  position: absolute !important;
+  right: 20px;
+  top: 160px;
+  z-index: 100;
+  .ant-card-body {
+    padding: 10px 15px;
+    .ant-upload.ant-upload-drag {
+      margin-top: 10px;
     }
-    .ant-radio-button-wrapper:first-child,
-    .ant-radio-button-wrapper:last-child {
-      border-radius: 0;
+  }
+  .ant-radio-button-wrapper:first-child,
+  .ant-radio-button-wrapper:last-child {
+    border-radius: 0;
+  }
+  .ant-radio-button-wrapper:not(:first-child)::before {
+    display: none;
+  }
+
+  .ant-divider {
+    margin: 6px 0px;
+    font-weight: 600;
+  }
+  .ant-radio-group {
+    margin: 0 10px;
+    max-height: 120px;
+    overflow-y: auto;
+  }
+  .ant-radio-button-wrapper {
+    margin: 4px;
+    padding: 0 4px;
+    border-radius: 4px !important;
+  }
+
+  .buffercontain {
+    margin: 20px 20px;
+    font-size: 18px;
+  }
+
+  .attr_filter {
+    margin: 10px 20px;
+  }
+
+  .ant-checkbox-wrapper {
+    font-size: 18px;
+  }
+  .toolbar {
+    margin: 0 10px;
+    .ant-btn {
+      width: 60px;
     }
-    .ant-radio-button-wrapper:not(:first-child)::before{
-      display: none;
-    }
-  
-    .ant-divider {
-      margin: 6px 0px;
-      font-weight: 600;
-    }
-    .ant-radio-group{
-      margin: 0 10px;
-      max-height: 120px;
-      overflow-y: auto;
-    }
-    .ant-radio-button-wrapper {
-      margin: 4px;
-      padding: 0 4px;
-      border-radius: 4px !important;
-    }
-  
-    .buffercontain {
-      margin: 20px 20px;
-      font-size: 18px;
-    }
-    
-    .attr_filter{
-      margin: 10px 20px;
-    }
-  
-  
-    .ant-checkbox-wrapper {
-      font-size: 18px;
-    }
-    .toolbar {
-      margin: 0 10px;
-      .ant-btn {
-        width: 60px;
-      }
-    }
+  }
+}
+
+.spatial_result_card {
+  position: absolute !important;
+  top: 100px;
+  z-index: 1;
+  width: 300px;
+  left: 20px;
+  .ant-collapse-content-box {
+    max-height: 200px;
+    overflow-y: auto;
+  }
+  .ant-card-body {
+    height: calc(100vh - 160px);
+    overflow: auto;
+    padding: 0px;
+  }
 }

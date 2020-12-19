@@ -1,5 +1,7 @@
-import React__default, { useState, useEffect, forwardRef, createElement, Component } from 'react';
-import { Drawer, Collapse, Table, Popover, Select, List, Tag, Input, InputNumber, Button, Card, Spin, Divider, Radio, Row, Checkbox, Col, Dropdown, message } from 'antd';
+import React__default, { useState, Component, useEffect, forwardRef, createElement } from 'react';
+import { Drawer, Collapse, Table, Popover, Select, List, Tag, Input, InputNumber, Button, Card, Spin, Divider, Radio, Row, Checkbox, Icon as Icon$1, Col, Dropdown, message } from 'antd';
+import turfbuffer from '@turf/buffer';
+import arcgisX from '@tommy2gis/arcgis-x';
 import centroid from '@turf/centroid';
 
 function createCommonjsModule(fn, module) {
@@ -30,1266 +32,41 @@ function _extends() {
 module.exports = _extends;
 });
 
+function styleInject(css, ref) {
+  if ( ref === void 0 ) { ref = {}; }
+  var insertAt = ref.insertAt;
+
+  if (!css || typeof document === 'undefined') { return; }
+
+  var head = document.head || document.getElementsByTagName('head')[0];
+  var style = document.createElement('style');
+  style.type = 'text/css';
+
+  if (insertAt === 'top') {
+    if (head.firstChild) {
+      head.insertBefore(style, head.firstChild);
+    } else {
+      head.appendChild(style);
+    }
+  } else {
+    head.appendChild(style);
+  }
+
+  if (style.styleSheet) {
+    style.styleSheet.cssText = css;
+  } else {
+    style.appendChild(document.createTextNode(css));
+  }
+}
+
+var css_248z = ".sidebar_containtcard {\n  width: 300px !important;\n  top: 100px;\n  left: 20px;\n  height: calc(100vh - 130px);\n}\n.sidebar_containtcard .ant-drawer-body {\n  padding: 0px;\n}\n.sidebar_containtcard .ant-drawer-title {\n  color: #3484FF;\n  font-weight: 600;\n  font-size: 18px;\n  line-height: 20px;\n  border-left: 3px solid #3484FF;\n  padding-left: 4px;\n}\n";
+styleInject(css_248z);
+
 var SideBar = function SideBar(props) {
   return /*#__PURE__*/React__default.createElement(Drawer, _extends_1({}, props, {
     className: "".concat(props.className || '', " sidebar_containtcard"),
     mask: false
   }), props.children);
-};
-
-function _arrayWithHoles(arr) {
-  if (Array.isArray(arr)) { return arr; }
-}
-
-var arrayWithHoles = _arrayWithHoles;
-
-function _iterableToArrayLimit(arr, i) {
-  if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) { return; }
-  var _arr = [];
-  var _n = true;
-  var _d = false;
-  var _e = undefined;
-
-  try {
-    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
-      _arr.push(_s.value);
-
-      if (i && _arr.length === i) { break; }
-    }
-  } catch (err) {
-    _d = true;
-    _e = err;
-  } finally {
-    try {
-      if (!_n && _i["return"] != null) { _i["return"](); }
-    } finally {
-      if (_d) { throw _e; }
-    }
-  }
-
-  return _arr;
-}
-
-var iterableToArrayLimit = _iterableToArrayLimit;
-
-function _arrayLikeToArray(arr, len) {
-  if (len == null || len > arr.length) { len = arr.length; }
-
-  for (var i = 0, arr2 = new Array(len); i < len; i++) {
-    arr2[i] = arr[i];
-  }
-
-  return arr2;
-}
-
-var arrayLikeToArray = _arrayLikeToArray;
-
-function _unsupportedIterableToArray(o, minLen) {
-  if (!o) { return; }
-  if (typeof o === "string") { return arrayLikeToArray(o, minLen); }
-  var n = Object.prototype.toString.call(o).slice(8, -1);
-  if (n === "Object" && o.constructor) { n = o.constructor.name; }
-  if (n === "Map" || n === "Set") { return Array.from(o); }
-  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) { return arrayLikeToArray(o, minLen); }
-}
-
-var unsupportedIterableToArray = _unsupportedIterableToArray;
-
-function _nonIterableRest() {
-  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-}
-
-var nonIterableRest = _nonIterableRest;
-
-function _slicedToArray(arr, i) {
-  return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || unsupportedIterableToArray(arr, i) || nonIterableRest();
-}
-
-var slicedToArray = _slicedToArray;
-
-/** @license React v16.13.1
- * react-is.production.min.js
- *
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-var b="function"===typeof Symbol&&Symbol.for,c=b?Symbol.for("react.element"):60103,d=b?Symbol.for("react.portal"):60106,e=b?Symbol.for("react.fragment"):60107,f=b?Symbol.for("react.strict_mode"):60108,g=b?Symbol.for("react.profiler"):60114,h=b?Symbol.for("react.provider"):60109,k=b?Symbol.for("react.context"):60110,l=b?Symbol.for("react.async_mode"):60111,m=b?Symbol.for("react.concurrent_mode"):60111,n=b?Symbol.for("react.forward_ref"):60112,p=b?Symbol.for("react.suspense"):60113,q=b?
-Symbol.for("react.suspense_list"):60120,r=b?Symbol.for("react.memo"):60115,t=b?Symbol.for("react.lazy"):60116,v=b?Symbol.for("react.block"):60121,w=b?Symbol.for("react.fundamental"):60117,x=b?Symbol.for("react.responder"):60118,y=b?Symbol.for("react.scope"):60119;
-function z(a){if("object"===typeof a&&null!==a){var u=a.$$typeof;switch(u){case c:switch(a=a.type,a){case l:case m:case e:case g:case f:case p:return a;default:switch(a=a&&a.$$typeof,a){case k:case n:case t:case r:case h:return a;default:return u}}case d:return u}}}function A(a){return z(a)===m}var AsyncMode=l;var ConcurrentMode=m;var ContextConsumer=k;var ContextProvider=h;var Element=c;var ForwardRef=n;var Fragment=e;var Lazy=t;var Memo=r;var Portal=d;
-var Profiler=g;var StrictMode=f;var Suspense=p;var isAsyncMode=function(a){return A(a)||z(a)===l};var isConcurrentMode=A;var isContextConsumer=function(a){return z(a)===k};var isContextProvider=function(a){return z(a)===h};var isElement=function(a){return "object"===typeof a&&null!==a&&a.$$typeof===c};var isForwardRef=function(a){return z(a)===n};var isFragment=function(a){return z(a)===e};var isLazy=function(a){return z(a)===t};
-var isMemo=function(a){return z(a)===r};var isPortal=function(a){return z(a)===d};var isProfiler=function(a){return z(a)===g};var isStrictMode=function(a){return z(a)===f};var isSuspense=function(a){return z(a)===p};
-var isValidElementType=function(a){return "string"===typeof a||"function"===typeof a||a===e||a===m||a===g||a===f||a===p||a===q||"object"===typeof a&&null!==a&&(a.$$typeof===t||a.$$typeof===r||a.$$typeof===h||a.$$typeof===k||a.$$typeof===n||a.$$typeof===w||a.$$typeof===x||a.$$typeof===y||a.$$typeof===v)};var typeOf=z;
-
-var reactIs_production_min = {
-	AsyncMode: AsyncMode,
-	ConcurrentMode: ConcurrentMode,
-	ContextConsumer: ContextConsumer,
-	ContextProvider: ContextProvider,
-	Element: Element,
-	ForwardRef: ForwardRef,
-	Fragment: Fragment,
-	Lazy: Lazy,
-	Memo: Memo,
-	Portal: Portal,
-	Profiler: Profiler,
-	StrictMode: StrictMode,
-	Suspense: Suspense,
-	isAsyncMode: isAsyncMode,
-	isConcurrentMode: isConcurrentMode,
-	isContextConsumer: isContextConsumer,
-	isContextProvider: isContextProvider,
-	isElement: isElement,
-	isForwardRef: isForwardRef,
-	isFragment: isFragment,
-	isLazy: isLazy,
-	isMemo: isMemo,
-	isPortal: isPortal,
-	isProfiler: isProfiler,
-	isStrictMode: isStrictMode,
-	isSuspense: isSuspense,
-	isValidElementType: isValidElementType,
-	typeOf: typeOf
-};
-
-var reactIs_development = createCommonjsModule(function (module, exports) {
-
-
-
-if (process.env.NODE_ENV !== "production") {
-  (function() {
-
-// The Symbol used to tag the ReactElement-like types. If there is no native Symbol
-// nor polyfill, then a plain number is used for performance.
-var hasSymbol = typeof Symbol === 'function' && Symbol.for;
-var REACT_ELEMENT_TYPE = hasSymbol ? Symbol.for('react.element') : 0xeac7;
-var REACT_PORTAL_TYPE = hasSymbol ? Symbol.for('react.portal') : 0xeaca;
-var REACT_FRAGMENT_TYPE = hasSymbol ? Symbol.for('react.fragment') : 0xeacb;
-var REACT_STRICT_MODE_TYPE = hasSymbol ? Symbol.for('react.strict_mode') : 0xeacc;
-var REACT_PROFILER_TYPE = hasSymbol ? Symbol.for('react.profiler') : 0xead2;
-var REACT_PROVIDER_TYPE = hasSymbol ? Symbol.for('react.provider') : 0xeacd;
-var REACT_CONTEXT_TYPE = hasSymbol ? Symbol.for('react.context') : 0xeace; // TODO: We don't use AsyncMode or ConcurrentMode anymore. They were temporary
-// (unstable) APIs that have been removed. Can we remove the symbols?
-
-var REACT_ASYNC_MODE_TYPE = hasSymbol ? Symbol.for('react.async_mode') : 0xeacf;
-var REACT_CONCURRENT_MODE_TYPE = hasSymbol ? Symbol.for('react.concurrent_mode') : 0xeacf;
-var REACT_FORWARD_REF_TYPE = hasSymbol ? Symbol.for('react.forward_ref') : 0xead0;
-var REACT_SUSPENSE_TYPE = hasSymbol ? Symbol.for('react.suspense') : 0xead1;
-var REACT_SUSPENSE_LIST_TYPE = hasSymbol ? Symbol.for('react.suspense_list') : 0xead8;
-var REACT_MEMO_TYPE = hasSymbol ? Symbol.for('react.memo') : 0xead3;
-var REACT_LAZY_TYPE = hasSymbol ? Symbol.for('react.lazy') : 0xead4;
-var REACT_BLOCK_TYPE = hasSymbol ? Symbol.for('react.block') : 0xead9;
-var REACT_FUNDAMENTAL_TYPE = hasSymbol ? Symbol.for('react.fundamental') : 0xead5;
-var REACT_RESPONDER_TYPE = hasSymbol ? Symbol.for('react.responder') : 0xead6;
-var REACT_SCOPE_TYPE = hasSymbol ? Symbol.for('react.scope') : 0xead7;
-
-function isValidElementType(type) {
-  return typeof type === 'string' || typeof type === 'function' || // Note: its typeof might be other than 'symbol' or 'number' if it's a polyfill.
-  type === REACT_FRAGMENT_TYPE || type === REACT_CONCURRENT_MODE_TYPE || type === REACT_PROFILER_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || typeof type === 'object' && type !== null && (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_RESPONDER_TYPE || type.$$typeof === REACT_SCOPE_TYPE || type.$$typeof === REACT_BLOCK_TYPE);
-}
-
-function typeOf(object) {
-  if (typeof object === 'object' && object !== null) {
-    var $$typeof = object.$$typeof;
-
-    switch ($$typeof) {
-      case REACT_ELEMENT_TYPE:
-        var type = object.type;
-
-        switch (type) {
-          case REACT_ASYNC_MODE_TYPE:
-          case REACT_CONCURRENT_MODE_TYPE:
-          case REACT_FRAGMENT_TYPE:
-          case REACT_PROFILER_TYPE:
-          case REACT_STRICT_MODE_TYPE:
-          case REACT_SUSPENSE_TYPE:
-            return type;
-
-          default:
-            var $$typeofType = type && type.$$typeof;
-
-            switch ($$typeofType) {
-              case REACT_CONTEXT_TYPE:
-              case REACT_FORWARD_REF_TYPE:
-              case REACT_LAZY_TYPE:
-              case REACT_MEMO_TYPE:
-              case REACT_PROVIDER_TYPE:
-                return $$typeofType;
-
-              default:
-                return $$typeof;
-            }
-
-        }
-
-      case REACT_PORTAL_TYPE:
-        return $$typeof;
-    }
-  }
-
-  return undefined;
-} // AsyncMode is deprecated along with isAsyncMode
-
-var AsyncMode = REACT_ASYNC_MODE_TYPE;
-var ConcurrentMode = REACT_CONCURRENT_MODE_TYPE;
-var ContextConsumer = REACT_CONTEXT_TYPE;
-var ContextProvider = REACT_PROVIDER_TYPE;
-var Element = REACT_ELEMENT_TYPE;
-var ForwardRef = REACT_FORWARD_REF_TYPE;
-var Fragment = REACT_FRAGMENT_TYPE;
-var Lazy = REACT_LAZY_TYPE;
-var Memo = REACT_MEMO_TYPE;
-var Portal = REACT_PORTAL_TYPE;
-var Profiler = REACT_PROFILER_TYPE;
-var StrictMode = REACT_STRICT_MODE_TYPE;
-var Suspense = REACT_SUSPENSE_TYPE;
-var hasWarnedAboutDeprecatedIsAsyncMode = false; // AsyncMode should be deprecated
-
-function isAsyncMode(object) {
-  {
-    if (!hasWarnedAboutDeprecatedIsAsyncMode) {
-      hasWarnedAboutDeprecatedIsAsyncMode = true; // Using console['warn'] to evade Babel and ESLint
-
-      console['warn']('The ReactIs.isAsyncMode() alias has been deprecated, ' + 'and will be removed in React 17+. Update your code to use ' + 'ReactIs.isConcurrentMode() instead. It has the exact same API.');
-    }
-  }
-
-  return isConcurrentMode(object) || typeOf(object) === REACT_ASYNC_MODE_TYPE;
-}
-function isConcurrentMode(object) {
-  return typeOf(object) === REACT_CONCURRENT_MODE_TYPE;
-}
-function isContextConsumer(object) {
-  return typeOf(object) === REACT_CONTEXT_TYPE;
-}
-function isContextProvider(object) {
-  return typeOf(object) === REACT_PROVIDER_TYPE;
-}
-function isElement(object) {
-  return typeof object === 'object' && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
-}
-function isForwardRef(object) {
-  return typeOf(object) === REACT_FORWARD_REF_TYPE;
-}
-function isFragment(object) {
-  return typeOf(object) === REACT_FRAGMENT_TYPE;
-}
-function isLazy(object) {
-  return typeOf(object) === REACT_LAZY_TYPE;
-}
-function isMemo(object) {
-  return typeOf(object) === REACT_MEMO_TYPE;
-}
-function isPortal(object) {
-  return typeOf(object) === REACT_PORTAL_TYPE;
-}
-function isProfiler(object) {
-  return typeOf(object) === REACT_PROFILER_TYPE;
-}
-function isStrictMode(object) {
-  return typeOf(object) === REACT_STRICT_MODE_TYPE;
-}
-function isSuspense(object) {
-  return typeOf(object) === REACT_SUSPENSE_TYPE;
-}
-
-exports.AsyncMode = AsyncMode;
-exports.ConcurrentMode = ConcurrentMode;
-exports.ContextConsumer = ContextConsumer;
-exports.ContextProvider = ContextProvider;
-exports.Element = Element;
-exports.ForwardRef = ForwardRef;
-exports.Fragment = Fragment;
-exports.Lazy = Lazy;
-exports.Memo = Memo;
-exports.Portal = Portal;
-exports.Profiler = Profiler;
-exports.StrictMode = StrictMode;
-exports.Suspense = Suspense;
-exports.isAsyncMode = isAsyncMode;
-exports.isConcurrentMode = isConcurrentMode;
-exports.isContextConsumer = isContextConsumer;
-exports.isContextProvider = isContextProvider;
-exports.isElement = isElement;
-exports.isForwardRef = isForwardRef;
-exports.isFragment = isFragment;
-exports.isLazy = isLazy;
-exports.isMemo = isMemo;
-exports.isPortal = isPortal;
-exports.isProfiler = isProfiler;
-exports.isStrictMode = isStrictMode;
-exports.isSuspense = isSuspense;
-exports.isValidElementType = isValidElementType;
-exports.typeOf = typeOf;
-  })();
-}
-});
-var reactIs_development_1 = reactIs_development.AsyncMode;
-var reactIs_development_2 = reactIs_development.ConcurrentMode;
-var reactIs_development_3 = reactIs_development.ContextConsumer;
-var reactIs_development_4 = reactIs_development.ContextProvider;
-var reactIs_development_5 = reactIs_development.Element;
-var reactIs_development_6 = reactIs_development.ForwardRef;
-var reactIs_development_7 = reactIs_development.Fragment;
-var reactIs_development_8 = reactIs_development.Lazy;
-var reactIs_development_9 = reactIs_development.Memo;
-var reactIs_development_10 = reactIs_development.Portal;
-var reactIs_development_11 = reactIs_development.Profiler;
-var reactIs_development_12 = reactIs_development.StrictMode;
-var reactIs_development_13 = reactIs_development.Suspense;
-var reactIs_development_14 = reactIs_development.isAsyncMode;
-var reactIs_development_15 = reactIs_development.isConcurrentMode;
-var reactIs_development_16 = reactIs_development.isContextConsumer;
-var reactIs_development_17 = reactIs_development.isContextProvider;
-var reactIs_development_18 = reactIs_development.isElement;
-var reactIs_development_19 = reactIs_development.isForwardRef;
-var reactIs_development_20 = reactIs_development.isFragment;
-var reactIs_development_21 = reactIs_development.isLazy;
-var reactIs_development_22 = reactIs_development.isMemo;
-var reactIs_development_23 = reactIs_development.isPortal;
-var reactIs_development_24 = reactIs_development.isProfiler;
-var reactIs_development_25 = reactIs_development.isStrictMode;
-var reactIs_development_26 = reactIs_development.isSuspense;
-var reactIs_development_27 = reactIs_development.isValidElementType;
-var reactIs_development_28 = reactIs_development.typeOf;
-
-var reactIs = createCommonjsModule(function (module) {
-
-if (process.env.NODE_ENV === 'production') {
-  module.exports = reactIs_production_min;
-} else {
-  module.exports = reactIs_development;
-}
-});
-
-/*
-object-assign
-(c) Sindre Sorhus
-@license MIT
-*/
-/* eslint-disable no-unused-vars */
-var getOwnPropertySymbols = Object.getOwnPropertySymbols;
-var hasOwnProperty = Object.prototype.hasOwnProperty;
-var propIsEnumerable = Object.prototype.propertyIsEnumerable;
-
-function toObject(val) {
-	if (val === null || val === undefined) {
-		throw new TypeError('Object.assign cannot be called with null or undefined');
-	}
-
-	return Object(val);
-}
-
-function shouldUseNative() {
-	try {
-		if (!Object.assign) {
-			return false;
-		}
-
-		// Detect buggy property enumeration order in older V8 versions.
-
-		// https://bugs.chromium.org/p/v8/issues/detail?id=4118
-		var test1 = new String('abc');  // eslint-disable-line no-new-wrappers
-		test1[5] = 'de';
-		if (Object.getOwnPropertyNames(test1)[0] === '5') {
-			return false;
-		}
-
-		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
-		var test2 = {};
-		for (var i = 0; i < 10; i++) {
-			test2['_' + String.fromCharCode(i)] = i;
-		}
-		var order2 = Object.getOwnPropertyNames(test2).map(function (n) {
-			return test2[n];
-		});
-		if (order2.join('') !== '0123456789') {
-			return false;
-		}
-
-		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
-		var test3 = {};
-		'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
-			test3[letter] = letter;
-		});
-		if (Object.keys(Object.assign({}, test3)).join('') !==
-				'abcdefghijklmnopqrst') {
-			return false;
-		}
-
-		return true;
-	} catch (err) {
-		// We don't expect any of the above to throw, but better to be safe.
-		return false;
-	}
-}
-
-var objectAssign = shouldUseNative() ? Object.assign : function (target, source) {
-	var arguments$1 = arguments;
-
-	var from;
-	var to = toObject(target);
-	var symbols;
-
-	for (var s = 1; s < arguments.length; s++) {
-		from = Object(arguments$1[s]);
-
-		for (var key in from) {
-			if (hasOwnProperty.call(from, key)) {
-				to[key] = from[key];
-			}
-		}
-
-		if (getOwnPropertySymbols) {
-			symbols = getOwnPropertySymbols(from);
-			for (var i = 0; i < symbols.length; i++) {
-				if (propIsEnumerable.call(from, symbols[i])) {
-					to[symbols[i]] = from[symbols[i]];
-				}
-			}
-		}
-	}
-
-	return to;
-};
-
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
-
-var ReactPropTypesSecret_1 = ReactPropTypesSecret;
-
-var printWarning = function() {};
-
-if (process.env.NODE_ENV !== 'production') {
-  var ReactPropTypesSecret$1 = ReactPropTypesSecret_1;
-  var loggedTypeFailures = {};
-  var has = Function.call.bind(Object.prototype.hasOwnProperty);
-
-  printWarning = function(text) {
-    var message = 'Warning: ' + text;
-    if (typeof console !== 'undefined') {
-      console.error(message);
-    }
-    try {
-      // --- Welcome to debugging React ---
-      // This error was thrown as a convenience so that you can use this stack
-      // to find the callsite that caused this warning to fire.
-      throw new Error(message);
-    } catch (x) {}
-  };
-}
-
-/**
- * Assert that the values match with the type specs.
- * Error messages are memorized and will only be shown once.
- *
- * @param {object} typeSpecs Map of name to a ReactPropType
- * @param {object} values Runtime values that need to be type-checked
- * @param {string} location e.g. "prop", "context", "child context"
- * @param {string} componentName Name of the component for error messages.
- * @param {?Function} getStack Returns the component stack.
- * @private
- */
-function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
-  if (process.env.NODE_ENV !== 'production') {
-    for (var typeSpecName in typeSpecs) {
-      if (has(typeSpecs, typeSpecName)) {
-        var error;
-        // Prop type validation may throw. In case they do, we don't want to
-        // fail the render phase where it didn't fail before. So we log it.
-        // After these have been cleaned up, we'll let them throw.
-        try {
-          // This is intentionally an invariant that gets caught. It's the same
-          // behavior as without this statement except with a better message.
-          if (typeof typeSpecs[typeSpecName] !== 'function') {
-            var err = Error(
-              (componentName || 'React class') + ': ' + location + ' type `' + typeSpecName + '` is invalid; ' +
-              'it must be a function, usually from the `prop-types` package, but received `' + typeof typeSpecs[typeSpecName] + '`.'
-            );
-            err.name = 'Invariant Violation';
-            throw err;
-          }
-          error = typeSpecs[typeSpecName](values, typeSpecName, componentName, location, null, ReactPropTypesSecret$1);
-        } catch (ex) {
-          error = ex;
-        }
-        if (error && !(error instanceof Error)) {
-          printWarning(
-            (componentName || 'React class') + ': type specification of ' +
-            location + ' `' + typeSpecName + '` is invalid; the type checker ' +
-            'function must return `null` or an `Error` but returned a ' + typeof error + '. ' +
-            'You may have forgotten to pass an argument to the type checker ' +
-            'creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and ' +
-            'shape all require an argument).'
-          );
-        }
-        if (error instanceof Error && !(error.message in loggedTypeFailures)) {
-          // Only monitor this failure once because there tends to be a lot of the
-          // same error.
-          loggedTypeFailures[error.message] = true;
-
-          var stack = getStack ? getStack() : '';
-
-          printWarning(
-            'Failed ' + location + ' type: ' + error.message + (stack != null ? stack : '')
-          );
-        }
-      }
-    }
-  }
-}
-
-/**
- * Resets warning cache when testing.
- *
- * @private
- */
-checkPropTypes.resetWarningCache = function() {
-  if (process.env.NODE_ENV !== 'production') {
-    loggedTypeFailures = {};
-  }
-};
-
-var checkPropTypes_1 = checkPropTypes;
-
-var has$1 = Function.call.bind(Object.prototype.hasOwnProperty);
-var printWarning$1 = function() {};
-
-if (process.env.NODE_ENV !== 'production') {
-  printWarning$1 = function(text) {
-    var message = 'Warning: ' + text;
-    if (typeof console !== 'undefined') {
-      console.error(message);
-    }
-    try {
-      // --- Welcome to debugging React ---
-      // This error was thrown as a convenience so that you can use this stack
-      // to find the callsite that caused this warning to fire.
-      throw new Error(message);
-    } catch (x) {}
-  };
-}
-
-function emptyFunctionThatReturnsNull() {
-  return null;
-}
-
-var factoryWithTypeCheckers = function(isValidElement, throwOnDirectAccess) {
-  /* global Symbol */
-  var ITERATOR_SYMBOL = typeof Symbol === 'function' && Symbol.iterator;
-  var FAUX_ITERATOR_SYMBOL = '@@iterator'; // Before Symbol spec.
-
-  /**
-   * Returns the iterator method function contained on the iterable object.
-   *
-   * Be sure to invoke the function with the iterable as context:
-   *
-   *     var iteratorFn = getIteratorFn(myIterable);
-   *     if (iteratorFn) {
-   *       var iterator = iteratorFn.call(myIterable);
-   *       ...
-   *     }
-   *
-   * @param {?object} maybeIterable
-   * @return {?function}
-   */
-  function getIteratorFn(maybeIterable) {
-    var iteratorFn = maybeIterable && (ITERATOR_SYMBOL && maybeIterable[ITERATOR_SYMBOL] || maybeIterable[FAUX_ITERATOR_SYMBOL]);
-    if (typeof iteratorFn === 'function') {
-      return iteratorFn;
-    }
-  }
-
-  /**
-   * Collection of methods that allow declaration and validation of props that are
-   * supplied to React components. Example usage:
-   *
-   *   var Props = require('ReactPropTypes');
-   *   var MyArticle = React.createClass({
-   *     propTypes: {
-   *       // An optional string prop named "description".
-   *       description: Props.string,
-   *
-   *       // A required enum prop named "category".
-   *       category: Props.oneOf(['News','Photos']).isRequired,
-   *
-   *       // A prop named "dialog" that requires an instance of Dialog.
-   *       dialog: Props.instanceOf(Dialog).isRequired
-   *     },
-   *     render: function() { ... }
-   *   });
-   *
-   * A more formal specification of how these methods are used:
-   *
-   *   type := array|bool|func|object|number|string|oneOf([...])|instanceOf(...)
-   *   decl := ReactPropTypes.{type}(.isRequired)?
-   *
-   * Each and every declaration produces a function with the same signature. This
-   * allows the creation of custom validation functions. For example:
-   *
-   *  var MyLink = React.createClass({
-   *    propTypes: {
-   *      // An optional string or URI prop named "href".
-   *      href: function(props, propName, componentName) {
-   *        var propValue = props[propName];
-   *        if (propValue != null && typeof propValue !== 'string' &&
-   *            !(propValue instanceof URI)) {
-   *          return new Error(
-   *            'Expected a string or an URI for ' + propName + ' in ' +
-   *            componentName
-   *          );
-   *        }
-   *      }
-   *    },
-   *    render: function() {...}
-   *  });
-   *
-   * @internal
-   */
-
-  var ANONYMOUS = '<<anonymous>>';
-
-  // Important!
-  // Keep this list in sync with production version in `./factoryWithThrowingShims.js`.
-  var ReactPropTypes = {
-    array: createPrimitiveTypeChecker('array'),
-    bool: createPrimitiveTypeChecker('boolean'),
-    func: createPrimitiveTypeChecker('function'),
-    number: createPrimitiveTypeChecker('number'),
-    object: createPrimitiveTypeChecker('object'),
-    string: createPrimitiveTypeChecker('string'),
-    symbol: createPrimitiveTypeChecker('symbol'),
-
-    any: createAnyTypeChecker(),
-    arrayOf: createArrayOfTypeChecker,
-    element: createElementTypeChecker(),
-    elementType: createElementTypeTypeChecker(),
-    instanceOf: createInstanceTypeChecker,
-    node: createNodeChecker(),
-    objectOf: createObjectOfTypeChecker,
-    oneOf: createEnumTypeChecker,
-    oneOfType: createUnionTypeChecker,
-    shape: createShapeTypeChecker,
-    exact: createStrictShapeTypeChecker,
-  };
-
-  /**
-   * inlined Object.is polyfill to avoid requiring consumers ship their own
-   * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is
-   */
-  /*eslint-disable no-self-compare*/
-  function is(x, y) {
-    // SameValue algorithm
-    if (x === y) {
-      // Steps 1-5, 7-10
-      // Steps 6.b-6.e: +0 != -0
-      return x !== 0 || 1 / x === 1 / y;
-    } else {
-      // Step 6.a: NaN == NaN
-      return x !== x && y !== y;
-    }
-  }
-  /*eslint-enable no-self-compare*/
-
-  /**
-   * We use an Error-like object for backward compatibility as people may call
-   * PropTypes directly and inspect their output. However, we don't use real
-   * Errors anymore. We don't inspect their stack anyway, and creating them
-   * is prohibitively expensive if they are created too often, such as what
-   * happens in oneOfType() for any type before the one that matched.
-   */
-  function PropTypeError(message) {
-    this.message = message;
-    this.stack = '';
-  }
-  // Make `instanceof Error` still work for returned errors.
-  PropTypeError.prototype = Error.prototype;
-
-  function createChainableTypeChecker(validate) {
-    if (process.env.NODE_ENV !== 'production') {
-      var manualPropTypeCallCache = {};
-      var manualPropTypeWarningCount = 0;
-    }
-    function checkType(isRequired, props, propName, componentName, location, propFullName, secret) {
-      componentName = componentName || ANONYMOUS;
-      propFullName = propFullName || propName;
-
-      if (secret !== ReactPropTypesSecret_1) {
-        if (throwOnDirectAccess) {
-          // New behavior only for users of `prop-types` package
-          var err = new Error(
-            'Calling PropTypes validators directly is not supported by the `prop-types` package. ' +
-            'Use `PropTypes.checkPropTypes()` to call them. ' +
-            'Read more at http://fb.me/use-check-prop-types'
-          );
-          err.name = 'Invariant Violation';
-          throw err;
-        } else if (process.env.NODE_ENV !== 'production' && typeof console !== 'undefined') {
-          // Old behavior for people using React.PropTypes
-          var cacheKey = componentName + ':' + propName;
-          if (
-            !manualPropTypeCallCache[cacheKey] &&
-            // Avoid spamming the console because they are often not actionable except for lib authors
-            manualPropTypeWarningCount < 3
-          ) {
-            printWarning$1(
-              'You are manually calling a React.PropTypes validation ' +
-              'function for the `' + propFullName + '` prop on `' + componentName  + '`. This is deprecated ' +
-              'and will throw in the standalone `prop-types` package. ' +
-              'You may be seeing this warning due to a third-party PropTypes ' +
-              'library. See https://fb.me/react-warning-dont-call-proptypes ' + 'for details.'
-            );
-            manualPropTypeCallCache[cacheKey] = true;
-            manualPropTypeWarningCount++;
-          }
-        }
-      }
-      if (props[propName] == null) {
-        if (isRequired) {
-          if (props[propName] === null) {
-            return new PropTypeError('The ' + location + ' `' + propFullName + '` is marked as required ' + ('in `' + componentName + '`, but its value is `null`.'));
-          }
-          return new PropTypeError('The ' + location + ' `' + propFullName + '` is marked as required in ' + ('`' + componentName + '`, but its value is `undefined`.'));
-        }
-        return null;
-      } else {
-        return validate(props, propName, componentName, location, propFullName);
-      }
-    }
-
-    var chainedCheckType = checkType.bind(null, false);
-    chainedCheckType.isRequired = checkType.bind(null, true);
-
-    return chainedCheckType;
-  }
-
-  function createPrimitiveTypeChecker(expectedType) {
-    function validate(props, propName, componentName, location, propFullName, secret) {
-      var propValue = props[propName];
-      var propType = getPropType(propValue);
-      if (propType !== expectedType) {
-        // `propValue` being instance of, say, date/regexp, pass the 'object'
-        // check, but we can offer a more precise error message here rather than
-        // 'of type `object`'.
-        var preciseType = getPreciseType(propValue);
-
-        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + preciseType + '` supplied to `' + componentName + '`, expected ') + ('`' + expectedType + '`.'));
-      }
-      return null;
-    }
-    return createChainableTypeChecker(validate);
-  }
-
-  function createAnyTypeChecker() {
-    return createChainableTypeChecker(emptyFunctionThatReturnsNull);
-  }
-
-  function createArrayOfTypeChecker(typeChecker) {
-    function validate(props, propName, componentName, location, propFullName) {
-      if (typeof typeChecker !== 'function') {
-        return new PropTypeError('Property `' + propFullName + '` of component `' + componentName + '` has invalid PropType notation inside arrayOf.');
-      }
-      var propValue = props[propName];
-      if (!Array.isArray(propValue)) {
-        var propType = getPropType(propValue);
-        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected an array.'));
-      }
-      for (var i = 0; i < propValue.length; i++) {
-        var error = typeChecker(propValue, i, componentName, location, propFullName + '[' + i + ']', ReactPropTypesSecret_1);
-        if (error instanceof Error) {
-          return error;
-        }
-      }
-      return null;
-    }
-    return createChainableTypeChecker(validate);
-  }
-
-  function createElementTypeChecker() {
-    function validate(props, propName, componentName, location, propFullName) {
-      var propValue = props[propName];
-      if (!isValidElement(propValue)) {
-        var propType = getPropType(propValue);
-        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected a single ReactElement.'));
-      }
-      return null;
-    }
-    return createChainableTypeChecker(validate);
-  }
-
-  function createElementTypeTypeChecker() {
-    function validate(props, propName, componentName, location, propFullName) {
-      var propValue = props[propName];
-      if (!reactIs.isValidElementType(propValue)) {
-        var propType = getPropType(propValue);
-        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected a single ReactElement type.'));
-      }
-      return null;
-    }
-    return createChainableTypeChecker(validate);
-  }
-
-  function createInstanceTypeChecker(expectedClass) {
-    function validate(props, propName, componentName, location, propFullName) {
-      if (!(props[propName] instanceof expectedClass)) {
-        var expectedClassName = expectedClass.name || ANONYMOUS;
-        var actualClassName = getClassName(props[propName]);
-        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + actualClassName + '` supplied to `' + componentName + '`, expected ') + ('instance of `' + expectedClassName + '`.'));
-      }
-      return null;
-    }
-    return createChainableTypeChecker(validate);
-  }
-
-  function createEnumTypeChecker(expectedValues) {
-    if (!Array.isArray(expectedValues)) {
-      if (process.env.NODE_ENV !== 'production') {
-        if (arguments.length > 1) {
-          printWarning$1(
-            'Invalid arguments supplied to oneOf, expected an array, got ' + arguments.length + ' arguments. ' +
-            'A common mistake is to write oneOf(x, y, z) instead of oneOf([x, y, z]).'
-          );
-        } else {
-          printWarning$1('Invalid argument supplied to oneOf, expected an array.');
-        }
-      }
-      return emptyFunctionThatReturnsNull;
-    }
-
-    function validate(props, propName, componentName, location, propFullName) {
-      var propValue = props[propName];
-      for (var i = 0; i < expectedValues.length; i++) {
-        if (is(propValue, expectedValues[i])) {
-          return null;
-        }
-      }
-
-      var valuesString = JSON.stringify(expectedValues, function replacer(key, value) {
-        var type = getPreciseType(value);
-        if (type === 'symbol') {
-          return String(value);
-        }
-        return value;
-      });
-      return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of value `' + String(propValue) + '` ' + ('supplied to `' + componentName + '`, expected one of ' + valuesString + '.'));
-    }
-    return createChainableTypeChecker(validate);
-  }
-
-  function createObjectOfTypeChecker(typeChecker) {
-    function validate(props, propName, componentName, location, propFullName) {
-      if (typeof typeChecker !== 'function') {
-        return new PropTypeError('Property `' + propFullName + '` of component `' + componentName + '` has invalid PropType notation inside objectOf.');
-      }
-      var propValue = props[propName];
-      var propType = getPropType(propValue);
-      if (propType !== 'object') {
-        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected an object.'));
-      }
-      for (var key in propValue) {
-        if (has$1(propValue, key)) {
-          var error = typeChecker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret_1);
-          if (error instanceof Error) {
-            return error;
-          }
-        }
-      }
-      return null;
-    }
-    return createChainableTypeChecker(validate);
-  }
-
-  function createUnionTypeChecker(arrayOfTypeCheckers) {
-    if (!Array.isArray(arrayOfTypeCheckers)) {
-      process.env.NODE_ENV !== 'production' ? printWarning$1('Invalid argument supplied to oneOfType, expected an instance of array.') : void 0;
-      return emptyFunctionThatReturnsNull;
-    }
-
-    for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
-      var checker = arrayOfTypeCheckers[i];
-      if (typeof checker !== 'function') {
-        printWarning$1(
-          'Invalid argument supplied to oneOfType. Expected an array of check functions, but ' +
-          'received ' + getPostfixForTypeWarning(checker) + ' at index ' + i + '.'
-        );
-        return emptyFunctionThatReturnsNull;
-      }
-    }
-
-    function validate(props, propName, componentName, location, propFullName) {
-      for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
-        var checker = arrayOfTypeCheckers[i];
-        if (checker(props, propName, componentName, location, propFullName, ReactPropTypesSecret_1) == null) {
-          return null;
-        }
-      }
-
-      return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` supplied to ' + ('`' + componentName + '`.'));
-    }
-    return createChainableTypeChecker(validate);
-  }
-
-  function createNodeChecker() {
-    function validate(props, propName, componentName, location, propFullName) {
-      if (!isNode(props[propName])) {
-        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` supplied to ' + ('`' + componentName + '`, expected a ReactNode.'));
-      }
-      return null;
-    }
-    return createChainableTypeChecker(validate);
-  }
-
-  function createShapeTypeChecker(shapeTypes) {
-    function validate(props, propName, componentName, location, propFullName) {
-      var propValue = props[propName];
-      var propType = getPropType(propValue);
-      if (propType !== 'object') {
-        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
-      }
-      for (var key in shapeTypes) {
-        var checker = shapeTypes[key];
-        if (!checker) {
-          continue;
-        }
-        var error = checker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret_1);
-        if (error) {
-          return error;
-        }
-      }
-      return null;
-    }
-    return createChainableTypeChecker(validate);
-  }
-
-  function createStrictShapeTypeChecker(shapeTypes) {
-    function validate(props, propName, componentName, location, propFullName) {
-      var propValue = props[propName];
-      var propType = getPropType(propValue);
-      if (propType !== 'object') {
-        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
-      }
-      // We need to check all keys in case some are required but missing from
-      // props.
-      var allKeys = objectAssign({}, props[propName], shapeTypes);
-      for (var key in allKeys) {
-        var checker = shapeTypes[key];
-        if (!checker) {
-          return new PropTypeError(
-            'Invalid ' + location + ' `' + propFullName + '` key `' + key + '` supplied to `' + componentName + '`.' +
-            '\nBad object: ' + JSON.stringify(props[propName], null, '  ') +
-            '\nValid keys: ' +  JSON.stringify(Object.keys(shapeTypes), null, '  ')
-          );
-        }
-        var error = checker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret_1);
-        if (error) {
-          return error;
-        }
-      }
-      return null;
-    }
-
-    return createChainableTypeChecker(validate);
-  }
-
-  function isNode(propValue) {
-    switch (typeof propValue) {
-      case 'number':
-      case 'string':
-      case 'undefined':
-        return true;
-      case 'boolean':
-        return !propValue;
-      case 'object':
-        if (Array.isArray(propValue)) {
-          return propValue.every(isNode);
-        }
-        if (propValue === null || isValidElement(propValue)) {
-          return true;
-        }
-
-        var iteratorFn = getIteratorFn(propValue);
-        if (iteratorFn) {
-          var iterator = iteratorFn.call(propValue);
-          var step;
-          if (iteratorFn !== propValue.entries) {
-            while (!(step = iterator.next()).done) {
-              if (!isNode(step.value)) {
-                return false;
-              }
-            }
-          } else {
-            // Iterator will provide entry [k,v] tuples rather than values.
-            while (!(step = iterator.next()).done) {
-              var entry = step.value;
-              if (entry) {
-                if (!isNode(entry[1])) {
-                  return false;
-                }
-              }
-            }
-          }
-        } else {
-          return false;
-        }
-
-        return true;
-      default:
-        return false;
-    }
-  }
-
-  function isSymbol(propType, propValue) {
-    // Native Symbol.
-    if (propType === 'symbol') {
-      return true;
-    }
-
-    // falsy value can't be a Symbol
-    if (!propValue) {
-      return false;
-    }
-
-    // 19.4.3.5 Symbol.prototype[@@toStringTag] === 'Symbol'
-    if (propValue['@@toStringTag'] === 'Symbol') {
-      return true;
-    }
-
-    // Fallback for non-spec compliant Symbols which are polyfilled.
-    if (typeof Symbol === 'function' && propValue instanceof Symbol) {
-      return true;
-    }
-
-    return false;
-  }
-
-  // Equivalent of `typeof` but with special handling for array and regexp.
-  function getPropType(propValue) {
-    var propType = typeof propValue;
-    if (Array.isArray(propValue)) {
-      return 'array';
-    }
-    if (propValue instanceof RegExp) {
-      // Old webkits (at least until Android 4.0) return 'function' rather than
-      // 'object' for typeof a RegExp. We'll normalize this here so that /bla/
-      // passes PropTypes.object.
-      return 'object';
-    }
-    if (isSymbol(propType, propValue)) {
-      return 'symbol';
-    }
-    return propType;
-  }
-
-  // This handles more types than `getPropType`. Only used for error messages.
-  // See `createPrimitiveTypeChecker`.
-  function getPreciseType(propValue) {
-    if (typeof propValue === 'undefined' || propValue === null) {
-      return '' + propValue;
-    }
-    var propType = getPropType(propValue);
-    if (propType === 'object') {
-      if (propValue instanceof Date) {
-        return 'date';
-      } else if (propValue instanceof RegExp) {
-        return 'regexp';
-      }
-    }
-    return propType;
-  }
-
-  // Returns a string that is postfixed to a warning about an invalid type.
-  // For example, "undefined" or "of type array"
-  function getPostfixForTypeWarning(value) {
-    var type = getPreciseType(value);
-    switch (type) {
-      case 'array':
-      case 'object':
-        return 'an ' + type;
-      case 'boolean':
-      case 'date':
-      case 'regexp':
-        return 'a ' + type;
-      default:
-        return type;
-    }
-  }
-
-  // Returns class name of the object, if any.
-  function getClassName(propValue) {
-    if (!propValue.constructor || !propValue.constructor.name) {
-      return ANONYMOUS;
-    }
-    return propValue.constructor.name;
-  }
-
-  ReactPropTypes.checkPropTypes = checkPropTypes_1;
-  ReactPropTypes.resetWarningCache = checkPropTypes_1.resetWarningCache;
-  ReactPropTypes.PropTypes = ReactPropTypes;
-
-  return ReactPropTypes;
-};
-
-function emptyFunction() {}
-function emptyFunctionWithReset() {}
-emptyFunctionWithReset.resetWarningCache = emptyFunction;
-
-var factoryWithThrowingShims = function() {
-  function shim(props, propName, componentName, location, propFullName, secret) {
-    if (secret === ReactPropTypesSecret_1) {
-      // It is still safe when called from React.
-      return;
-    }
-    var err = new Error(
-      'Calling PropTypes validators directly is not supported by the `prop-types` package. ' +
-      'Use PropTypes.checkPropTypes() to call them. ' +
-      'Read more at http://fb.me/use-check-prop-types'
-    );
-    err.name = 'Invariant Violation';
-    throw err;
-  }  shim.isRequired = shim;
-  function getShim() {
-    return shim;
-  }  // Important!
-  // Keep this list in sync with production version in `./factoryWithTypeCheckers.js`.
-  var ReactPropTypes = {
-    array: shim,
-    bool: shim,
-    func: shim,
-    number: shim,
-    object: shim,
-    string: shim,
-    symbol: shim,
-
-    any: shim,
-    arrayOf: getShim,
-    element: shim,
-    elementType: shim,
-    instanceOf: getShim,
-    node: shim,
-    objectOf: getShim,
-    oneOf: getShim,
-    oneOfType: getShim,
-    shape: getShim,
-    exact: getShim,
-
-    checkPropTypes: emptyFunctionWithReset,
-    resetWarningCache: emptyFunction
-  };
-
-  ReactPropTypes.PropTypes = ReactPropTypes;
-
-  return ReactPropTypes;
-};
-
-var propTypes = createCommonjsModule(function (module) {
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-if (process.env.NODE_ENV !== 'production') {
-  var ReactIs = reactIs;
-
-  // By explicitly using `prop-types` you are opting into new development behavior.
-  // http://fb.me/prop-types-in-prod
-  var throwOnDirectAccess = true;
-  module.exports = factoryWithTypeCheckers(ReactIs.isElement, throwOnDirectAccess);
-} else {
-  // By explicitly using `prop-types` you are opting into new production behavior.
-  // http://fb.me/prop-types-in-prod
-  module.exports = factoryWithThrowingShims();
-}
-});
-
-var ResourcesList = function ResourcesList(props) {
-  var _useState = useState([]),
-      _useState2 = slicedToArray(_useState, 2),
-      selectedRowKeys = _useState2[0],
-      setSelectedRowKeys = _useState2[1];
-  /**
-   *渲染服务二级列表
-   *
-   * @memberof List
-   */
-
-
-  var renderServiceList = function renderServiceList(list) {
-    var rowSelection = {
-      onChange: function onChange(selectedRowKeys, selectedRows) {
-        setSelectedRowKeys(selectedRowKeys.map(Number));
-      },
-      selectedRowKeys: selectedRowKeys,
-      onSelect: function onSelect(record, selected, selectedRows, nativeEvent) {
-        props.onSelect(record, selected);
-      }
-    };
-    var columns = [{
-      title: "Name",
-      dataIndex: "name",
-      render: function render(text) {
-        return /*#__PURE__*/React__default.createElement("a", null, text);
-      }
-    }];
-    return /*#__PURE__*/React__default.createElement(Table, {
-      bordered: false,
-      pagination: false,
-      rowKey: "id",
-      showHeader: false,
-      rowSelection: rowSelection,
-      columns: columns,
-      dataSource: list
-    });
-  };
-  /**
-   *渲染服务一级列表
-   *
-   * @memberof List
-   */
-
-
-  var renderList = function renderList() {
-    var list = props.list;
-    var rootlist = list.filter(function (e) {
-      return e.pid === 1;
-    });
-    var rootrenderlist = [];
-    rootlist.forEach(function (item) {
-      var sublist = list.filter(function (e) {
-        return e.pid == item.id;
-      });
-      var num = sublist.length;
-      rootrenderlist.push( /*#__PURE__*/React__default.createElement(Collapse.Panel, {
-        header: /*#__PURE__*/React__default.createElement("div", null, item.name + " (" + num + ")"),
-        key: item.id
-      }, num > 0 ? renderServiceList(sublist) : null));
-    });
-    return /*#__PURE__*/React__default.createElement(Collapse, {
-      expandIconPosition: "right",
-      bordered: false
-    }, rootrenderlist);
-  };
-
-  return /*#__PURE__*/React__default.createElement("div", {
-    className: "".concat(props.className || "", " resources_list")
-  }, renderList());
-};
-
-ResourcesList.propTypes = {};
-
-var ResourceCatalog = function ResourceCatalog(props) {
-  return /*#__PURE__*/React__default.createElement(SideBar, props.sideprops, /*#__PURE__*/React__default.createElement(ResourcesList, {
-    list: props.data,
-    onSelect: props.onSelect
-  }));
 };
 
 function _classCallCheck(instance, Constructor) {
@@ -1415,6 +192,689 @@ function _defineProperty(obj, key, value) {
 }
 
 var defineProperty = _defineProperty;
+
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) { return arr; }
+}
+
+var arrayWithHoles = _arrayWithHoles;
+
+function _iterableToArrayLimit(arr, i) {
+  if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) { return; }
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+  var _e = undefined;
+
+  try {
+    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+
+      if (i && _arr.length === i) { break; }
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null) { _i["return"](); }
+    } finally {
+      if (_d) { throw _e; }
+    }
+  }
+
+  return _arr;
+}
+
+var iterableToArrayLimit = _iterableToArrayLimit;
+
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) { len = arr.length; }
+
+  for (var i = 0, arr2 = new Array(len); i < len; i++) {
+    arr2[i] = arr[i];
+  }
+
+  return arr2;
+}
+
+var arrayLikeToArray = _arrayLikeToArray;
+
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) { return; }
+  if (typeof o === "string") { return arrayLikeToArray(o, minLen); }
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) { n = o.constructor.name; }
+  if (n === "Map" || n === "Set") { return Array.from(o); }
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) { return arrayLikeToArray(o, minLen); }
+}
+
+var unsupportedIterableToArray = _unsupportedIterableToArray;
+
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+
+var nonIterableRest = _nonIterableRest;
+
+function _slicedToArray(arr, i) {
+  return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || unsupportedIterableToArray(arr, i) || nonIterableRest();
+}
+
+var slicedToArray = _slicedToArray;
+
+var css_248z$1 = ".resources_list {\n  overflow-y: auto;\n  margin: 0px;\n}\n.resources_list .ant-collapse-header {\n  font-weight: 600;\n}\n.resources_list .foldericon {\n  margin: 0 6px;\n}\n.resources_list .ant-table-thead > tr > th,\n.resources_list .ant-table-tbody > tr > td {\n  padding: 8px;\n  border: 0px;\n}\n.resources_list .ant-table-row td {\n  background-color: #6157cc0f !important;\n}\n.resources_list .ant-table-row-selected .ant-table-selection-column {\n  border-left: 2px solid #6157cc;\n}\n.resources_list .ant-table-expanded-row td {\n  padding: 0 !important;\n}\n";
+styleInject(css_248z$1);
+
+var ResourcesList = function ResourcesList(props) {
+  var _useState = useState([]),
+      _useState2 = slicedToArray(_useState, 2),
+      selectedRowKeys = _useState2[0],
+      setSelectedRowKeys = _useState2[1];
+  /**
+   *渲染服务二级列表
+   *
+   * @memberof List
+   */
+
+
+  var renderServiceList = function renderServiceList(list) {
+    var rowSelection = {
+      onChange: function onChange(selectedRowKeys, selectedRows) {
+        setSelectedRowKeys(selectedRowKeys.map(Number));
+      },
+      selectedRowKeys: selectedRowKeys,
+      onSelect: function onSelect(record, selected, selectedRows, nativeEvent) {
+        props.onSelect(record, selected);
+      }
+    };
+    var columns = [{
+      title: "Name",
+      dataIndex: "name",
+      render: function render(text) {
+        return /*#__PURE__*/React__default.createElement("a", null, text);
+      }
+    }];
+    return /*#__PURE__*/React__default.createElement(Table, {
+      bordered: false,
+      pagination: false,
+      rowKey: "id",
+      showHeader: false,
+      rowSelection: rowSelection,
+      columns: columns,
+      dataSource: list
+    });
+  };
+  /**
+   *渲染服务一级列表
+   *
+   * @memberof List
+   */
+
+
+  var renderList = function renderList() {
+    var list = props.list;
+    var rootlist = list.filter(function (e) {
+      return e.pid === 1;
+    });
+    var rootrenderlist = [];
+    rootlist.forEach(function (item) {
+      var sublist = list.filter(function (e) {
+        return e.pid == item.id;
+      });
+      var num = sublist.length;
+      rootrenderlist.push( /*#__PURE__*/React__default.createElement(Collapse.Panel, {
+        header: /*#__PURE__*/React__default.createElement("div", null, item.name + " (" + num + ")"),
+        key: item.id
+      }, num > 0 ? renderServiceList(sublist) : null));
+    });
+    return /*#__PURE__*/React__default.createElement(Collapse, {
+      expandIconPosition: "right",
+      bordered: false
+    }, rootrenderlist);
+  };
+
+  return /*#__PURE__*/React__default.createElement("div", {
+    className: "".concat(props.className || "", " resources_list")
+  }, renderList());
+};
+
+ResourcesList.propTypes = {};
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) { return false; } if (Reflect.construct.sham) { return false; } if (typeof Proxy === "function") { return true; } try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+var ResourceCatalog = /*#__PURE__*/function (_Component) {
+  inherits(ResourceCatalog, _Component);
+
+  var _super = _createSuper(ResourceCatalog);
+
+  function ResourceCatalog() {
+    var arguments$1 = arguments;
+
+    var _this;
+
+    classCallCheck(this, ResourceCatalog);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments$1[_key];
+    }
+
+    _this = _super.call.apply(_super, [this].concat(args));
+
+    defineProperty(assertThisInitialized(_this), "state", {
+      list: [],
+      selectedRows: [],
+      selectedRowKeys: []
+    });
+
+    defineProperty(assertThisInitialized(_this), "onOpacityChange", function (record, value) {
+      _this.props.thematicActions.changeThematicOpacity(record.id, value);
+
+      _this.props.mapBoxActions.updateLayer("thematic_" + record.id, {
+        paint: {
+          "raster-opacity": value
+        }
+      });
+    });
+
+    defineProperty(assertThisInitialized(_this), "onExpand", function (e, record) {
+      if (!record.legend) {
+        _this.props.thematicActions.loadLegendJson(record);
+      }
+    });
+
+    defineProperty(assertThisInitialized(_this), "onSelect", function (record, selected) {
+      if (selected) {
+        _this.addThematicToStyle(record);
+      } else {
+        _this.removeThematicfromStyle(record);
+      }
+    });
+
+    defineProperty(assertThisInitialized(_this), "addThematicToStyle", function (item) {
+      _this.props.thematicActions.showThematicLayer(item.id);
+
+      _this.props.thematicActions.setSelectedQueryLayer(item.id);
+
+      if (item.servicetype === "wms") {
+        _this.props.mapBoxActions.addSourceAndLayers("thematic_" + item.name, {
+          type: "raster",
+          tiles: [ServerIp + item.url + "?bbox={bbox-epsg-4490}&format=image/png&service=WMS&version=1.1.1&request=GetMap&styles=default&srs=EPSG:4490&transparent=true&width=256&height=256&layers=0"],
+          tileSize: 256
+        }, {
+          id: "thematic_" + item.name,
+          type: "raster",
+          visibility: "none",
+          source: "thematic_" + item.name,
+          paint: {
+            "raster-opacity": 0.8
+          }
+        });
+      } else if (item.servicetype === "map") {
+        _this.props.mapBoxActions.updateLayer("thematic_" + item.id, {
+          layout: {
+            visibility: "visible"
+          }
+        });
+
+        _this.props.thematicActions.queryThematicMetaData({
+          url: item.url,
+          layerid: item.layers
+        });
+      } else if (item.servicetype === "wmts") {
+        _this.props.mapBoxActions.addSourceAndLayers("thematic_" + item.name, {
+          type: "raster",
+          tiles: [ServerIp + item.url + "?request=GetTile&tilematrix={z}&tilerow={y}&tilecol={x}"],
+          tileSize: 256
+        }, {
+          id: "thematic_" + item.name,
+          type: "raster",
+          visibility: "none",
+          source: "thematic_" + item.name
+        });
+      }
+    });
+
+    defineProperty(assertThisInitialized(_this), "removeThematicfromStyle", function (item) {
+      _this.props.thematicActions.showThematicLayer(item.id);
+
+      _this.props.mapBoxActions.updateLayer("thematic_" + item.id, {
+        layout: {
+          visibility: "none"
+        }
+      });
+    });
+
+    return _this;
+  }
+
+  createClass(ResourceCatalog, [{
+    key: "componentWillMount",
+    value: function componentWillMount() {}
+  }, {
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/React__default.createElement(SideBar, this.props.sideprops, /*#__PURE__*/React__default.createElement(ResourcesList, {
+        list: this.props.thematics.themlist,
+        onSelect: this.onSelect
+      })) //   <ResourceCatalog
+      //     sideprops={{title:'资源目录',placement:'left',visible:true,onClose:this.props.onClose}}
+      //     data={this.props.thematics.themlist}
+      //     onSelect={this.onSelect}
+      //   ></ResourceCatalog>
+      ;
+    }
+  }]);
+
+  return ResourceCatalog;
+}(Component);
+
+/*
+ * Copyright 2017 Esri
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+// checks if 2 x,y points are equal
+function pointsEqual (a, b) {
+  for (var i = 0; i < a.length; i++) {
+    if (a[i] !== b[i]) {
+      return false;
+    }
+  }
+  return true;
+}
+
+// checks if the first and last points of a ring are equal and closes the ring
+function closeRing (coordinates) {
+  if (!pointsEqual(coordinates[0], coordinates[coordinates.length - 1])) {
+    coordinates.push(coordinates[0]);
+  }
+  return coordinates;
+}
+
+// determine if polygon ring coordinates are clockwise. clockwise signifies outer ring, counter-clockwise an inner ring
+// or hole. this logic was found at http://stackoverflow.com/questions/1165647/how-to-determine-if-a-list-of-polygon-
+// points-are-in-clockwise-order
+function ringIsClockwise (ringToTest) {
+  var total = 0;
+  var i = 0;
+  var rLength = ringToTest.length;
+  var pt1 = ringToTest[i];
+  var pt2;
+  for (i; i < rLength - 1; i++) {
+    pt2 = ringToTest[i + 1];
+    total += (pt2[0] - pt1[0]) * (pt2[1] + pt1[1]);
+    pt1 = pt2;
+  }
+  return (total >= 0);
+}
+
+// ported from terraformer.js https://github.com/Esri/Terraformer/blob/master/terraformer.js#L504-L519
+function vertexIntersectsVertex (a1, a2, b1, b2) {
+  var uaT = ((b2[0] - b1[0]) * (a1[1] - b1[1])) - ((b2[1] - b1[1]) * (a1[0] - b1[0]));
+  var ubT = ((a2[0] - a1[0]) * (a1[1] - b1[1])) - ((a2[1] - a1[1]) * (a1[0] - b1[0]));
+  var uB = ((b2[1] - b1[1]) * (a2[0] - a1[0])) - ((b2[0] - b1[0]) * (a2[1] - a1[1]));
+
+  if (uB !== 0) {
+    var ua = uaT / uB;
+    var ub = ubT / uB;
+
+    if (ua >= 0 && ua <= 1 && ub >= 0 && ub <= 1) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+// ported from terraformer.js https://github.com/Esri/Terraformer/blob/master/terraformer.js#L521-L531
+function arrayIntersectsArray (a, b) {
+  for (var i = 0; i < a.length - 1; i++) {
+    for (var j = 0; j < b.length - 1; j++) {
+      if (vertexIntersectsVertex(a[i], a[i + 1], b[j], b[j + 1])) {
+        return true;
+      }
+    }
+  }
+
+  return false;
+}
+
+// ported from terraformer.js https://github.com/Esri/Terraformer/blob/master/terraformer.js#L470-L480
+function coordinatesContainPoint (coordinates, point) {
+  var contains = false;
+  for (var i = -1, l = coordinates.length, j = l - 1; ++i < l; j = i) {
+    if (((coordinates[i][1] <= point[1] && point[1] < coordinates[j][1]) ||
+         (coordinates[j][1] <= point[1] && point[1] < coordinates[i][1])) &&
+        (point[0] < (((coordinates[j][0] - coordinates[i][0]) * (point[1] - coordinates[i][1])) / (coordinates[j][1] - coordinates[i][1])) + coordinates[i][0])) {
+      contains = !contains;
+    }
+  }
+  return contains;
+}
+
+// ported from terraformer-arcgis-parser.js https://github.com/Esri/terraformer-arcgis-parser/blob/master/terraformer-arcgis-parser.js#L106-L113
+function coordinatesContainCoordinates (outer, inner) {
+  var intersects = arrayIntersectsArray(outer, inner);
+  var contains = coordinatesContainPoint(outer, inner[0]);
+  if (!intersects && contains) {
+    return true;
+  }
+  return false;
+}
+
+// do any polygons in this array contain any other polygons in this array?
+// used for checking for holes in arcgis rings
+// ported from terraformer-arcgis-parser.js https://github.com/Esri/terraformer-arcgis-parser/blob/master/terraformer-arcgis-parser.js#L117-L172
+function convertRingsToGeoJSON (rings) {
+  var outerRings = [];
+  var holes = [];
+  var x; // iterator
+  var outerRing; // current outer ring being evaluated
+  var hole; // current hole being evaluated
+
+  // for each ring
+  for (var r = 0; r < rings.length; r++) {
+    var ring = closeRing(rings[r].slice(0));
+    if (ring.length < 4) {
+      continue;
+    }
+    // is this ring an outer ring? is it clockwise?
+    if (ringIsClockwise(ring)) {
+      var polygon = [ ring.slice().reverse() ]; // wind outer rings counterclockwise for RFC 7946 compliance
+      outerRings.push(polygon); // push to outer rings
+    } else {
+      holes.push(ring.slice().reverse()); // wind inner rings clockwise for RFC 7946 compliance
+    }
+  }
+
+  var uncontainedHoles = [];
+
+  // while there are holes left...
+  while (holes.length) {
+    // pop a hole off out stack
+    hole = holes.pop();
+
+    // loop over all outer rings and see if they contain our hole.
+    var contained = false;
+    for (x = outerRings.length - 1; x >= 0; x--) {
+      outerRing = outerRings[x][0];
+      if (coordinatesContainCoordinates(outerRing, hole)) {
+        // the hole is contained push it into our polygon
+        outerRings[x].push(hole);
+        contained = true;
+        break;
+      }
+    }
+
+    // ring is not contained in any outer ring
+    // sometimes this happens https://github.com/Esri/esri-leaflet/issues/320
+    if (!contained) {
+      uncontainedHoles.push(hole);
+    }
+  }
+
+  // if we couldn't match any holes using contains we can try intersects...
+  while (uncontainedHoles.length) {
+    // pop a hole off out stack
+    hole = uncontainedHoles.pop();
+
+    // loop over all outer rings and see if any intersect our hole.
+    var intersects = false;
+
+    for (x = outerRings.length - 1; x >= 0; x--) {
+      outerRing = outerRings[x][0];
+      if (arrayIntersectsArray(outerRing, hole)) {
+        // the hole is contained push it into our polygon
+        outerRings[x].push(hole);
+        intersects = true;
+        break;
+      }
+    }
+
+    if (!intersects) {
+      outerRings.push([hole.reverse()]);
+    }
+  }
+
+  if (outerRings.length === 1) {
+    return {
+      type: 'Polygon',
+      coordinates: outerRings[0]
+    };
+  } else {
+    return {
+      type: 'MultiPolygon',
+      coordinates: outerRings
+    };
+  }
+}
+
+// This function ensures that rings are oriented in the right directions
+// outer rings are clockwise, holes are counterclockwise
+// used for converting GeoJSON Polygons to ArcGIS Polygons
+function orientRings (poly) {
+  var output = [];
+  var polygon = poly.slice(0);
+  var outerRing = closeRing(polygon.shift().slice(0));
+  if (outerRing.length >= 4) {
+    if (!ringIsClockwise(outerRing)) {
+      outerRing.reverse();
+    }
+
+    output.push(outerRing);
+
+    for (var i = 0; i < polygon.length; i++) {
+      var hole = closeRing(polygon[i].slice(0));
+      if (hole.length >= 4) {
+        if (ringIsClockwise(hole)) {
+          hole.reverse();
+        }
+        output.push(hole);
+      }
+    }
+  }
+
+  return output;
+}
+
+// This function flattens holes in multipolygons to one array of polygons
+// used for converting GeoJSON Polygons to ArcGIS Polygons
+function flattenMultiPolygonRings (rings) {
+  var output = [];
+  for (var i = 0; i < rings.length; i++) {
+    var polygon = orientRings(rings[i]);
+    for (var x = polygon.length - 1; x >= 0; x--) {
+      var ring = polygon[x].slice(0);
+      output.push(ring);
+    }
+  }
+  return output;
+}
+
+// shallow object clone for feature properties and attributes
+// from http://jsperf.com/cloning-an-object/2
+function shallowClone (obj) {
+  var target = {};
+  for (var i in obj) {
+    if (obj.hasOwnProperty(i)) {
+      target[i] = obj[i];
+    }
+  }
+  return target;
+}
+
+function getId (attributes, idAttribute) {
+  var keys = idAttribute ? [idAttribute, 'OBJECTID', 'FID'] : ['OBJECTID', 'FID'];
+  for (var i = 0; i < keys.length; i++) {
+    var key = keys[i];
+    if (
+      key in attributes &&
+      (typeof attributes[key] === 'string' ||
+        typeof attributes[key] === 'number')
+    ) {
+      return attributes[key];
+    }
+  }
+  throw Error('No valid id attribute found');
+}
+
+function arcgisToGeoJSON (arcgis, idAttribute) {
+  var geojson = {};
+
+  if (arcgis.features) {
+    geojson.type = 'FeatureCollection';
+    geojson.features = [];
+    for (var i = 0; i < arcgis.features.length; i++) {
+      geojson.features.push(arcgisToGeoJSON(arcgis.features[i], idAttribute));
+    }
+  }
+
+  if (typeof arcgis.x === 'number' && typeof arcgis.y === 'number') {
+    geojson.type = 'Point';
+    geojson.coordinates = [arcgis.x, arcgis.y];
+    if (typeof arcgis.z === 'number') {
+      geojson.coordinates.push(arcgis.z);
+    }
+  }
+
+  if (arcgis.points) {
+    geojson.type = 'MultiPoint';
+    geojson.coordinates = arcgis.points.slice(0);
+  }
+
+  if (arcgis.paths) {
+    if (arcgis.paths.length === 1) {
+      geojson.type = 'LineString';
+      geojson.coordinates = arcgis.paths[0].slice(0);
+    } else {
+      geojson.type = 'MultiLineString';
+      geojson.coordinates = arcgis.paths.slice(0);
+    }
+  }
+
+  if (arcgis.rings) {
+    geojson = convertRingsToGeoJSON(arcgis.rings.slice(0));
+  }
+
+  if (
+    typeof arcgis.xmin === 'number' &&
+    typeof arcgis.ymin === 'number' &&
+    typeof arcgis.xmax === 'number' &&
+    typeof arcgis.ymax === 'number'
+  ) {
+    geojson.type = 'Polygon';
+    geojson.coordinates = [[
+      [arcgis.xmax, arcgis.ymax],
+      [arcgis.xmin, arcgis.ymax],
+      [arcgis.xmin, arcgis.ymin],
+      [arcgis.xmax, arcgis.ymin],
+      [arcgis.xmax, arcgis.ymax]
+    ]];
+  }
+
+  if (arcgis.geometry || arcgis.attributes) {
+    geojson.type = 'Feature';
+    geojson.geometry = (arcgis.geometry) ? arcgisToGeoJSON(arcgis.geometry) : null;
+    geojson.properties = (arcgis.attributes) ? shallowClone(arcgis.attributes) : null;
+    if (arcgis.attributes) {
+      try {
+        geojson.id = getId(arcgis.attributes, idAttribute);
+      } catch (err) {
+        // don't set an id
+      }
+    }
+  }
+
+  // if no valid geometry was encountered
+  if (JSON.stringify(geojson.geometry) === JSON.stringify({})) {
+    geojson.geometry = null;
+  }
+
+  if (
+    arcgis.spatialReference &&
+    arcgis.spatialReference.wkid &&
+    arcgis.spatialReference.wkid !== 4326
+  ) {
+    console.warn('Object converted in non-standard crs - ' + JSON.stringify(arcgis.spatialReference));
+  }
+
+  return geojson;
+}
+
+function geojsonToArcGIS (geojson, idAttribute) {
+  idAttribute = idAttribute || 'OBJECTID';
+  var spatialReference = { wkid: 4326 };
+  var result = {};
+  var i;
+
+  switch (geojson.type) {
+    case 'Point':
+      result.x = geojson.coordinates[0];
+      result.y = geojson.coordinates[1];
+      result.spatialReference = spatialReference;
+      break;
+    case 'MultiPoint':
+      result.points = geojson.coordinates.slice(0);
+      result.spatialReference = spatialReference;
+      break;
+    case 'LineString':
+      result.paths = [geojson.coordinates.slice(0)];
+      result.spatialReference = spatialReference;
+      break;
+    case 'MultiLineString':
+      result.paths = geojson.coordinates.slice(0);
+      result.spatialReference = spatialReference;
+      break;
+    case 'Polygon':
+      result.rings = orientRings(geojson.coordinates.slice(0));
+      result.spatialReference = spatialReference;
+      break;
+    case 'MultiPolygon':
+      result.rings = flattenMultiPolygonRings(geojson.coordinates.slice(0));
+      result.spatialReference = spatialReference;
+      break;
+    case 'Feature':
+      if (geojson.geometry) {
+        result.geometry = geojsonToArcGIS(geojson.geometry, idAttribute);
+      }
+      result.attributes = (geojson.properties) ? shallowClone(geojson.properties) : {};
+      if (geojson.id) {
+        result.attributes[idAttribute] = geojson.id;
+      }
+      break;
+    case 'FeatureCollection':
+      result = [];
+      for (i = 0; i < geojson.features.length; i++) {
+        result.push(geojsonToArcGIS(geojson.features[i], idAttribute));
+      }
+      break;
+    case 'GeometryCollection':
+      result = [];
+      for (i = 0; i < geojson.geometries.length; i++) {
+        result.push(geojsonToArcGIS(geojson.geometries[i], idAttribute));
+      }
+      break;
+  }
+
+  return result;
+}
+
+var css_248z$2 = ".spatial_query_card {\n  width: 350px;\n  position: absolute !important;\n  right: 20px;\n  top: 160px;\n  z-index: 100;\n}\n.spatial_query_card .ant-card-body {\n  padding: 10px 15px;\n}\n.spatial_query_card .ant-card-body .ant-upload.ant-upload-drag {\n  margin-top: 10px;\n}\n.spatial_query_card .ant-radio-button-wrapper:first-child,\n.spatial_query_card .ant-radio-button-wrapper:last-child {\n  border-radius: 0;\n}\n.spatial_query_card .ant-radio-button-wrapper:not(:first-child)::before {\n  display: none;\n}\n.spatial_query_card .ant-divider {\n  margin: 6px 0px;\n  font-weight: 600;\n}\n.spatial_query_card .ant-radio-group {\n  margin: 0 10px;\n  max-height: 120px;\n  overflow-y: auto;\n}\n.spatial_query_card .ant-radio-button-wrapper {\n  margin: 4px;\n  padding: 0 4px;\n  border-radius: 4px !important;\n}\n.spatial_query_card .buffercontain {\n  margin: 20px 20px;\n  font-size: 18px;\n}\n.spatial_query_card .attr_filter {\n  margin: 10px 20px;\n}\n.spatial_query_card .ant-checkbox-wrapper {\n  font-size: 18px;\n}\n.spatial_query_card .toolbar {\n  margin: 0 10px;\n}\n.spatial_query_card .toolbar .ant-btn {\n  width: 60px;\n}\n.spatial_result_card {\n  position: absolute !important;\n  top: 100px;\n  z-index: 1;\n  width: 300px;\n  left: 20px;\n}\n.spatial_result_card .ant-collapse-content-box {\n  max-height: 200px;\n  overflow-y: auto;\n}\n.spatial_result_card .ant-card-body {\n  height: calc(100vh - 160px);\n  overflow: auto;\n  padding: 0px;\n}\n";
+styleInject(css_248z$2);
 
 function _arrayWithHoles$1(arr) {
   if (Array.isArray(arr)) { return arr; }
@@ -3240,16 +2700,16 @@ var PlusOutlined$1 = function PlusOutlined$1(props, ref) {
 PlusOutlined$1.displayName = 'PlusOutlined';
 var PlusOutlined$2 = /*#__PURE__*/forwardRef(PlusOutlined$1);
 
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
+function _createSuper$1(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1(); return function _createSuperInternal() { var Super = getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
 
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) { return false; } if (Reflect.construct.sham) { return false; } if (typeof Proxy === "function") { return true; } try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+function _isNativeReflectConstruct$1() { if (typeof Reflect === "undefined" || !Reflect.construct) { return false; } if (Reflect.construct.sham) { return false; } if (typeof Proxy === "function") { return true; } try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 var assign = require("object-assign");
 
 var AttributesFillter = /*#__PURE__*/function (_Component) {
   inherits(AttributesFillter, _Component);
 
-  var _super = _createSuper(AttributesFillter);
+  var _super = _createSuper$1(AttributesFillter);
 
   function AttributesFillter() {
     var arguments$1 = arguments;
@@ -3581,6 +3041,297 @@ var SpatialQueryPanel = function SpatialQueryPanel(props) {
   }, "\u67E5\u8BE2"));
 };
 
+function _createSuper$2(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$2(); return function _createSuperInternal() { var Super = getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$2() { if (typeof Reflect === "undefined" || !Reflect.construct) { return false; } if (Reflect.construct.sham) { return false; } if (typeof Proxy === "function") { return true; } try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+var SpatialQuery = /*#__PURE__*/function (_Component) {
+  inherits(SpatialQuery, _Component);
+
+  var _super = _createSuper$2(SpatialQuery);
+
+  function SpatialQuery() {
+    var arguments$1 = arguments;
+
+    var _this;
+
+    classCallCheck(this, SpatialQuery);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments$1[_key];
+    }
+
+    _this = _super.call.apply(_super, [this].concat(args));
+
+    defineProperty(assertThisInitialized(_this), "state", {
+      wherestr: null
+    });
+
+    defineProperty(assertThisInitialized(_this), "onSpatialQuery", function (type) {
+      _this.props.drawActions.changeDrawingStatus("start", type, "spatial", [], {});
+    });
+
+    defineProperty(assertThisInitialized(_this), "onCheckBuffer", function (e) {
+      _this.props.thematicActions.setBufferDistance(e.target.checked ? 100 : 0);
+    });
+
+    defineProperty(assertThisInitialized(_this), "onBufferChange", function (value) {
+      _this.props.thematicActions.setBufferDistance(value);
+    });
+
+    defineProperty(assertThisInitialized(_this), "onQueryChange", function (query) {
+      var filters = [];
+
+      if (query.filterlist) {
+        query.filterlist.forEach(function (filter) {
+          switch (filter.sel_filter_rel.value) {
+            case "equal":
+              filters.push(filter.sel_filter_field + " = '" + filter.sel_filter_value + "'");
+              break;
+
+            case "notequal":
+              filters.push(filter.sel_filter_field + " != '" + filter.sel_filter_value + "'");
+              break;
+
+            case "contain":
+              filters.push(filter.sel_filter_field + " like '%" + filter.sel_filter_value + "%'");
+              break;
+          }
+        });
+
+        _this.setState({
+          wherestr: filters.join(" and ")
+        });
+      }
+    });
+
+    defineProperty(assertThisInitialized(_this), "onLayerChange", function (e) {
+      _this.onClear();
+
+      _this.props.thematicActions.setSelectedQueryLayer(e.target.value);
+
+      _this.props.thematicActions.queryThematicMetaData({
+        url: mapConfigJson.mapserverurl,
+        layerid: e.target.value
+      });
+    });
+
+    defineProperty(assertThisInitialized(_this), "onSearch", function () {
+      var _this$props$draw = _this.props.draw,
+          drawOwner = _this$props$draw.drawOwner,
+          drawMethod = _this$props$draw.drawMethod,
+          geometry = _this$props$draw.geometry;
+      var _this$props$thematics = _this.props.thematics,
+          querylayerid = _this$props$thematics.querylayerid,
+          themlist = _this$props$thematics.themlist,
+          bufferdistance = _this$props$thematics.bufferdistance;
+      var selectedThematic = themlist.filter(function (e) {
+        return e.id === querylayerid;
+      }); //属性查询
+
+      if (_this.state.wherestr) {
+        _this.props.thematicActions.queryThematic(selectedThematic[0].url, selectedThematic[0].layers, null, null, _this.state.wherestr);
+      } //缓冲查询
+      else if (drawOwner === "spatial" && geometry && bufferdistance) {
+          var buffergeometry = turfbuffer(geometry, bufferdistance / 1000).geometry;
+          var arcgisgeo = geojsonToArcGIS(buffergeometry);
+
+          _this.props.thematicActions.queryThematic(selectedThematic[0].url, selectedThematic[0].layers, JSON.stringify(arcgisgeo), "esriGeometryPolygon");
+        }
+    });
+
+    defineProperty(assertThisInitialized(_this), "onClear", function () {
+      _this.props.drawActions.changeDrawingStatus("clean", "", "measure", [], {});
+
+      _this.props.thematicActions.queryThematicResponces(null, null);
+
+      _this.props.thematicActions.setSelectedFeature(null);
+    });
+
+    defineProperty(assertThisInitialized(_this), "onClose", function () {
+      _this.props.thematicActions.showSpatialQuery(false);
+
+      _this.onClear();
+    });
+
+    return _this;
+  }
+
+  createClass(SpatialQuery, [{
+    key: "render",
+    value: function render() {
+      var enable = this.props.draw.enable;
+      var _this$props$thematics2 = this.props.thematics,
+          spatialQueryShow = _this$props$thematics2.spatialQueryShow,
+          bufferdistance = _this$props$thematics2.bufferdistance,
+          metaData = _this$props$thematics2.metaData,
+          queryloading = _this$props$thematics2.queryloading,
+          themlist = _this$props$thematics2.themlist,
+          querylayerid = _this$props$thematics2.querylayerid;
+      return spatialQueryShow && enable && /*#__PURE__*/React__default.createElement(SpatialQueryPanel, {
+        onLayerChange: this.onLayerChange,
+        onSpatialQuery: this.onSpatialQuery,
+        onCheckBuffer: this.onCheckBuffer,
+        onBufferChange: this.onBufferChange,
+        onQueryChange: this.onQueryChange,
+        onClose: this.onClose,
+        onClear: this.onClear,
+        onSearch: this.onSearch,
+        selthemlist: themlist.filter(function (e) {
+          return e.visibility;
+        }),
+        querylayerid: querylayerid,
+        queryloading: queryloading,
+        metaData: metaData,
+        bufferdistance: bufferdistance
+      });
+    }
+  }]);
+
+  return SpatialQuery;
+}(Component);
+
+function _createSuper$3(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$3(); return function _createSuperInternal() { var Super = getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$3() { if (typeof Reflect === "undefined" || !Reflect.construct) { return false; } if (Reflect.construct.sham) { return false; } if (typeof Proxy === "function") { return true; } try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+var ResultList = /*#__PURE__*/function (_Component) {
+  inherits(ResultList, _Component);
+
+  var _super = _createSuper$3(ResultList);
+
+  function ResultList() {
+    var arguments$1 = arguments;
+
+    var _this;
+
+    classCallCheck(this, ResultList);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments$1[_key];
+    }
+
+    _this = _super.call.apply(_super, [this].concat(args));
+
+    defineProperty(assertThisInitialized(_this), "state", {
+      show: true
+    });
+
+    defineProperty(assertThisInitialized(_this), "downloadData", function () {
+      var _this$props$thematics = _this.props.thematics,
+          themresult = _this$props$thematics.themresult,
+          metaData = _this$props$thematics.metaData;
+      var csvKml = arcgisX.toCsvGeoJson(themresult).replace(/\|/g, ",");
+      var aLink = document.createElement('a');
+      aLink.download = (metaData.name || 'data') + '.csv';
+      aLink.href = "data:text/csv;charset=UTF-8,\uFEFF" + encodeURIComponent(csvKml);
+      var event = new MouseEvent('click');
+      aLink.dispatchEvent(event);
+    });
+
+    defineProperty(assertThisInitialized(_this), "backMenu", function () {
+      _this.props.thematicActions.queryThematicResponces(null, null);
+    });
+
+    defineProperty(assertThisInitialized(_this), "onSelectItem", function (e, item) {
+      e.stopPropagation();
+
+      _this.props.thematicActions.setSelectedFeature(arcgisToGeoJSON(item));
+    });
+
+    defineProperty(assertThisInitialized(_this), "onRelateQuery", function (e, item) {
+      e.stopPropagation();
+
+      _this.props.thematicActions.setRelateFeature(arcgisToGeoJSON(item));
+    });
+
+    defineProperty(assertThisInitialized(_this), "renderList", function (list, titlefield, fields) {
+      return list.map(function (el, index) {
+        return /*#__PURE__*/React__default.createElement(Collapse.Panel, {
+          extra: [/*#__PURE__*/React__default.createElement("a", {
+            title: "\u5B9A\u4F4D",
+            style: {
+              margin: '0 10px'
+            },
+            onClick: function onClick(e) {
+              return _this.onSelectItem(e, el);
+            }
+          }, /*#__PURE__*/React__default.createElement(Icon$1, {
+            type: "environment"
+          })), /*#__PURE__*/React__default.createElement("a", {
+            title: "\u5173\u8054\u67E5\u8BE2",
+            onClick: function onClick(e) {
+              return _this.onRelateQuery(e, el);
+            }
+          }, /*#__PURE__*/React__default.createElement(Icon$1, {
+            type: "link"
+          }))],
+          header: el.attributes[titlefield],
+          key: index
+        }, _this.renderThematicContent(el.attributes, fields));
+      });
+    });
+
+    return _this;
+  }
+
+  createClass(ResultList, [{
+    key: "renderThematicContent",
+    value: function renderThematicContent(feas, fields) {
+      var list = [];
+
+      for (var key in feas) {
+        if (key.indexOf('OBJECTID') == -1 && key.toUpperCase().indexOf('SHAPE') == -1 && key.toUpperCase().indexOf("IMAGES") == -1) {
+          list.push( /*#__PURE__*/React__default.createElement("p", null, fields[key], ": ", feas[key] ? feas[key] : "空"));
+        }
+      }
+
+      return list;
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this$props$thematics2 = this.props.thematics,
+          themresult = _this$props$thematics2.themresult,
+          querygeometry = _this$props$thematics2.querygeometry;
+      var show = this.state.show;
+
+      if (themresult && themresult.features.length > 0) {
+        return /*#__PURE__*/React__default.createElement(Card, {
+          size: "small",
+          title: "\u67E5\u8BE2\u7ED3\u679C",
+          className: "spatial_result_card",
+          bordered: false,
+          extra: [/*#__PURE__*/React__default.createElement("a", {
+            style: {
+              marginRight: 10
+            },
+            onClick: this.backMenu
+          }, /*#__PURE__*/React__default.createElement(Icon$1, {
+            type: "rollback",
+            title: "\u8FD4\u56DE\u76EE\u5F55"
+          })), /*#__PURE__*/React__default.createElement("a", {
+            onClick: this.downloadData
+          }, /*#__PURE__*/React__default.createElement(Icon$1, {
+            type: "download",
+            title: "\u4E0B\u8F7D"
+          }))]
+        }, /*#__PURE__*/React__default.createElement(Collapse, {
+          bordered: false,
+          defaultActiveKey: [0]
+        }, this.renderList(themresult.features, themresult.displayFieldName, themresult.fieldAliases)));
+      }
+
+      return null;
+    }
+  }]);
+
+  return ResultList;
+}(Component);
+
+var css_248z$3 = ".arealocation_card {\n  position: absolute;\n  z-index: 2000;\n  margin: 12px;\n  left: 400px;\n  height: 48px;\n}\n.arealocation_card .ant-dropdown-link {\n  font-size: 18px;\n  line-height: 40px;\n}\n.arealocation_card .anticon-down {\n  font-size: 20px !important;\n}\n.arealocation_card > div {\n  padding: 4px 6px;\n}\n.arealocation_card .ant-select-selection {\n  border: 0px;\n}\n.arealocation_card .ant-select-selection:focus {\n  border: 0px;\n}\n.arealocation_list {\n  width: 380px;\n  margin-top: 10px;\n  overflow-y: auto;\n  overflow-x: hidden;\n}\n.arealocation_list .divide {\n  height: 1px;\n  margin: 5px;\n  border-bottom: 1px solid #ccc;\n}\n.arealocation_list a {\n  margin: 0px 10px;\n  white-space: nowrap;\n  display: inline-block;\n  font-size: 14px;\n  text-decoration: none;\n  padding: 0 2px;\n  width: auto !important;\n}\na.street {\n  color: #676767;\n}\n.arealocation_list .street {\n  width: 76px !important;\n}\n.arealocation_list a:hover {\n  background-color: #eee;\n  color: #1890ff;\n}\n.arealocation_list .ant-row-flex {\n  line-height: 30px;\n  padding-left: 14px;\n}\n.arealocation_list hr {\n  width: 90%;\n  opacity: 0.6;\n}\n@media screen and (max-width: 1366px) {\n  .arealocation_list a {\n    font-size: 12px;\n  }\n  .arealocation_list {\n    margin-top: 4px;\n  }\n  .arealocation_list .ant-row-flex {\n    line-height: 24px;\n  }\n}\n";
+styleInject(css_248z$3);
+
 var AreaLocationComponent = function AreaLocationComponent(props) {
   var menu = /*#__PURE__*/React__default.createElement("div", {
     className: "ant-dropdown-menu arealocation_list customscrollbar"
@@ -3613,14 +3364,14 @@ var AreaLocationComponent = function AreaLocationComponent(props) {
   }, props.currentArea || "全市"));
 };
 
-function _createSuper$1(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1(); return function _createSuperInternal() { var Super = getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
+function _createSuper$4(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$4(); return function _createSuperInternal() { var Super = getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
 
-function _isNativeReflectConstruct$1() { if (typeof Reflect === "undefined" || !Reflect.construct) { return false; } if (Reflect.construct.sham) { return false; } if (typeof Proxy === "function") { return true; } try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+function _isNativeReflectConstruct$4() { if (typeof Reflect === "undefined" || !Reflect.construct) { return false; } if (Reflect.construct.sham) { return false; } if (typeof Proxy === "function") { return true; } try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 var AreaLocation = /*#__PURE__*/function (_Component) {
   inherits(AreaLocation, _Component);
 
-  var _super = _createSuper$1(AreaLocation);
+  var _super = _createSuper$4(AreaLocation);
 
   function AreaLocation() {
     var arguments$1 = arguments;
@@ -3702,14 +3453,14 @@ var AreaLocation = /*#__PURE__*/function (_Component) {
   return AreaLocation;
 }(Component);
 
-function _createSuper$2(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$2(); return function _createSuperInternal() { var Super = getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
+function _createSuper$5(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$5(); return function _createSuperInternal() { var Super = getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
 
-function _isNativeReflectConstruct$2() { if (typeof Reflect === "undefined" || !Reflect.construct) { return false; } if (Reflect.construct.sham) { return false; } if (typeof Proxy === "function") { return true; } try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+function _isNativeReflectConstruct$5() { if (typeof Reflect === "undefined" || !Reflect.construct) { return false; } if (Reflect.construct.sham) { return false; } if (typeof Proxy === "function") { return true; } try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 var InputGroup = Input.Group;
 var SetLocation = /*#__PURE__*/function (_Component) {
   inherits(SetLocation, _Component);
 
-  var _super = _createSuper$2(SetLocation);
+  var _super = _createSuper$5(SetLocation);
 
   function SetLocation() {
     var arguments$1 = arguments;
@@ -3808,4 +3559,4 @@ var SetLocation = /*#__PURE__*/function (_Component) {
   return SetLocation;
 }(Component);
 
-export { AreaLocation, AttributesFillter, ResourceCatalog, ResourcesList, SetLocation, SideBar, SpatialQueryPanel };
+export { AreaLocation, AttributesFillter, ResourceCatalog, ResourcesList, ResultList, SetLocation, SideBar, SpatialQuery, SpatialQueryPanel };

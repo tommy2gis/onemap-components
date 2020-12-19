@@ -91,6 +91,22 @@
 .spatial_query_card .toolbar .ant-btn {
   width: 60px;
 }
+.spatial_result_card {
+  position: absolute !important;
+  top: 100px;
+  z-index: 1;
+  width: 300px;
+  left: 20px;
+}
+.spatial_result_card .ant-collapse-content-box {
+  max-height: 200px;
+  overflow-y: auto;
+}
+.spatial_result_card .ant-card-body {
+  height: calc(100vh - 160px);
+  overflow: auto;
+  padding: 0px;
+}
 
 .arealocation_card {
   position: absolute;
