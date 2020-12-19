@@ -1,3 +1,6 @@
+
+import 'antd/lib/collapse/style/index.less'
+
 export { default as SideBar } from './SideBar';
 
 export { default as ResourceCatalog,ResourcesList } from './ResourceCatalog';

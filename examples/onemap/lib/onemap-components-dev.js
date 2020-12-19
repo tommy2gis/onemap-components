@@ -32,36 +32,6 @@ function _extends() {
 module.exports = _extends;
 });
 
-function styleInject(css, ref) {
-  if ( ref === void 0 ) { ref = {}; }
-  var insertAt = ref.insertAt;
-
-  if (!css || typeof document === 'undefined') { return; }
-
-  var head = document.head || document.getElementsByTagName('head')[0];
-  var style = document.createElement('style');
-  style.type = 'text/css';
-
-  if (insertAt === 'top') {
-    if (head.firstChild) {
-      head.insertBefore(style, head.firstChild);
-    } else {
-      head.appendChild(style);
-    }
-  } else {
-    head.appendChild(style);
-  }
-
-  if (style.styleSheet) {
-    style.styleSheet.cssText = css;
-  } else {
-    style.appendChild(document.createTextNode(css));
-  }
-}
-
-var css_248z = ".sidebar_containtcard {\n  width: 300px !important;\n  top: 100px;\n  left: 20px;\n  height: calc(100vh - 130px);\n}\n.sidebar_containtcard .ant-drawer-body {\n  padding: 0px;\n}\n.sidebar_containtcard .ant-drawer-title {\n  color: #3484FF;\n  font-weight: 600;\n  font-size: 18px;\n  line-height: 20px;\n  border-left: 3px solid #3484FF;\n  padding-left: 4px;\n}\n";
-styleInject(css_248z);
-
 var SideBar = function SideBar(props) {
   return /*#__PURE__*/React__default.createElement(Drawer, _extends_1({}, props, {
     className: "".concat(props.className || '', " sidebar_containtcard"),
@@ -262,9 +232,6 @@ function _slicedToArray(arr, i) {
 }
 
 var slicedToArray = _slicedToArray;
-
-var css_248z$1 = ".resources_list {\n  overflow-y: auto;\n  margin: 0px;\n}\n.resources_list .ant-collapse-header {\n  font-weight: 600;\n}\n.resources_list .foldericon {\n  margin: 0 6px;\n}\n.resources_list .ant-table-thead > tr > th,\n.resources_list .ant-table-tbody > tr > td {\n  padding: 8px;\n  border: 0px;\n}\n.resources_list .ant-table-row td {\n  background-color: #6157cc0f !important;\n}\n.resources_list .ant-table-row-selected .ant-table-selection-column {\n  border-left: 2px solid #6157cc;\n}\n.resources_list .ant-table-expanded-row td {\n  padding: 0 !important;\n}\n";
-styleInject(css_248z$1);
 
 var ResourcesList = function ResourcesList(props) {
   var _useState = useState([]),
@@ -872,9 +839,6 @@ function geojsonToArcGIS (geojson, idAttribute) {
 
   return result;
 }
-
-var css_248z$2 = ".spatial_query_card {\n  width: 350px;\n  position: absolute !important;\n  right: 20px;\n  top: 160px;\n  z-index: 100;\n}\n.spatial_query_card .ant-card-body {\n  padding: 10px 15px;\n}\n.spatial_query_card .ant-card-body .ant-upload.ant-upload-drag {\n  margin-top: 10px;\n}\n.spatial_query_card .ant-radio-button-wrapper:first-child,\n.spatial_query_card .ant-radio-button-wrapper:last-child {\n  border-radius: 0;\n}\n.spatial_query_card .ant-radio-button-wrapper:not(:first-child)::before {\n  display: none;\n}\n.spatial_query_card .ant-divider {\n  margin: 6px 0px;\n  font-weight: 600;\n}\n.spatial_query_card .ant-radio-group {\n  margin: 0 10px;\n  max-height: 120px;\n  overflow-y: auto;\n}\n.spatial_query_card .ant-radio-button-wrapper {\n  margin: 4px;\n  padding: 0 4px;\n  border-radius: 4px !important;\n}\n.spatial_query_card .buffercontain {\n  margin: 20px 20px;\n  font-size: 18px;\n}\n.spatial_query_card .attr_filter {\n  margin: 10px 20px;\n}\n.spatial_query_card .ant-checkbox-wrapper {\n  font-size: 18px;\n}\n.spatial_query_card .toolbar {\n  margin: 0 10px;\n}\n.spatial_query_card .toolbar .ant-btn {\n  width: 60px;\n}\n.spatial_result_card {\n  position: absolute !important;\n  top: 100px;\n  z-index: 1;\n  width: 300px;\n  left: 20px;\n}\n.spatial_result_card .ant-collapse-content-box {\n  max-height: 200px;\n  overflow-y: auto;\n}\n.spatial_result_card .ant-card-body {\n  height: calc(100vh - 160px);\n  overflow: auto;\n  padding: 0px;\n}\n";
-styleInject(css_248z$2);
 
 function _arrayWithHoles$1(arr) {
   if (Array.isArray(arr)) { return arr; }
@@ -3328,9 +3292,6 @@ var ResultList = /*#__PURE__*/function (_Component) {
 
   return ResultList;
 }(Component);
-
-var css_248z$3 = ".arealocation_card {\n  position: absolute;\n  z-index: 2000;\n  margin: 12px;\n  left: 400px;\n  height: 48px;\n}\n.arealocation_card .ant-dropdown-link {\n  font-size: 18px;\n  line-height: 40px;\n}\n.arealocation_card .anticon-down {\n  font-size: 20px !important;\n}\n.arealocation_card > div {\n  padding: 4px 6px;\n}\n.arealocation_card .ant-select-selection {\n  border: 0px;\n}\n.arealocation_card .ant-select-selection:focus {\n  border: 0px;\n}\n.arealocation_list {\n  width: 380px;\n  margin-top: 10px;\n  overflow-y: auto;\n  overflow-x: hidden;\n}\n.arealocation_list .divide {\n  height: 1px;\n  margin: 5px;\n  border-bottom: 1px solid #ccc;\n}\n.arealocation_list a {\n  margin: 0px 10px;\n  white-space: nowrap;\n  display: inline-block;\n  font-size: 14px;\n  text-decoration: none;\n  padding: 0 2px;\n  width: auto !important;\n}\na.street {\n  color: #676767;\n}\n.arealocation_list .street {\n  width: 76px !important;\n}\n.arealocation_list a:hover {\n  background-color: #eee;\n  color: #1890ff;\n}\n.arealocation_list .ant-row-flex {\n  line-height: 30px;\n  padding-left: 14px;\n}\n.arealocation_list hr {\n  width: 90%;\n  opacity: 0.6;\n}\n@media screen and (max-width: 1366px) {\n  .arealocation_list a {\n    font-size: 12px;\n  }\n  .arealocation_list {\n    margin-top: 4px;\n  }\n  .arealocation_list .ant-row-flex {\n    line-height: 24px;\n  }\n}\n";
-styleInject(css_248z$3);
 
 var AreaLocationComponent = function AreaLocationComponent(props) {
   var menu = /*#__PURE__*/React__default.createElement("div", {
