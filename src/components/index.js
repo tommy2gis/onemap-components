@@ -11,4 +11,6 @@ export { default as AreaLocation } from './AreaLocation';
 
 export { default as SetLocation } from './SetLocation';
 
+export { default as POISearch,POIList } from './POISearch';
+
 

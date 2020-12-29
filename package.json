@@ -7,7 +7,8 @@
     "url": "git://github.com/tommy2gis/swsk-onemap-components.git"
   },
   "dependencies": {
-    
+    "postcss-assets": "^5.0.0",
+    "rollup-plugin-img": "^1.1.0"
   },
   "scripts": {
     "build-dev": "rollup -c --environment BUILD:dev",

@@ -6,6 +6,7 @@ import { terser } from "rollup-plugin-terser";
 import unassert from "rollup-plugin-unassert";
 import babel from "rollup-plugin-babel";
 import postcss from "rollup-plugin-postcss";
+import image from 'rollup-plugin-img';
 
 const { BUILD, MINIFY } = process.env;
 const minified = MINIFY === "true";
@@ -27,6 +28,12 @@ export default {
     exclude: "node_modules/**",
   },
   plugins: [
+    image({
+      output: `images`, // default the root
+      extensions: /\.(png|jpg|jpeg|gif|svg)$/, // support png|jpg|jpeg|gif|svg, and it's alse the default value
+      limit: 8192,  // default 8192(8k)
+      exclude: 'node_modules/**'
+    }),
     resolve(),
     commonjs({
       include: "node_modules/**",

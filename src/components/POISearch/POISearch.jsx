@@ -1,11 +1,10 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import { Input, Select, AutoComplete } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 const { Option } = Select;
 import "./style.less";
 
-class index extends Component {
+class POISearch extends Component {
   state = {
     result: [],
     text: this.props.query.key || "",
@@ -99,4 +98,4 @@ class index extends Component {
   }
 }
 
-export default index;
+export default POISearch;

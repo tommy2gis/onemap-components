@@ -2,14 +2,14 @@
  * @Author: 史涛 
  * @Date: 2019-01-05 19:29:16 
  * @Last Modified by: 史涛
- * @Last Modified time: 2020-12-29 16:56:15
+ * @Last Modified time: 2020-12-29 16:57:32
  */
 import React, { Component } from 'react';
 import { List} from 'antd';
 
 var assign = require('object-assign');
 
-export class ResultList extends Component {
+export class POIList extends Component {
     onItemClick(item){
         this.props.queryActions.onClickResult(item.id);
         this.props.queryActions.setSelectPOIItem(item);
@@ -74,6 +74,6 @@ export class ResultList extends Component {
     }
 };
 
-export default ResultList;
+export default POIList;
 
 

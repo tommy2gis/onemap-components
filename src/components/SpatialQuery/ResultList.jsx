@@ -2,10 +2,11 @@
  * @Author: 史涛 
  * @Date: 2020-04-14 09:27:06 
  * @Last Modified by: 史涛
- * @Last Modified time: 2020-12-19 22:12:25
+ * @Last Modified time: 2020-12-29 16:09:10
  */
 import React, { Component } from "react";
-import { Card, Icon, Collapse } from "antd";
+import { Card,Collapse } from "antd";
+import { EnvironmentOutlined,LinkOutlined,DownloadOutlined,RollbackOutlined } from "@ant-design/icons";
 import arcgisX from "@tommy2gis/arcgis-x";
 import {
   arcgisToGeoJSON
@@ -61,10 +62,10 @@ class ResultList extends Component {
         <Collapse.Panel
           extra={
             [<a title="定位" style={{margin:'0 10px'}} onClick={(e) => this.onSelectItem(e,el)} >
-              <Icon type="environment" />
+              <EnvironmentOutlined />
             </a>,
             <a title="关联查询" onClick={(e) => this.onRelateQuery(e,el)}>
-             <Icon type="link" />
+             <LinkOutlined />
             </a>]
           }
           header={el.attributes[titlefield]}
@@ -100,7 +101,7 @@ class ResultList extends Component {
           title="查询结果"
           className="spatial_result_card"
           bordered={false}
-          extra={[<a  style={{marginRight:10}} onClick={this.backMenu}><Icon type="rollback" title="返回目录"/></a>,<a onClick={this.downloadData}><Icon type="download" title="下载"/></a>]} 
+          extra={[<a  style={{marginRight:10}} onClick={this.backMenu}><RollbackOutlined  title="返回目录"/></a>,<a onClick={this.downloadData}><DownloadOutlined  title="下载"/></a>]} 
         >
           <Collapse bordered={false} defaultActiveKey={[0]}>
             {this.renderList(themresult.features, themresult.displayFieldName,themresult.fieldAliases)}

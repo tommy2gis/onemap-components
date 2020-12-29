@@ -1,5 +1,5 @@
 import React__default, { useState, Component, useEffect, forwardRef, createElement } from 'react';
-import { Drawer, Collapse, Table, Popover, Select, List, Tag, Input, InputNumber, Button, Card, Spin, Divider, Radio, Row, Checkbox, Icon as Icon$1, Col, Dropdown, message } from 'antd';
+import { Drawer, Collapse, Table, Popover, Select, List, Tag, Input, InputNumber, Button, Card, Spin, Divider, Radio, Row, Checkbox, Col, Dropdown, message, AutoComplete } from 'antd';
 import turfbuffer from '@turf/buffer';
 import arcgisX from '@tommy2gis/arcgis-x';
 import centroid from '@turf/centroid';
@@ -2635,6 +2635,36 @@ Icon.getTwoToneColor = getTwoToneColor;
 Icon.setTwoToneColor = setTwoToneColor;
 
 // This icon file is generated automatically.
+var DownloadOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M505.7 661a8 8 0 0012.6 0l112-141.7c4.1-5.2.4-12.9-6.3-12.9h-74.1V168c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v338.3H400c-6.7 0-10.4 7.7-6.3 12.9l112 141.8zM878 626h-60c-4.4 0-8 3.6-8 8v154H214V634c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v198c0 17.7 14.3 32 32 32h684c17.7 0 32-14.3 32-32V634c0-4.4-3.6-8-8-8z" } }] }, "name": "download", "theme": "outlined" };
+
+// GENERATE BY ./scripts/generate.ts
+
+var DownloadOutlined$1 = function DownloadOutlined$1(props, ref) {
+  return /*#__PURE__*/createElement(Icon, Object.assign({}, props, {
+    ref: ref,
+    icon: DownloadOutlined
+  }));
+};
+
+DownloadOutlined$1.displayName = 'DownloadOutlined';
+var DownloadOutlined$2 = /*#__PURE__*/forwardRef(DownloadOutlined$1);
+
+// This icon file is generated automatically.
+var EnvironmentOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M854.6 289.1a362.49 362.49 0 00-79.9-115.7 370.83 370.83 0 00-118.2-77.8C610.7 76.6 562.1 67 512 67c-50.1 0-98.7 9.6-144.5 28.5-44.3 18.3-84 44.5-118.2 77.8A363.6 363.6 0 00169.4 289c-19.5 45-29.4 92.8-29.4 142 0 70.6 16.9 140.9 50.1 208.7 26.7 54.5 64 107.6 111 158.1 80.3 86.2 164.5 138.9 188.4 153a43.9 43.9 0 0022.4 6.1c7.8 0 15.5-2 22.4-6.1 23.9-14.1 108.1-66.8 188.4-153 47-50.4 84.3-103.6 111-158.1C867.1 572 884 501.8 884 431.1c0-49.2-9.9-97-29.4-142zM512 880.2c-65.9-41.9-300-207.8-300-449.1 0-77.9 31.1-151.1 87.6-206.3C356.3 169.5 431.7 139 512 139s155.7 30.5 212.4 85.9C780.9 280 812 353.2 812 431.1c0 241.3-234.1 407.2-300 449.1zm0-617.2c-97.2 0-176 78.8-176 176s78.8 176 176 176 176-78.8 176-176-78.8-176-176-176zm79.2 255.2A111.6 111.6 0 01512 551c-29.9 0-58-11.7-79.2-32.8A111.6 111.6 0 01400 439c0-29.9 11.7-58 32.8-79.2C454 338.6 482.1 327 512 327c29.9 0 58 11.6 79.2 32.8C612.4 381 624 409.1 624 439c0 29.9-11.6 58-32.8 79.2z" } }] }, "name": "environment", "theme": "outlined" };
+
+// GENERATE BY ./scripts/generate.ts
+
+var EnvironmentOutlined$1 = function EnvironmentOutlined$1(props, ref) {
+  return /*#__PURE__*/createElement(Icon, Object.assign({}, props, {
+    ref: ref,
+    icon: EnvironmentOutlined
+  }));
+};
+
+EnvironmentOutlined$1.displayName = 'EnvironmentOutlined';
+var EnvironmentOutlined$2 = /*#__PURE__*/forwardRef(EnvironmentOutlined$1);
+
+// This icon file is generated automatically.
 var LeftOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M724 218.3V141c0-6.7-7.7-10.4-12.9-6.3L260.3 486.8a31.86 31.86 0 000 50.3l450.8 352.1c5.3 4.1 12.9.4 12.9-6.3v-77.3c0-4.9-2.3-9.6-6.1-12.6l-360-281 360-281.1c3.8-3 6.1-7.7 6.1-12.6z" } }] }, "name": "left", "theme": "outlined" };
 
 // GENERATE BY ./scripts/generate.ts
@@ -2650,6 +2680,21 @@ LeftOutlined$1.displayName = 'LeftOutlined';
 var LeftOutlined$2 = /*#__PURE__*/forwardRef(LeftOutlined$1);
 
 // This icon file is generated automatically.
+var LinkOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M574 665.4a8.03 8.03 0 00-11.3 0L446.5 781.6c-53.8 53.8-144.6 59.5-204 0-59.5-59.5-53.8-150.2 0-204l116.2-116.2c3.1-3.1 3.1-8.2 0-11.3l-39.8-39.8a8.03 8.03 0 00-11.3 0L191.4 526.5c-84.6 84.6-84.6 221.5 0 306s221.5 84.6 306 0l116.2-116.2c3.1-3.1 3.1-8.2 0-11.3L574 665.4zm258.6-474c-84.6-84.6-221.5-84.6-306 0L410.3 307.6a8.03 8.03 0 000 11.3l39.7 39.7c3.1 3.1 8.2 3.1 11.3 0l116.2-116.2c53.8-53.8 144.6-59.5 204 0 59.5 59.5 53.8 150.2 0 204L665.3 562.6a8.03 8.03 0 000 11.3l39.8 39.8c3.1 3.1 8.2 3.1 11.3 0l116.2-116.2c84.5-84.6 84.5-221.5 0-306.1zM610.1 372.3a8.03 8.03 0 00-11.3 0L372.3 598.7a8.03 8.03 0 000 11.3l39.6 39.6c3.1 3.1 8.2 3.1 11.3 0l226.4-226.4c3.1-3.1 3.1-8.2 0-11.3l-39.5-39.6z" } }] }, "name": "link", "theme": "outlined" };
+
+// GENERATE BY ./scripts/generate.ts
+
+var LinkOutlined$1 = function LinkOutlined$1(props, ref) {
+  return /*#__PURE__*/createElement(Icon, Object.assign({}, props, {
+    ref: ref,
+    icon: LinkOutlined
+  }));
+};
+
+LinkOutlined$1.displayName = 'LinkOutlined';
+var LinkOutlined$2 = /*#__PURE__*/forwardRef(LinkOutlined$1);
+
+// This icon file is generated automatically.
 var PlusOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "defs", "attrs": {}, "children": [{ "tag": "style", "attrs": {} }] }, { "tag": "path", "attrs": { "d": "M482 152h60q8 0 8 8v704q0 8-8 8h-60q-8 0-8-8V160q0-8 8-8z" } }, { "tag": "path", "attrs": { "d": "M176 474h672q8 0 8 8v60q0 8-8 8H176q-8 0-8-8v-60q0-8 8-8z" } }] }, "name": "plus", "theme": "outlined" };
 
 // GENERATE BY ./scripts/generate.ts
@@ -2663,6 +2708,36 @@ var PlusOutlined$1 = function PlusOutlined$1(props, ref) {
 
 PlusOutlined$1.displayName = 'PlusOutlined';
 var PlusOutlined$2 = /*#__PURE__*/forwardRef(PlusOutlined$1);
+
+// This icon file is generated automatically.
+var RollbackOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M793 242H366v-74c0-6.7-7.7-10.4-12.9-6.3l-142 112a8 8 0 000 12.6l142 112c5.2 4.1 12.9.4 12.9-6.3v-74h415v470H175c-4.4 0-8 3.6-8 8v60c0 4.4 3.6 8 8 8h618c35.3 0 64-28.7 64-64V306c0-35.3-28.7-64-64-64z" } }] }, "name": "rollback", "theme": "outlined" };
+
+// GENERATE BY ./scripts/generate.ts
+
+var RollbackOutlined$1 = function RollbackOutlined$1(props, ref) {
+  return /*#__PURE__*/createElement(Icon, Object.assign({}, props, {
+    ref: ref,
+    icon: RollbackOutlined
+  }));
+};
+
+RollbackOutlined$1.displayName = 'RollbackOutlined';
+var RollbackOutlined$2 = /*#__PURE__*/forwardRef(RollbackOutlined$1);
+
+// This icon file is generated automatically.
+var SearchOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M909.6 854.5L649.9 594.8C690.2 542.7 712 479 712 412c0-80.2-31.3-155.4-87.9-212.1-56.6-56.7-132-87.9-212.1-87.9s-155.5 31.3-212.1 87.9C143.2 256.5 112 331.8 112 412c0 80.1 31.3 155.5 87.9 212.1C256.5 680.8 331.8 712 412 712c67 0 130.6-21.8 182.7-62l259.7 259.6a8.2 8.2 0 0011.6 0l43.6-43.5a8.2 8.2 0 000-11.6zM570.4 570.4C528 612.7 471.8 636 412 636s-116-23.3-158.4-65.6C211.3 528 188 471.8 188 412s23.3-116.1 65.6-158.4C296 211.3 352.2 188 412 188s116.1 23.2 158.4 65.6S636 352.2 636 412s-23.3 116.1-65.6 158.4z" } }] }, "name": "search", "theme": "outlined" };
+
+// GENERATE BY ./scripts/generate.ts
+
+var SearchOutlined$1 = function SearchOutlined$1(props, ref) {
+  return /*#__PURE__*/createElement(Icon, Object.assign({}, props, {
+    ref: ref,
+    icon: SearchOutlined
+  }));
+};
+
+SearchOutlined$1.displayName = 'SearchOutlined';
+var SearchOutlined$2 = /*#__PURE__*/forwardRef(SearchOutlined$1);
 
 function _createSuper$1(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1(); return function _createSuperInternal() { var Super = getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
 
@@ -3220,16 +3295,12 @@ var ResultList = /*#__PURE__*/function (_Component) {
             onClick: function onClick(e) {
               return _this.onSelectItem(e, el);
             }
-          }, /*#__PURE__*/React__default.createElement(Icon$1, {
-            type: "environment"
-          })), /*#__PURE__*/React__default.createElement("a", {
+          }, /*#__PURE__*/React__default.createElement(EnvironmentOutlined$2, null)), /*#__PURE__*/React__default.createElement("a", {
             title: "\u5173\u8054\u67E5\u8BE2",
             onClick: function onClick(e) {
               return _this.onRelateQuery(e, el);
             }
-          }, /*#__PURE__*/React__default.createElement(Icon$1, {
-            type: "link"
-          }))],
+          }, /*#__PURE__*/React__default.createElement(LinkOutlined$2, null))],
           header: el.attributes[titlefield],
           key: index
         }, _this.renderThematicContent(el.attributes, fields));
@@ -3271,13 +3342,11 @@ var ResultList = /*#__PURE__*/function (_Component) {
               marginRight: 10
             },
             onClick: this.backMenu
-          }, /*#__PURE__*/React__default.createElement(Icon$1, {
-            type: "rollback",
+          }, /*#__PURE__*/React__default.createElement(RollbackOutlined$2, {
             title: "\u8FD4\u56DE\u76EE\u5F55"
           })), /*#__PURE__*/React__default.createElement("a", {
             onClick: this.downloadData
-          }, /*#__PURE__*/React__default.createElement(Icon$1, {
-            type: "download",
+          }, /*#__PURE__*/React__default.createElement(DownloadOutlined$2, {
             title: "\u4E0B\u8F7D"
           }))]
         }, /*#__PURE__*/React__default.createElement(Collapse, {
@@ -3520,4 +3589,209 @@ var SetLocation = /*#__PURE__*/function (_Component) {
   return SetLocation;
 }(Component);
 
-export { AreaLocation, AttributesFillter, ResourceCatalog, ResourcesList, ResultList, SetLocation, SideBar, SpatialQuery, SpatialQueryPanel };
+function _createSuper$6(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$6(); return function _createSuperInternal() { var Super = getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$6() { if (typeof Reflect === "undefined" || !Reflect.construct) { return false; } if (Reflect.construct.sham) { return false; } if (typeof Proxy === "function") { return true; } try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+var Option = Select.Option;
+
+var POISearch = /*#__PURE__*/function (_Component) {
+  inherits(POISearch, _Component);
+
+  var _super = _createSuper$6(POISearch);
+
+  function POISearch() {
+    var arguments$1 = arguments;
+
+    var _this;
+
+    classCallCheck(this, POISearch);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments$1[_key];
+    }
+
+    _this = _super.call.apply(_super, [this].concat(args));
+
+    defineProperty(assertThisInitialized(_this), "state", {
+      result: [],
+      text: _this.props.query.key || "",
+      searchtype: 'loc'
+    });
+
+    defineProperty(assertThisInitialized(_this), "handleSearch", function (value) {
+      _this.props.simpleQuery(value);
+    });
+
+    defineProperty(assertThisInitialized(_this), "handleSubmit", function (e) {
+      if (e.trim().length > 0) {
+        _this.props.queryActions.query();
+      }
+    });
+
+    defineProperty(assertThisInitialized(_this), "handleSelect", function (e) {
+      var text = e.trim().split(",")[0];
+
+      _this.props.queryActions.query(text);
+    });
+
+    defineProperty(assertThisInitialized(_this), "handleChange", function (e) {
+      var text = e ? e.trim().split(",")[0] : "";
+
+      _this.props.queryActions.changeQueryKey(text, "name");
+    });
+
+    defineProperty(assertThisInitialized(_this), "clearKeys", function () {
+      _this.props.queryActions.clearSimpleResult();
+    });
+
+    defineProperty(assertThisInitialized(_this), "handleTypeChange", function (searchtype) {
+      _this.setState({
+        searchtype: searchtype
+      });
+    });
+
+    return _this;
+  }
+
+  createClass(POISearch, [{
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var simpleresult = this.props.query.simpleresult;
+
+      function renderOption(item) {
+        return /*#__PURE__*/React__default.createElement(Option, {
+          key: item.gbCode,
+          value: item.name + "," + item.gbCode
+        }, /*#__PURE__*/React__default.createElement(SearchOutlined$2, null), item.name, item.duplicate && /*#__PURE__*/React__default.createElement("span", {
+          className: "search-item-class"
+        }, item.midbclass + " " + item.district));
+      }
+
+      return /*#__PURE__*/React__default.createElement("div", null, /*#__PURE__*/React__default.createElement(AutoComplete, {
+        className: "search_auto",
+        defaultActiveFirstOption: false,
+        dropdownClassName: "search_auto_dropdown",
+        onFocus: function onFocus() {
+          return _this2.props.queryActions.queryOnFocus(true);
+        },
+        onSearch: this.handleSearch,
+        onChange: this.handleChange,
+        onSelect: this.handleSelect,
+        value: this.props.query.key,
+        dataSource: simpleresult ? simpleresult.map(renderOption) : []
+      }, /*#__PURE__*/React__default.createElement(Input.Search, {
+        placeholder: "\u8BF7\u8F93\u5165\u5173\u952E\u5B57",
+        value: this.props.query.key,
+        onSearch: this.handleSubmit
+      })));
+    }
+  }]);
+
+  return POISearch;
+}(Component);
+
+function _createSuper$7(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$7(); return function _createSuperInternal() { var Super = getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$7() { if (typeof Reflect === "undefined" || !Reflect.construct) { return false; } if (Reflect.construct.sham) { return false; } if (typeof Proxy === "function") { return true; } try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+var assign$1 = require('object-assign');
+
+var POIList = /*#__PURE__*/function (_Component) {
+  inherits(POIList, _Component);
+
+  var _super = _createSuper$7(POIList);
+
+  function POIList() {
+    classCallCheck(this, POIList);
+
+    return _super.apply(this, arguments);
+  }
+
+  createClass(POIList, [{
+    key: "onItemClick",
+    value: function onItemClick(item) {
+      this.props.queryActions.onClickResult(item.id);
+      this.props.queryActions.setSelectPOIItem(item);
+      this.props.mapBoxActions.zoomToPoint3D({
+        x: Number(item.lonlat.split(" ")[0]),
+        y: Number(item.lonlat.split(" ")[1])
+      }, this.props.map3d.zoom);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this = this;
+
+      var _this$props$query = this.props.query,
+          result = _this$props$query.result,
+          resultcount = _this$props$query.resultcount,
+          responsetime = _this$props$query.responsetime,
+          prompt = _this$props$query.prompt;
+      var listData = [];
+
+      if (!result) {
+        return /*#__PURE__*/React__default.createElement("div", null);
+      }
+
+      result.forEach(function (item) {
+        listData.push(assign$1({}, {
+          title: item.name,
+          id: item.hotPointID,
+          address: item.address || '暂无',
+          telephone: item.phone || '暂无'
+        }, item));
+      });
+      return /*#__PURE__*/React__default.createElement("div", null, /*#__PURE__*/React__default.createElement(List, {
+        ref: "query_resultlist",
+        itemLayout: "vertical",
+        size: "large",
+        locale: {
+          emptyText: /*#__PURE__*/React__default.createElement("div", {
+            className: "no-data-text"
+          }, /*#__PURE__*/React__default.createElement("p", null, "\u672A\u627E\u5230\u76F8\u5173\u5730\u70B9\u3002"), /*#__PURE__*/React__default.createElement("p", null, "\u60A8\u8FD8\u53EF\u4EE5\uFF1A"), /*#__PURE__*/React__default.createElement("ul", null, /*#__PURE__*/React__default.createElement("li", null, "\u68C0\u67E5\u8F93\u5165\u662F\u5426\u6B63\u786E\u6216\u8005\u8F93\u5165\u5176\u5B83\u8BCD"), /*#__PURE__*/React__default.createElement("li", null, "\u4F7F\u7528\u5206\u7C7B\u8FDB\u884C\u67E5\u627E"), /*#__PURE__*/React__default.createElement("li", null, "\u4F7F\u7528\u7EA0\u9519\u529F\u80FD\u5BF9\u5B58\u5728\u7684\u95EE\u9898\u8FDB\u884C\u4E0A\u62A5")))
+        },
+        className: "query_resultlist",
+        pagination: {
+          onChange: function onChange(page) {
+            _this.props.queryActions.changeQueryPageIndex(page);
+          },
+          total: resultcount,
+          pageSize: 10,
+          size: "small"
+        },
+        dataSource: listData,
+        renderItem: function renderItem(item, index) {
+          return /*#__PURE__*/React__default.createElement(List.Item, {
+            onClick: function onClick() {
+              return _this.onItemClick(item);
+            },
+            onMouseOver: function onMouseOver() {
+              return _this.props.queryActions.onHoverResult(item.id);
+            },
+            onMouseOut: function onMouseOut() {
+              return _this.props.queryActions.onHoverResult(null);
+            },
+            key: item.id
+          }, /*#__PURE__*/React__default.createElement(List.Item.Meta, {
+            title: /*#__PURE__*/React__default.createElement("div", null, /*#__PURE__*/React__default.createElement("a", null, /*#__PURE__*/React__default.createElement("span", {
+              className: "extra-marker"
+            }, index + 1), item.title), /*#__PURE__*/React__default.createElement("span", {
+              style: {
+                fontSize: 'small'
+              }
+            }, item.midbclass)),
+            description: /*#__PURE__*/React__default.createElement("div", null, /*#__PURE__*/React__default.createElement("p", null, '地址:' + item.address), /*#__PURE__*/React__default.createElement("p", null, '电话:' + item.telephone))
+          }));
+        }
+      }), /*#__PURE__*/React__default.createElement("span", {
+        className: "resultcount_span"
+      }, "\u5171\u627E\u5230", resultcount, "\u4E2A\u7ED3\u679C \u8017\u65F6", responsetime));
+    }
+  }]);
+
+  return POIList;
+}(Component);
+
+export { AreaLocation, AttributesFillter, POIList, POISearch, ResourceCatalog, ResourcesList, ResultList, SetLocation, SideBar, SpatialQuery, SpatialQueryPanel };

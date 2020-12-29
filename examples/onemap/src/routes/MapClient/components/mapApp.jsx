@@ -2,7 +2,7 @@
  * @Author: 史涛
  * @Date: 2019-01-05 17:40:59
  * @Last Modified by: 史涛
- * @Last Modified time: 2020-12-19 22:35:40
+ * @Last Modified time: 2020-12-29 16:56:23
  */
 Date.prototype.Format = function (fmt) {
   //author: meizz
@@ -43,10 +43,10 @@ import SideBar from "../modules/SideBar/panel";
 import {
   ResourceCatalog,
   SpatialQuery,
-  ResultList1
+  ResultList,
 } from "../../../../lib/onemap-components-dev";
 
- //import ResultList from "../modules/SpatialQuery/resultlist";
+//import ResultList from "../modules/SpatialQuery/resultlist";
 import ToolBar from "../modules/ToolBar/toolbar";
 import SpayialAnalysis from "../modules/SpatialAnalysis/analysis";
 import Search from "../modules/Search/index";
@@ -127,17 +127,18 @@ class mapApp extends React.Component {
   };
 
   getServiceList = () => {
+    const {thematicActions,mapBoxActions}=this.props;
     return axios
       .get(mapConfigJson.serverurl + "/datacatalog/tree")
       .then((response) => {
         let renderlist = response.data.result;
 
-        this.props.thematicActions.loadThematicsList(renderlist);
+        thematicActions.loadThematicsList(renderlist);
 
-        this.props.mapBoxActions.addSources(
+        mapBoxActions.addSources(
           renderlist.filter((e) => e.servicetype === "map")
         );
-        this.props.mapBoxActions.addLayers(
+        thematicActions.addLayers(
           renderlist.filter((e) => e.servicetype === "map")
         );
       })
@@ -145,8 +146,9 @@ class mapApp extends React.Component {
   };
 
   componentDidMount() {
-    this.props.mapBoxActions.loadStyle(ROADMapStyle);
-    this.props.configActions.configureMap(mapConfigJson);
+    const {mapBoxActions,configActions}=this.props;
+    mapBoxActions.loadStyle(ROADMapStyle);
+    configActions.configureMap(mapConfigJson);
     this.getServiceList();
     const ele = document.getElementById("loading");
     ele.style.display = "none";
@@ -205,7 +207,20 @@ class mapApp extends React.Component {
   };
 
   render() {
-    const { mapConfig, map3d, query, thematics } = this.props;
+    const {
+      mapConfig,
+      map3d,
+      query,
+      thematics,
+      toolbar,
+      analysis,
+      draw,
+      thematicActions,
+      queryActions,
+      layersActions,
+      mapBoxActions,
+      drawActions,
+    } = this.props;
     if (mapConfig && map3d) {
       return (
         <Layout>
@@ -229,23 +244,25 @@ class mapApp extends React.Component {
           </Header>
           <Content>
             <MapBoxMap
-              query={this.props.query}
-              map3d={this.props.map3d}
-              thematics={this.props.thematics}
-              toolbar={this.props.toolbar}
-              mapConfig={this.props.mapConfig}
-              draw={this.props.draw}
-              analysis={this.props.analysis}
-              thematicActions={this.props.thematicActions}
-              queryActions={this.props.queryActions}
-              layersActions={this.props.layersActions}
-              mapBoxActions={this.props.mapBoxActions}
-              drawActions={this.props.drawActions}
+              query={query}
+              map3d={map3d}
+              thematics={thematics}
+              toolbar={toolbar}
+              mapConfig={mapConfig}
+              draw={draw}
+              analysis={analysis}
+              thematicActions={thematicActions}
+              queryActions={queryActions}
+              layersActions={layersActions}
+              mapBoxActions={mapBoxActions}
+              drawActions={drawActions}
             />
             <LayerSwitch></LayerSwitch>
             {thematics.themresult ? (
-              <ResultList1  thematics={this.props.thematics}
-              thematicActions={this.props.thematicActions}></ResultList1>
+              <ResultList1
+                thematics={thematics}
+                thematicActions={thematicActions}
+              ></ResultList1>
             ) : this.state.showcatalog ? (
               <ResourceCatalog
                 sideprops={{
@@ -254,31 +271,35 @@ class mapApp extends React.Component {
                   visible: true,
                   onClose: this.onCloseCatalog,
                 }}
-                thematics={this.props.thematics}
-                thematicActions={this.props.thematicActions}
-                mapBoxActions={this.props.mapBoxActions}
+                thematics={thematics}
+                thematicActions={thematicActions}
+                mapBoxActions={mapBoxActions}
               ></ResourceCatalog>
             ) : null}
             <ToolBar
-              map3d={this.props.map3d}
-              mapConfig={this.props.mapConfig}
-              mapBoxActions={this.props.mapBoxActions}
+              map3d={map3d}
+              mapConfig={mapConfig}
+              mapBoxActions={mapBoxActions}
             ></ToolBar>
             <SpayialAnalysis></SpayialAnalysis>
             <SpatialQuery
-              thematics={this.props.thematics}
-              draw={this.props.draw}
-              drawActions={this.props.drawActions}
-              thematicActions={this.props.thematicActions}
+              thematics={thematics}
+              draw={draw}
+              drawActions={drawActions}
+              thematicActions={thematicActions}
             ></SpatialQuery>
-            <Search></Search>
+            <Search  query={query} queryActions={queryActions}></Search>
             {query.result && (
               <SideBar
                 className="sidebar_containtcard queryresult_drawer"
                 title="查询结果"
                 onClose={this.onCloseSearch}
               >
-                <SearchList></SearchList>
+                <SearchList
+                query={query}
+                queryActions={queryActions}
+                mapBoxActions={mapBoxActions}
+                ></SearchList>
               </SideBar>
             )}
           </Content>
