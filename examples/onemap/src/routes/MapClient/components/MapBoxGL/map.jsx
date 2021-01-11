@@ -2,7 +2,7 @@
  * @Author: 史涛
  * @Date: 2020-02-14 16:57:11
  * @Last Modified by: 史涛
- * @Last Modified time: 2020-12-18 17:42:58
+ * @Last Modified time: 2021-01-11 16:48:28
  */
 import ReactMapboxGl, {
   Layer,
@@ -260,7 +260,7 @@ class MapBoxMap extends PureComponent {
             Number(selecteditem.lonlat.split(" ")[1]),
           ]}
           offset={{
-            bottom: [0, -38],
+            bottom: [0, -8],
           }}
         >
           <div class="title">
@@ -388,7 +388,7 @@ class MapBoxMap extends PureComponent {
       <Popup
         coordinates={[Number(point[0]), Number(point[1])]}
         offset={{
-          bottom: [0, -38],
+          bottom: [0, -8],
         }}
       >
         <div className="title">
@@ -553,7 +553,7 @@ class MapBoxMap extends PureComponent {
         <Popup
           coordinates={[Number(point[0]), Number(point[1])]}
           offset={{
-            bottom: [0, -38],
+            bottom: [0, -8],
           }}
         >
           <div className="title">

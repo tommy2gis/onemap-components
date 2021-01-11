@@ -2,7 +2,7 @@
  * @Author: 史涛 
  * @Date: 2020-04-14 09:27:06 
  * @Last Modified by: 史涛
- * @Last Modified time: 2020-12-29 16:09:10
+ * @Last Modified time: 2021-01-11 16:36:07
  */
 import React, { Component } from "react";
 import { Card,Collapse } from "antd";
@@ -63,9 +63,6 @@ class ResultList extends Component {
           extra={
             [<a title="定位" style={{margin:'0 10px'}} onClick={(e) => this.onSelectItem(e,el)} >
               <EnvironmentOutlined />
-            </a>,
-            <a title="关联查询" onClick={(e) => this.onRelateQuery(e,el)}>
-             <LinkOutlined />
             </a>]
           }
           header={el.attributes[titlefield]}
@@ -103,7 +100,7 @@ class ResultList extends Component {
           bordered={false}
           extra={[<a  style={{marginRight:10}} onClick={this.backMenu}><RollbackOutlined  title="返回目录"/></a>,<a onClick={this.downloadData}><DownloadOutlined  title="下载"/></a>]} 
         >
-          <Collapse bordered={false} defaultActiveKey={[0]}>
+          <Collapse bordered={false} accordion={true} >
             {this.renderList(themresult.features, themresult.displayFieldName,themresult.fieldAliases)}
           </Collapse>
         </Card>

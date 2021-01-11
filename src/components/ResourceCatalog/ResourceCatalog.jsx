@@ -3,7 +3,7 @@
  * @Author: 史涛
  * @Date: 2020-04-14 09:27:41
  * @Last Modified by: 史涛
- * @Last Modified time: 2020-12-19 21:31:17
+ * @Last Modified time: 2021-01-11 14:40:17
  */
 
 import React, { Component } from "react";
@@ -115,12 +115,6 @@ class ResourceCatalog extends Component {
         <SideBar {...this.props.sideprops}>
         <ResourcesList list={this.props.thematics.themlist} onSelect={this.onSelect} ></ResourcesList>
        </SideBar>
-
-    //   <ResourceCatalog
-    //     sideprops={{title:'资源目录',placement:'left',visible:true,onClose:this.props.onClose}}
-    //     data={this.props.thematics.themlist}
-    //     onSelect={this.onSelect}
-    //   ></ResourceCatalog>
     );
   }
 }

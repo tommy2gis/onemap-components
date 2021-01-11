@@ -426,12 +426,7 @@ var ResourceCatalog = /*#__PURE__*/function (_Component) {
       return /*#__PURE__*/React__default.createElement(SideBar, this.props.sideprops, /*#__PURE__*/React__default.createElement(ResourcesList, {
         list: this.props.thematics.themlist,
         onSelect: this.onSelect
-      })) //   <ResourceCatalog
-      //     sideprops={{title:'资源目录',placement:'left',visible:true,onClose:this.props.onClose}}
-      //     data={this.props.thematics.themlist}
-      //     onSelect={this.onSelect}
-      //   ></ResourceCatalog>
-      ;
+      }));
     }
   }]);
 
@@ -2680,21 +2675,6 @@ LeftOutlined$1.displayName = 'LeftOutlined';
 var LeftOutlined$2 = /*#__PURE__*/forwardRef(LeftOutlined$1);
 
 // This icon file is generated automatically.
-var LinkOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M574 665.4a8.03 8.03 0 00-11.3 0L446.5 781.6c-53.8 53.8-144.6 59.5-204 0-59.5-59.5-53.8-150.2 0-204l116.2-116.2c3.1-3.1 3.1-8.2 0-11.3l-39.8-39.8a8.03 8.03 0 00-11.3 0L191.4 526.5c-84.6 84.6-84.6 221.5 0 306s221.5 84.6 306 0l116.2-116.2c3.1-3.1 3.1-8.2 0-11.3L574 665.4zm258.6-474c-84.6-84.6-221.5-84.6-306 0L410.3 307.6a8.03 8.03 0 000 11.3l39.7 39.7c3.1 3.1 8.2 3.1 11.3 0l116.2-116.2c53.8-53.8 144.6-59.5 204 0 59.5 59.5 53.8 150.2 0 204L665.3 562.6a8.03 8.03 0 000 11.3l39.8 39.8c3.1 3.1 8.2 3.1 11.3 0l116.2-116.2c84.5-84.6 84.5-221.5 0-306.1zM610.1 372.3a8.03 8.03 0 00-11.3 0L372.3 598.7a8.03 8.03 0 000 11.3l39.6 39.6c3.1 3.1 8.2 3.1 11.3 0l226.4-226.4c3.1-3.1 3.1-8.2 0-11.3l-39.5-39.6z" } }] }, "name": "link", "theme": "outlined" };
-
-// GENERATE BY ./scripts/generate.ts
-
-var LinkOutlined$1 = function LinkOutlined$1(props, ref) {
-  return /*#__PURE__*/createElement(Icon, Object.assign({}, props, {
-    ref: ref,
-    icon: LinkOutlined
-  }));
-};
-
-LinkOutlined$1.displayName = 'LinkOutlined';
-var LinkOutlined$2 = /*#__PURE__*/forwardRef(LinkOutlined$1);
-
-// This icon file is generated automatically.
 var PlusOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "defs", "attrs": {}, "children": [{ "tag": "style", "attrs": {} }] }, { "tag": "path", "attrs": { "d": "M482 152h60q8 0 8 8v704q0 8-8 8h-60q-8 0-8-8V160q0-8 8-8z" } }, { "tag": "path", "attrs": { "d": "M176 474h672q8 0 8 8v60q0 8-8 8H176q-8 0-8-8v-60q0-8 8-8z" } }] }, "name": "plus", "theme": "outlined" };
 
 // GENERATE BY ./scripts/generate.ts
@@ -3295,12 +3275,7 @@ var ResultList = /*#__PURE__*/function (_Component) {
             onClick: function onClick(e) {
               return _this.onSelectItem(e, el);
             }
-          }, /*#__PURE__*/React__default.createElement(EnvironmentOutlined$2, null)), /*#__PURE__*/React__default.createElement("a", {
-            title: "\u5173\u8054\u67E5\u8BE2",
-            onClick: function onClick(e) {
-              return _this.onRelateQuery(e, el);
-            }
-          }, /*#__PURE__*/React__default.createElement(LinkOutlined$2, null))],
+          }, /*#__PURE__*/React__default.createElement(EnvironmentOutlined$2, null))],
           header: el.attributes[titlefield],
           key: index
         }, _this.renderThematicContent(el.attributes, fields));
@@ -3351,7 +3326,7 @@ var ResultList = /*#__PURE__*/function (_Component) {
           }))]
         }, /*#__PURE__*/React__default.createElement(Collapse, {
           bordered: false,
-          defaultActiveKey: [0]
+          accordion: true
         }, this.renderList(themresult.features, themresult.displayFieldName, themresult.fieldAliases)));
       }
 
@@ -3619,7 +3594,7 @@ var POISearch = /*#__PURE__*/function (_Component) {
     });
 
     defineProperty(assertThisInitialized(_this), "handleSearch", function (value) {
-      _this.props.simpleQuery(value);
+      _this.props.queryActions.simpleQuery(value);
     });
 
     defineProperty(assertThisInitialized(_this), "handleSubmit", function (e) {
@@ -3696,7 +3671,7 @@ function _createSuper$7(Derived) { var hasNativeReflectConstruct = _isNativeRefl
 
 function _isNativeReflectConstruct$7() { if (typeof Reflect === "undefined" || !Reflect.construct) { return false; } if (Reflect.construct.sham) { return false; } if (typeof Proxy === "function") { return true; } try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
-var assign$1 = require('object-assign');
+var assign$1 = require("object-assign");
 
 var POIList = /*#__PURE__*/function (_Component) {
   inherits(POIList, _Component);
@@ -3717,7 +3692,7 @@ var POIList = /*#__PURE__*/function (_Component) {
       this.props.mapBoxActions.zoomToPoint3D({
         x: Number(item.lonlat.split(" ")[0]),
         y: Number(item.lonlat.split(" ")[1])
-      }, this.props.map3d.zoom);
+      }, 17);
     }
   }, {
     key: "render",
@@ -3739,8 +3714,8 @@ var POIList = /*#__PURE__*/function (_Component) {
         listData.push(assign$1({}, {
           title: item.name,
           id: item.hotPointID,
-          address: item.address || '暂无',
-          telephone: item.phone || '暂无'
+          address: item.address || "暂无",
+          telephone: item.phone || "暂无"
         }, item));
       });
       return /*#__PURE__*/React__default.createElement("div", null, /*#__PURE__*/React__default.createElement(List, {
@@ -3759,6 +3734,7 @@ var POIList = /*#__PURE__*/function (_Component) {
           },
           total: resultcount,
           pageSize: 10,
+          showSizeChanger: false,
           size: "small"
         },
         dataSource: listData,
@@ -3779,10 +3755,10 @@ var POIList = /*#__PURE__*/function (_Component) {
               className: "extra-marker"
             }, index + 1), item.title), /*#__PURE__*/React__default.createElement("span", {
               style: {
-                fontSize: 'small'
+                fontSize: "small"
               }
             }, item.midbclass)),
-            description: /*#__PURE__*/React__default.createElement("div", null, /*#__PURE__*/React__default.createElement("p", null, '地址:' + item.address), /*#__PURE__*/React__default.createElement("p", null, '电话:' + item.telephone))
+            description: /*#__PURE__*/React__default.createElement("div", null, /*#__PURE__*/React__default.createElement("p", null, "地址:" + item.address), /*#__PURE__*/React__default.createElement("p", null, "电话:" + item.telephone))
           }));
         }
       }), /*#__PURE__*/React__default.createElement("span", {
@@ -3794,4 +3770,189 @@ var POIList = /*#__PURE__*/function (_Component) {
   return POIList;
 }(Component);
 
-export { AreaLocation, AttributesFillter, POIList, POISearch, ResourceCatalog, ResourcesList, ResultList, SetLocation, SideBar, SpatialQuery, SpatialQueryPanel };
+var imageStyle = {
+  version: 8,
+  id: 'image',
+  className: 'mapboximagestyle',
+  title: '天地图影像',
+  sources: {
+    img_c: {
+      type: "raster",
+      tiles: ["http://t0.tianditu.gov.cn/DataServer?T=img_c&x={x}&y={y}&l={z}&tk=e90d56e5a09d1767899ad45846b0cefd"],
+      tileSize: 256
+    },
+    cia_c: {
+      type: "raster",
+      tiles: ["http://t0.tianditu.gov.cn/DataServer?T=cia_c&x={x}&y={y}&l={z}&tk=e90d56e5a09d1767899ad45846b0cefd"],
+      tileSize: 256
+    },
+    vec_c: {
+      type: "raster",
+      tiles: ["http://t0.tianditu.gov.cn/DataServer?T=vec_c&x={x}&y={y}&l={z}&tk=e90d56e5a09d1767899ad45846b0cefd"],
+      tileSize: 256
+    },
+    cva_c: {
+      type: "raster",
+      tiles: ["http://t0.tianditu.gov.cn/DataServer?T=cva_c&x={x}&y={y}&l={z}&tk=e90d56e5a09d1767899ad45846b0cefd"],
+      tileSize: 256
+    },
+    arealocation: {
+      type: "geojson",
+      data: {}
+    },
+    routinglocation: {
+      type: "geojson",
+      data: {}
+    }
+  },
+  layers: [{
+    id: "img_c",
+    type: "raster",
+    source: "img_c",
+    minzoom: 0,
+    maxzoom: 17.5
+  }, {
+    id: "cia_c",
+    type: "raster",
+    source: "cia_c",
+    minzoom: 0,
+    maxzoom: 17.5
+  }, {
+    id: "arealocation-outline",
+    source: "arealocation",
+    type: "fill",
+    filter: ["all", ["==", "NAME", ""]],
+    paint: {
+      "fill-color": "rgba(97, 87, 204, 0.1)",
+      "fill-opacity": 1,
+      "fill-outline-color": "rgb(97, 87, 204)"
+    }
+  }]
+};
+var roadStyle = {
+  version: 8,
+  id: 'road',
+  className: 'mapboxroadstyle',
+  title: '天地图矢量',
+  sources: {
+    img_c: {
+      type: "raster",
+      tiles: ["http://t6.tianditu.gov.cn/DataServer?T=img_c&x={x}&y={y}&l={z}&tk=e90d56e5a09d1767899ad45846b0cefd"],
+      tileSize: 256
+    },
+    cia_c: {
+      type: "raster",
+      tiles: ["http://t6.tianditu.gov.cn/DataServer?T=cia_c&x={x}&y={y}&l={z}&tk=e90d56e5a09d1767899ad45846b0cefd"],
+      tileSize: 256
+    },
+    vec_c: {
+      type: "raster",
+      tiles: ["http://t0.tianditu.gov.cn/DataServer?T=vec_c&x={x}&y={y}&l={z}&tk=e90d56e5a09d1767899ad45846b0cefd", "http://t1.tianditu.gov.cn/DataServer?T=vec_c&x={x}&y={y}&l={z}&tk=e90d56e5a09d1767899ad45846b0cefd", "http://t2.tianditu.gov.cn/DataServer?T=vec_c&x={x}&y={y}&l={z}&tk=e90d56e5a09d1767899ad45846b0cefd", "http://t3.tianditu.gov.cn/DataServer?T=vec_c&x={x}&y={y}&l={z}&tk=e90d56e5a09d1767899ad45846b0cefd", "http://t4.tianditu.gov.cn/DataServer?T=vec_c&x={x}&y={y}&l={z}&tk=e90d56e5a09d1767899ad45846b0cefd", "http://t6.tianditu.gov.cn/DataServer?T=vec_c&x={x}&y={y}&l={z}&tk=e90d56e5a09d1767899ad45846b0cefd"],
+      tileSize: 256
+    },
+    cva_c: {
+      type: "raster",
+      tiles: ["http://t0.tianditu.gov.cn/DataServer?T=cva_c&x={x}&y={y}&l={z}&tk=e90d56e5a09d1767899ad45846b0cefd", "http://t1.tianditu.gov.cn/DataServer?T=cva_c&x={x}&y={y}&l={z}&tk=e90d56e5a09d1767899ad45846b0cefd", "http://t2.tianditu.gov.cn/DataServer?T=cva_c&x={x}&y={y}&l={z}&tk=e90d56e5a09d1767899ad45846b0cefd", "http://t3.tianditu.gov.cn/DataServer?T=cva_c&x={x}&y={y}&l={z}&tk=e90d56e5a09d1767899ad45846b0cefd", "http://t4.tianditu.gov.cn/DataServer?T=cva_c&x={x}&y={y}&l={z}&tk=e90d56e5a09d1767899ad45846b0cefd", "http://t6.tianditu.gov.cn/DataServer?T=cva_c&x={x}&y={y}&l={z}&tk=e90d56e5a09d1767899ad45846b0cefd"],
+      tileSize: 256
+    },
+    arealocation: {
+      type: "geojson",
+      data: {}
+    },
+    routinglocation: {
+      type: "geojson",
+      data: {}
+    }
+  },
+  "sprite": "http://localhost:8080/mapbox/sprites/sprite",
+  "glyphs": "http://localhost:8080/mapbox/glyphs/{fontstack}/{range}.pbf",
+  layers: [{
+    id: "vec_c",
+    type: "raster",
+    source: "vec_c",
+    minzoom: 0,
+    maxzoom: 18
+  }, {
+    id: "cva_c",
+    type: "raster",
+    source: "cva_c",
+    minzoom: 0,
+    maxzoom: 18
+  }, {
+    id: "arealocation-outline",
+    source: "arealocation",
+    type: "fill",
+    filter: ["all", ["==", "NAME", ""]],
+    paint: {
+      "fill-color": "rgba(97, 87, 204, 0.1)",
+      "fill-opacity": 1,
+      "fill-outline-color": "rgb(97, 87, 204)"
+    }
+  }]
+};
+var mapstyles = [roadStyle, imageStyle];
+
+function _createSuper$8(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$8(); return function _createSuperInternal() { var Super = getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$8() { if (typeof Reflect === "undefined" || !Reflect.construct) { return false; } if (Reflect.construct.sham) { return false; } if (typeof Proxy === "function") { return true; } try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+var layerswitch = /*#__PURE__*/function (_Component) {
+  inherits(layerswitch, _Component);
+
+  var _super = _createSuper$8(layerswitch);
+
+  function layerswitch() {
+    var arguments$1 = arguments;
+
+    var _this;
+
+    classCallCheck(this, layerswitch);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments$1[_key];
+    }
+
+    _this = _super.call.apply(_super, [this].concat(args));
+
+    defineProperty(assertThisInitialized(_this), "onSliderChange", function (e) {
+      var style = mapstyles.find(function (s) {
+        return s.id === e.target.value;
+      });
+
+      _this.props.mapBoxActions.changStyle(style);
+    });
+
+    defineProperty(assertThisInitialized(_this), "renderItems", function () {
+      return mapstyles.map(function (style) {
+        return /*#__PURE__*/React__default.createElement(Radio.Button, {
+          value: style.id
+        }, /*#__PURE__*/React__default.createElement("div", {
+          className: "slide-item"
+        }, /*#__PURE__*/React__default.createElement("div", {
+          className: "item ".concat(style.className)
+        }), /*#__PURE__*/React__default.createElement("div", {
+          className: "text"
+        }, style.title)));
+      });
+    });
+
+    return _this;
+  }
+
+  createClass(layerswitch, [{
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/React__default.createElement("div", {
+        className: "mapandlayer_change"
+      }, /*#__PURE__*/React__default.createElement(Radio.Group, {
+        defaultValue: "road",
+        buttonStyle: "solid",
+        onChange: this.onSliderChange
+      }, this.renderItems()));
+    }
+  }]);
+
+  return layerswitch;
+}(Component);
+
+export { AreaLocation, AttributesFillter, layerswitch as LayerSwitch, POIList, POISearch, ResourceCatalog, ResourcesList, SetLocation, SideBar, SpatialQuery, SpatialQueryPanel, ResultList as SpatialResultList };

@@ -34,7 +34,7 @@
     "@turf/point-on-feature": "^5.1.5",
     "@turf/polygon-to-linestring": "^5.0.0",
     "@turf/simplify": "^5.1.5",
-    "antd": "^4.8.2",
+    "antd": "^4.10.1",
     "autoprefixer": "^9.7.4",
     "axios": "^0.18.0",
     "bizcharts": "^3.5.8",

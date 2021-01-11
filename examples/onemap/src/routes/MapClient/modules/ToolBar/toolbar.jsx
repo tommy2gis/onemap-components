@@ -2,7 +2,7 @@
  * @Author: 史涛
  * @Date: 2019-01-05 19:30:28
  * @Last Modified by: 史涛
- * @Last Modified time: 2020-12-19 17:47:06
+ * @Last Modified time: 2021-01-06 15:31:12
  */
 import React, { Component } from "react";
 import { connect } from "react-redux";
@@ -63,30 +63,30 @@ class ToolBar extends Component {
 
   onDisMeasure = () => {
     message.info("双击结束测量");
-    this.props.changeDrawingStatus("start", "polyline", "measure", [], {});
+    this.props.drawActions.changeDrawingStatus("start", "polyline", "measure", [], {});
   };
 
   handleSpatialQuery = () => {
-    this.props.showSpatialQuery(true);
+    this.props.thematicActions.showSpatialQuery(true);
   };
 
   handleStatistic = () => {
-    this.props.showSpatialAnalysis(true);
+    this.props.thematicActions.showSpatialAnalysis(true);
   };
 
   onAreaMeasure = () => {
     message.info("双击结束测量");
-    this.props.changeDrawingStatus("start", "polygon", "measure", [], {});
+    this.props.drawActions.changeDrawingStatus("start", "polygon", "measure", [], {});
   };
 
   handlePrint = () => {
-    this.props.changeDrawingStatus("print", "", "toolbar", [], {});
+    this.props.drawActions.changeDrawingStatus("print", "", "toolbar", [], {});
   };
 
   handleClear = () => {
-    this.props.changeDrawingStatus("clean", "", "measure", [], {});
-    this.props.queryThematicResponces(null, null);
-    this.props.setSelectedFeature(null);
+    this.props.drawActions.changeDrawingStatus("clean", "", "measure", [], {});
+    this.props.thematicActions.queryThematicResponces(null, null);
+    this.props.thematicActions.setSelectedFeature(null);
   };
   handleScreenfull = () => {
     if (ConfigUtils.getBrowserProperties().ie) {
@@ -140,7 +140,7 @@ class ToolBar extends Component {
             quhuadata={quhuadata}
           />
           <Divider type="vertical" />
-
+          {this.props.children}
           <Dropdown
             overlay={measuremenu}
             visible={true}
@@ -192,6 +192,7 @@ class ToolBar extends Component {
             <i className="iconfont icon-quanping"></i>
             <span>全屏</span>
           </button>
+          
         </Card>
         {this.state.locationshow && (
           <SetLocation
@@ -205,18 +206,4 @@ class ToolBar extends Component {
   }
 }
 
-export default connect(
-  (state) => {
-    return {
-      map: state.map || (state.mapConfig && state.mapConfig.map),
-      draw: state.draw,
-    };
-  },
-  {
-    setSelectedFeature,
-    queryThematicResponces,
-    changeDrawingStatus,
-    showSpatialQuery,
-    showSpatialAnalysis,
-  }
-)(ToolBar);
+export default ToolBar;

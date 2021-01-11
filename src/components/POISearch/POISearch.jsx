@@ -17,7 +17,7 @@ class POISearch extends Component {
    * @param {*} value
    */
   handleSearch = (value) => {
-    this.props.simpleQuery(value);
+    this.props.queryActions.simpleQuery(value);
   };
 
   /**

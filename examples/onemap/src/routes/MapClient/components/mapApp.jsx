@@ -2,7 +2,7 @@
  * @Author: 史涛
  * @Date: 2019-01-05 17:40:59
  * @Last Modified by: 史涛
- * @Last Modified time: 2020-12-29 16:56:23
+ * @Last Modified time: 2021-01-11 16:12:10
  */
 Date.prototype.Format = function (fmt) {
   //author: meizz
@@ -36,31 +36,25 @@ const { Header, Content } = Layout;
 import PropTypes from "prop-types";
 import React from "react";
 import MapBoxMap from "./MapBoxGL/map";
-import { defaultMapStyle, ROADMapStyle } from "./MapBoxGL/mapstyle";
-import { createFromIconfontCN } from "@ant-design/icons";
-import LayerSwitch from "../modules/LayerSwitch/layerswitch";
+import {ROADMapStyle } from "./MapBoxGL/mapstyle";
 import SideBar from "../modules/SideBar/panel";
 import {
   ResourceCatalog,
   SpatialQuery,
-  ResultList,
+  SpatialResultList,
+  POISearch,
+  POIList,
+  LayerSwitch
 } from "../../../../lib/onemap-components-dev";
 
-//import ResultList from "../modules/SpatialQuery/resultlist";
 import ToolBar from "../modules/ToolBar/toolbar";
 import SpayialAnalysis from "../modules/SpatialAnalysis/analysis";
-import Search from "../modules/Search/index";
-import SearchList from "../modules/Search/resultlist";
 import axios from "axios";
-const MapIcon = createFromIconfontCN({
-  scriptUrl: "mapiconfont/iconfont.js", // 在 iconfont.cn 上生成
-});
 import "../../../../lib/onemap-components-dev.css";
 import "../components/MapBoxGL/assest/mapiconfont/iconfont.css";
 
 class mapApp extends React.Component {
   static propTypes = {
-    // redux store slice with map configuration (bound through connect to store at the end of the file)
     mapConfig: PropTypes.object,
     map: PropTypes.object,
     layers: PropTypes.object,
@@ -138,7 +132,7 @@ class mapApp extends React.Component {
         mapBoxActions.addSources(
           renderlist.filter((e) => e.servicetype === "map")
         );
-        thematicActions.addLayers(
+        mapBoxActions.addLayers(
           renderlist.filter((e) => e.servicetype === "map")
         );
       })
@@ -224,7 +218,7 @@ class mapApp extends React.Component {
     if (mapConfig && map3d) {
       return (
         <Layout>
-          <Header>
+          <Header className="customLayerHeader">
             <div className="mapheader">
               <Menu mode="horizontal">
                 <Menu.Item key="1" onClick={this.handleCatalog}>
@@ -257,12 +251,12 @@ class mapApp extends React.Component {
               mapBoxActions={mapBoxActions}
               drawActions={drawActions}
             />
-            <LayerSwitch></LayerSwitch>
+            <LayerSwitch  mapBoxActions={mapBoxActions}></LayerSwitch>
             {thematics.themresult ? (
-              <ResultList1
+              <SpatialResultList
                 thematics={thematics}
                 thematicActions={thematicActions}
-              ></ResultList1>
+              ></SpatialResultList>
             ) : this.state.showcatalog ? (
               <ResourceCatalog
                 sideprops={{
@@ -279,6 +273,8 @@ class mapApp extends React.Component {
             <ToolBar
               map3d={map3d}
               mapConfig={mapConfig}
+              drawActions={drawActions}
+              thematicActions={thematicActions}
               mapBoxActions={mapBoxActions}
             ></ToolBar>
             <SpayialAnalysis></SpayialAnalysis>
@@ -288,18 +284,18 @@ class mapApp extends React.Component {
               drawActions={drawActions}
               thematicActions={thematicActions}
             ></SpatialQuery>
-            <Search  query={query} queryActions={queryActions}></Search>
+            <POISearch  query={query} queryActions={queryActions}></POISearch>
             {query.result && (
               <SideBar
                 className="sidebar_containtcard queryresult_drawer"
                 title="查询结果"
                 onClose={this.onCloseSearch}
               >
-                <SearchList
+                <POIList
                 query={query}
                 queryActions={queryActions}
                 mapBoxActions={mapBoxActions}
-                ></SearchList>
+                ></POIList>
               </SideBar>
             )}
           </Content>

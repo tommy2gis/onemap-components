@@ -1,11 +1,11 @@
-.toolbar_card {
-    position: absolute;
+.ant-card.toolbar_card {
+    position: absolute !important;
     z-index: 2000;
     right: 20px;
     top: 100px;
 }
 
-.toolbar_card>div {
+.ant-card.toolbar_card>div {
     padding: 2px;
 }
 
@@ -19,12 +19,13 @@
     font-size: 14px;
 }
 
-.toolbar_card button {
+.ant-card.toolbar_card button {
     line-height: 1.8em;
     padding: 0px 10px;
     min-height: 30px;
     margin: 2px 0px;
     border-radius: 0px;
+    border: 0px;
 }
 
 @media screen and (max-width: 1366px) {
@@ -37,18 +38,18 @@
     }
   }
 
-.toolbar_card button:first-child {
+  .ant-card.toolbar_card button:first-child {
     border-left: 0px;
 }
 
-.toolbar_card .iconfont {
+.ant-card.toolbar_card .iconfont {
     margin: 0 4px;
 }
 
-.toolbar_card .ant-divider{
+.ant-card.toolbar_card .ant-divider{
     height: 2em;
-    background: #b7b7b7;
     margin: 0px;
+    border-left: 0.1em solid rgb(192 192 192);
 }
 
 .toolbar_mapcompare_list {
