@@ -36,7 +36,7 @@
     "@turf/simplify": "^5.1.5",
     "antd": "^4.10.1",
     "autoprefixer": "^9.7.4",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "bizcharts": "^3.5.8",
     "caniuse-lite": "^1.0.30001148",
     "carousel": "0.0.3",
