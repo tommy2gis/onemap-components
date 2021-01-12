@@ -14,3 +14,7 @@ export { default as SetLocation } from './SetLocation';
 export { default as POISearch,POIList } from './POISearch';
 
 export { default as LayerSwitch } from './LayerSwitch';
+
+export { default as QueryBuilder } from './QueryBuilder';
+
+export { default as StatisticAnalysis,ChartVisual } from './StatisticAnalysis';

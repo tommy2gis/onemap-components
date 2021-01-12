@@ -14,7 +14,7 @@ const { BUILD, MINIFY } = process.env;
 const minified = MINIFY === "true";
 const production = BUILD === "production";
 const outputFile = !production
-  ? "dist/index.js"
+  ? "examples/onemap/lib/onemap-components-dev.js"
   : minified
   ? "dist/index.js"
   : "dist/onemap-components-unminified.js";

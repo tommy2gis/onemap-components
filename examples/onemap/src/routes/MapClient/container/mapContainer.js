@@ -8,6 +8,7 @@ import * as LayersActions from "../actions/layers";
 import * as QueryActions from "../actions/query";
 import * as ConfigActions from "../actions/config";
 import * as ThematicActions from "../actions/thematics";
+import * as StatisticsActions from "../actions/statistics";
 
 export default connect(mapStateToProps, makeMapDispatchToProps)(mapApp);
 
@@ -27,6 +28,7 @@ function mapStateToProps(state = {}, props) {
     thematics: state.thematics,
     toolbar: state.toolbar,
     analysis: state.analysis,
+    statistics: state.statistics,
     map3d: state.map3d,
   };
 }
@@ -41,6 +43,7 @@ function makeGetActionCreators() {
     (dispatch, userActions) => {
       const [
         thematicActions,
+        statisticsActions,
         configActions,
         queryActions,
         layersActions,
@@ -49,6 +52,7 @@ function makeGetActionCreators() {
         mapActions,
       ] = [
         ThematicActions,
+        StatisticsActions,
         ConfigActions,
         QueryActions,
         LayersActions,
@@ -60,6 +64,7 @@ function makeGetActionCreators() {
 
       return {
         thematicActions,
+        statisticsActions,
         configActions,
         queryActions,
         layersActions,

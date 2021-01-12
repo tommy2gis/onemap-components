@@ -1,8 +1,15 @@
-import React__default, { useState, Component, useEffect, forwardRef, createElement } from 'react';
-import { Drawer, Collapse, Table, Popover, Select, List, Tag, Input, InputNumber, Button, Card, Spin, Divider, Radio, Row, Checkbox, Col, Dropdown, message, AutoComplete } from 'antd';
+import React__default, { useState, Component, useEffect, forwardRef, createElement, PureComponent } from 'react';
+import { Drawer, Collapse, Table, Popover, Select, List, Tag, Input, InputNumber, Button, Card, Spin, Divider, Radio, Row, Checkbox, Col, Dropdown, message, AutoComplete, TreeSelect, Switch, Space } from 'antd';
 import turfbuffer from '@turf/buffer';
 import arcgisX from '@tommy2gis/arcgis-x';
 import centroid from '@turf/centroid';
+import axios from 'axios';
+import qs from 'qs';
+import simplify from '@turf/simplify';
+import { Resizable } from 're-resizable';
+import { Chart, Coord, Axis, Legend, Tooltip, Geom } from 'bizcharts';
+import DataSet from '@antv/data-set';
+import ExportJsonExcel from 'js-export-excel';
 
 function createCommonjsModule(fn, module) {
 	return module = { exports: {} }, fn(module, module.exports), module.exports;
@@ -2630,6 +2637,36 @@ Icon.getTwoToneColor = getTwoToneColor;
 Icon.setTwoToneColor = setTwoToneColor;
 
 // This icon file is generated automatically.
+var BarChartOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M888 792H200V168c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v688c0 4.4 3.6 8 8 8h752c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm-600-80h56c4.4 0 8-3.6 8-8V560c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v144c0 4.4 3.6 8 8 8zm152 0h56c4.4 0 8-3.6 8-8V384c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v320c0 4.4 3.6 8 8 8zm152 0h56c4.4 0 8-3.6 8-8V462c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v242c0 4.4 3.6 8 8 8zm152 0h56c4.4 0 8-3.6 8-8V304c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v400c0 4.4 3.6 8 8 8z" } }] }, "name": "bar-chart", "theme": "outlined" };
+
+// GENERATE BY ./scripts/generate.ts
+
+var BarChartOutlined$1 = function BarChartOutlined$1(props, ref) {
+  return /*#__PURE__*/createElement(Icon, Object.assign({}, props, {
+    ref: ref,
+    icon: BarChartOutlined
+  }));
+};
+
+BarChartOutlined$1.displayName = 'BarChartOutlined';
+var BarChartOutlined$2 = /*#__PURE__*/forwardRef(BarChartOutlined$1);
+
+// This icon file is generated automatically.
+var CaretRightOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "0 0 1024 1024", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M715.8 493.5L335 165.1c-14.2-12.2-35-1.2-35 18.5v656.8c0 19.7 20.8 30.7 35 18.5l380.8-328.4c10.9-9.4 10.9-27.6 0-37z" } }] }, "name": "caret-right", "theme": "outlined" };
+
+// GENERATE BY ./scripts/generate.ts
+
+var CaretRightOutlined$1 = function CaretRightOutlined$1(props, ref) {
+  return /*#__PURE__*/createElement(Icon, Object.assign({}, props, {
+    ref: ref,
+    icon: CaretRightOutlined
+  }));
+};
+
+CaretRightOutlined$1.displayName = 'CaretRightOutlined';
+var CaretRightOutlined$2 = /*#__PURE__*/forwardRef(CaretRightOutlined$1);
+
+// This icon file is generated automatically.
 var DownloadOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M505.7 661a8 8 0 0012.6 0l112-141.7c4.1-5.2.4-12.9-6.3-12.9h-74.1V168c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v338.3H400c-6.7 0-10.4 7.7-6.3 12.9l112 141.8zM878 626h-60c-4.4 0-8 3.6-8 8v154H214V634c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v198c0 17.7 14.3 32 32 32h684c17.7 0 32-14.3 32-32V634c0-4.4-3.6-8-8-8z" } }] }, "name": "download", "theme": "outlined" };
 
 // GENERATE BY ./scripts/generate.ts
@@ -2643,6 +2680,21 @@ var DownloadOutlined$1 = function DownloadOutlined$1(props, ref) {
 
 DownloadOutlined$1.displayName = 'DownloadOutlined';
 var DownloadOutlined$2 = /*#__PURE__*/forwardRef(DownloadOutlined$1);
+
+// This icon file is generated automatically.
+var EllipsisOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M176 511a56 56 0 10112 0 56 56 0 10-112 0zm280 0a56 56 0 10112 0 56 56 0 10-112 0zm280 0a56 56 0 10112 0 56 56 0 10-112 0z" } }] }, "name": "ellipsis", "theme": "outlined" };
+
+// GENERATE BY ./scripts/generate.ts
+
+var EllipsisOutlined$1 = function EllipsisOutlined$1(props, ref) {
+  return /*#__PURE__*/createElement(Icon, Object.assign({}, props, {
+    ref: ref,
+    icon: EllipsisOutlined
+  }));
+};
+
+EllipsisOutlined$1.displayName = 'EllipsisOutlined';
+var EllipsisOutlined$2 = /*#__PURE__*/forwardRef(EllipsisOutlined$1);
 
 // This icon file is generated automatically.
 var EnvironmentOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M854.6 289.1a362.49 362.49 0 00-79.9-115.7 370.83 370.83 0 00-118.2-77.8C610.7 76.6 562.1 67 512 67c-50.1 0-98.7 9.6-144.5 28.5-44.3 18.3-84 44.5-118.2 77.8A363.6 363.6 0 00169.4 289c-19.5 45-29.4 92.8-29.4 142 0 70.6 16.9 140.9 50.1 208.7 26.7 54.5 64 107.6 111 158.1 80.3 86.2 164.5 138.9 188.4 153a43.9 43.9 0 0022.4 6.1c7.8 0 15.5-2 22.4-6.1 23.9-14.1 108.1-66.8 188.4-153 47-50.4 84.3-103.6 111-158.1C867.1 572 884 501.8 884 431.1c0-49.2-9.9-97-29.4-142zM512 880.2c-65.9-41.9-300-207.8-300-449.1 0-77.9 31.1-151.1 87.6-206.3C356.3 169.5 431.7 139 512 139s155.7 30.5 212.4 85.9C780.9 280 812 353.2 812 431.1c0 241.3-234.1 407.2-300 449.1zm0-617.2c-97.2 0-176 78.8-176 176s78.8 176 176 176 176-78.8 176-176-78.8-176-176-176zm79.2 255.2A111.6 111.6 0 01512 551c-29.9 0-58-11.7-79.2-32.8A111.6 111.6 0 01400 439c0-29.9 11.7-58 32.8-79.2C454 338.6 482.1 327 512 327c29.9 0 58 11.6 79.2 32.8C612.4 381 624 409.1 624 439c0 29.9-11.6 58-32.8 79.2z" } }] }, "name": "environment", "theme": "outlined" };
@@ -2673,6 +2725,36 @@ var LeftOutlined$1 = function LeftOutlined$1(props, ref) {
 
 LeftOutlined$1.displayName = 'LeftOutlined';
 var LeftOutlined$2 = /*#__PURE__*/forwardRef(LeftOutlined$1);
+
+// This icon file is generated automatically.
+var LineChartOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M888 792H200V168c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v688c0 4.4 3.6 8 8 8h752c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM305.8 637.7c3.1 3.1 8.1 3.1 11.3 0l138.3-137.6L583 628.5c3.1 3.1 8.2 3.1 11.3 0l275.4-275.3c3.1-3.1 3.1-8.2 0-11.3l-39.6-39.6a8.03 8.03 0 00-11.3 0l-230 229.9L461.4 404a8.03 8.03 0 00-11.3 0L266.3 586.7a8.03 8.03 0 000 11.3l39.5 39.7z" } }] }, "name": "line-chart", "theme": "outlined" };
+
+// GENERATE BY ./scripts/generate.ts
+
+var LineChartOutlined$1 = function LineChartOutlined$1(props, ref) {
+  return /*#__PURE__*/createElement(Icon, Object.assign({}, props, {
+    ref: ref,
+    icon: LineChartOutlined
+  }));
+};
+
+LineChartOutlined$1.displayName = 'LineChartOutlined';
+var LineChartOutlined$2 = /*#__PURE__*/forwardRef(LineChartOutlined$1);
+
+// This icon file is generated automatically.
+var PieChartOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M864 518H506V160c0-4.4-3.6-8-8-8h-26a398.46 398.46 0 00-282.8 117.1 398.19 398.19 0 00-85.7 127.1A397.61 397.61 0 0072 552a398.46 398.46 0 00117.1 282.8c36.7 36.7 79.5 65.6 127.1 85.7A397.61 397.61 0 00472 952a398.46 398.46 0 00282.8-117.1c36.7-36.7 65.6-79.5 85.7-127.1A397.61 397.61 0 00872 552v-26c0-4.4-3.6-8-8-8zM705.7 787.8A331.59 331.59 0 01470.4 884c-88.1-.4-170.9-34.9-233.2-97.2C174.5 724.1 140 640.7 140 552c0-88.7 34.5-172.1 97.2-234.8 54.6-54.6 124.9-87.9 200.8-95.5V586h364.3c-7.7 76.3-41.3 147-96.6 201.8zM952 462.4l-2.6-28.2c-8.5-92.1-49.4-179-115.2-244.6A399.4 399.4 0 00589 74.6L560.7 72c-4.7-.4-8.7 3.2-8.7 7.9V464c0 4.4 3.6 8 8 8l384-1c4.7 0 8.4-4 8-8.6zm-332.2-58.2V147.6a332.24 332.24 0 01166.4 89.8c45.7 45.6 77 103.6 90 166.1l-256.4.7z" } }] }, "name": "pie-chart", "theme": "outlined" };
+
+// GENERATE BY ./scripts/generate.ts
+
+var PieChartOutlined$1 = function PieChartOutlined$1(props, ref) {
+  return /*#__PURE__*/createElement(Icon, Object.assign({}, props, {
+    ref: ref,
+    icon: PieChartOutlined
+  }));
+};
+
+PieChartOutlined$1.displayName = 'PieChartOutlined';
+var PieChartOutlined$2 = /*#__PURE__*/forwardRef(PieChartOutlined$1);
 
 // This icon file is generated automatically.
 var PlusOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "defs", "attrs": {}, "children": [{ "tag": "style", "attrs": {} }] }, { "tag": "path", "attrs": { "d": "M482 152h60q8 0 8 8v704q0 8-8 8h-60q-8 0-8-8V160q0-8 8-8z" } }, { "tag": "path", "attrs": { "d": "M176 474h672q8 0 8 8v60q0 8-8 8H176q-8 0-8-8v-60q0-8 8-8z" } }] }, "name": "plus", "theme": "outlined" };
@@ -3567,7 +3649,7 @@ var SetLocation = /*#__PURE__*/function (_Component) {
 function _createSuper$6(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$6(); return function _createSuperInternal() { var Super = getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
 
 function _isNativeReflectConstruct$6() { if (typeof Reflect === "undefined" || !Reflect.construct) { return false; } if (Reflect.construct.sham) { return false; } if (typeof Proxy === "function") { return true; } try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-var Option = Select.Option;
+var Option$1 = Select.Option;
 
 var POISearch = /*#__PURE__*/function (_Component) {
   inherits(POISearch, _Component);
@@ -3636,7 +3718,7 @@ var POISearch = /*#__PURE__*/function (_Component) {
       var simpleresult = this.props.query.simpleresult;
 
       function renderOption(item) {
-        return /*#__PURE__*/React__default.createElement(Option, {
+        return /*#__PURE__*/React__default.createElement(Option$1, {
           key: item.gbCode,
           value: item.name + "," + item.gbCode
         }, /*#__PURE__*/React__default.createElement(SearchOutlined$2, null), item.name, item.duplicate && /*#__PURE__*/React__default.createElement("span", {
@@ -3955,4 +4037,1531 @@ var layerswitch = /*#__PURE__*/function (_Component) {
   return layerswitch;
 }(Component);
 
-export { AreaLocation, AttributesFillter, layerswitch as LayerSwitch, POIList, POISearch, ResourceCatalog, ResourcesList, SetLocation, SideBar, SpatialQuery, SpatialQueryPanel, ResultList as SpatialResultList };
+function _createSuper$9(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$9(); return function _createSuperInternal() { var Super = getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$9() { if (typeof Reflect === "undefined" || !Reflect.construct) { return false; } if (Reflect.construct.sham) { return false; } if (typeof Proxy === "function") { return true; } try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+var Option$2 = Select.Option;
+var timeout;
+var currentValue;
+
+function fetch(value, field, id, callback) {
+  if (timeout) {
+    clearTimeout(timeout);
+    timeout = null;
+  }
+
+  currentValue = value;
+
+  function fake() {
+    axios.post("".concat(mapConfigJson.mapserverurl, "/").concat(id, "/query"), qs.stringify({
+      returnGeometry: true,
+      where: " ".concat(field, " like '%").concat(value, "%'"),
+      outSr: 4326,
+      outFields: "*",
+      inSr: 4326,
+      geometry: "",
+      geometryType: "",
+      spatialRel: "esriSpatialRelIntersects",
+      f: "pjson"
+    })).then(function (response) {
+      if (currentValue === value) {
+        var features = response.data.features;
+        var data = [];
+        features.forEach(function (fea, index) {
+          data.push({
+            value: index,
+            text: fea.attributes[field],
+            geom: fea.geometry
+          });
+        });
+        callback(data);
+      }
+    })["catch"](function (e) {// message.warning('数据查询失败,请稍后再试');
+      // dispatch(queryError(e));
+    });
+  }
+
+  timeout = setTimeout(fake, 300);
+}
+
+var LoctionSelect = /*#__PURE__*/function (_Component) {
+  inherits(LoctionSelect, _Component);
+
+  var _super = _createSuper$9(LoctionSelect);
+
+  function LoctionSelect() {
+    var arguments$1 = arguments;
+
+    var _this;
+
+    classCallCheck(this, LoctionSelect);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments$1[_key];
+    }
+
+    _this = _super.call.apply(_super, [this].concat(args));
+
+    defineProperty(assertThisInitialized(_this), "state", {
+      data: [],
+      value: undefined,
+      areatype: "区划"
+    });
+
+    defineProperty(assertThisInitialized(_this), "handleSearch", function (value) {
+      var field = _this.state.areatype === "区划" ? "行政区" : _this.state.areatype === "街道" ? "T_BOUNDARY" : "名称";
+      var layerid = _this.state.areatype === "区划" ? 5 : _this.state.areatype === "街道" ? 3 : 1;
+
+      if (value) {
+        _this.setState({
+          loading: true
+        });
+
+        fetch(value, field, layerid, function (data) {
+          return _this.setState({
+            data: data,
+            loading: false
+          });
+        });
+      } else {
+        _this.setState({
+          data: []
+        });
+      }
+    });
+
+    defineProperty(assertThisInitialized(_this), "onSelect", function (value, option) {
+      var selectfea = _this.state.data.filter(function (e, index) {
+        return index === Number(value);
+      })[0];
+
+      var geojson = arcgisToGeoJSON(selectfea.geom);
+      var geom = simplify(geojson, {
+        tolerance: 0.0005,
+        highQuality: false
+      });
+      selectfea.geom = geojsonToArcGIS(geom);
+
+      _this.props.featureSelected(selectfea);
+    });
+
+    defineProperty(assertThisInitialized(_this), "handleChange", function (value) {
+      _this.setState({
+        value: value
+      });
+    });
+
+    defineProperty(assertThisInitialized(_this), "onAreaTypeChange", function (e) {
+      _this.setState({
+        areatype: e.target.value,
+        data: [],
+        value: null
+      });
+    });
+
+    return _this;
+  }
+
+  createClass(LoctionSelect, [{
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var options = this.state.data.map(function (d) {
+        return /*#__PURE__*/React__default.createElement(Option$2, {
+          key: d.value
+        }, d.text);
+      });
+      return /*#__PURE__*/React__default.createElement("div", {
+        style: {
+          margin: 10,
+          textAlign: "center"
+        }
+      }, /*#__PURE__*/React__default.createElement(Radio.Group, {
+        value: this.state.areatype,
+        onChange: this.onAreaTypeChange,
+        buttonStyle: "solid"
+      }, /*#__PURE__*/React__default.createElement(Radio.Button, {
+        value: "\u533A\u5212"
+      }, "\u533A\u5212"), /*#__PURE__*/React__default.createElement(Radio.Button, {
+        value: "\u8857\u9053"
+      }, "\u8857\u9053"), /*#__PURE__*/React__default.createElement(Radio.Button, {
+        value: "\u793E\u533A"
+      }, "\u793E\u533A")), /*#__PURE__*/React__default.createElement("br", null), /*#__PURE__*/React__default.createElement(Select, {
+        showSearch: true,
+        style: {
+          width: "200px",
+          padding: 10
+        },
+        value: this.state.value,
+        defaultActiveFirstOption: false,
+        placeholder: "\u8F93\u5165\u5173\u952E\u5B57\u67E5\u8BE2\u9009\u62E9".concat(this.state.areatype),
+        showArrow: false,
+        filterOption: false,
+        onSearch: this.handleSearch,
+        onChange: this.handleChange,
+        onSelect: function onSelect(value) {
+          return _this2.onSelect(value);
+        },
+        notFoundContent: null,
+        loading: this.state.loading
+      }, options));
+    }
+  }]);
+
+  return LoctionSelect;
+}(Component);
+
+function _createSuper$a(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$a(); return function _createSuperInternal() { var Super = getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$a() { if (typeof Reflect === "undefined" || !Reflect.construct) { return false; } if (Reflect.construct.sham) { return false; } if (typeof Proxy === "function") { return true; } try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+var assign$2 = require("object-assign");
+
+var QueryBuilder = /*#__PURE__*/function (_PureComponent) {
+  inherits(QueryBuilder, _PureComponent);
+
+  var _super = _createSuper$a(QueryBuilder);
+
+  function QueryBuilder() {
+    var arguments$1 = arguments;
+
+    var _this;
+
+    classCallCheck(this, QueryBuilder);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments$1[_key];
+    }
+
+    _this = _super.call.apply(_super, [this].concat(args));
+
+    defineProperty(assertThisInitialized(_this), "state", {
+      cal_title: "基本统计",
+      callistshow: true,
+      sel_cal_list: [],
+      sel_filter_list: [],
+      sel_group_list: [],
+      sel_order_fields: [],
+      sel_data: null,
+      sel_field: null,
+      sel_cal: {
+        title: "原始数据",
+        value: "default"
+      },
+      filterlistshow: true,
+      sel_filter_field: "",
+      sel_filter_value: null,
+      sel_filter_rel: {
+        value: "equal",
+        children: "等于"
+      },
+      sel_data_title: ""
+    });
+
+    defineProperty(assertThisInitialized(_this), "onSelectCal", function (item) {
+      _this.setState({
+        sel_cal: item,
+        callistshow: false,
+        cal_title: item.title
+      });
+    });
+
+    defineProperty(assertThisInitialized(_this), "calDelete", function (i) {
+      var oldstate = assign$2({}, _this.state);
+      var sel_cal_list = oldstate.sel_cal_list.filter(function (e, index) {
+        return index !== i;
+      });
+
+      _this.setState({
+        sel_cal_list: sel_cal_list
+      }, _this.Update);
+    });
+
+    defineProperty(assertThisInitialized(_this), "onSelectField", function (item) {
+      var oldstate = assign$2({}, _this.state);
+      oldstate.sel_cal_list.push({
+        sel_field: item,
+        sel_cal: oldstate.sel_cal
+      });
+
+      _this.setState({
+        cal_title: "基本统计",
+        callistshow: true,
+        sel_field: null,
+        sel_cal: {
+          title: "原始数据",
+          value: "default"
+        },
+        sel_cal_list: oldstate.sel_cal_list
+      }, _this.Update);
+    });
+
+    defineProperty(assertThisInitialized(_this), "_renderFilterTags", function () {
+      return _this.state.sel_filter_list.map(function (filter, index) {
+        return /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement(Tag, {
+          key: index,
+          color: "#9cc177",
+          closable: true,
+          onClose: function onClose() {
+            return _this.filterDelete(index);
+          }
+        }, filter.sel_filter_field, " ", filter.sel_filter_rel.children, " ", filter.sel_filter_value));
+      });
+    });
+
+    defineProperty(assertThisInitialized(_this), "filterDelete", function (i) {
+      var oldstate = assign$2({}, _this.state);
+      var sel_filter_list = oldstate.sel_filter_list.filter(function (e, index) {
+        return index !== i;
+      });
+
+      _this.setState({
+        sel_filter_list: sel_filter_list
+      }, _this.Update);
+    });
+
+    defineProperty(assertThisInitialized(_this), "filterValueChange", function (value) {
+      _this.setState({
+        sel_filter_value: value
+      });
+    });
+
+    defineProperty(assertThisInitialized(_this), "_renderCalTags", function () {
+      //console.log(this.state.sel_cal_list);
+      return _this.state.sel_cal_list.map(function (cal, index) {
+        return /*#__PURE__*/React__default.createElement(Tag, {
+          key: index,
+          color: "#9cc177",
+          closable: true,
+          onClose: function onClose() {
+            return _this.calDelete(index);
+          }
+        }, cal.sel_cal.title === "数量" ? cal.sel_cal.title : cal.sel_field.alias + "的" + cal.sel_cal.title);
+      });
+    });
+
+    defineProperty(assertThisInitialized(_this), "_renderFeaFilterTags", function () {
+      return _this.state.sel_filter_fea ? /*#__PURE__*/React__default.createElement(Tag, {
+        key: "feafilter",
+        color: "#9cc177",
+        closable: true,
+        onClose: function onClose() {
+          return _this.delFilterFea();
+        }
+      }, _this.state.sel_filter_fea.text) : "选择区划/街道/社区";
+    });
+
+    defineProperty(assertThisInitialized(_this), "delFilterFea", function (i) {
+      _this.setState({
+        sel_filter_fea: null
+      }, _this.Update);
+    });
+
+    defineProperty(assertThisInitialized(_this), "onSelectGroupField", function (item) {
+      var oldstate = assign$2({}, _this.state);
+      oldstate.sel_group_list.push({
+        sel_group_field: item.alias
+      });
+
+      _this.setState({
+        sel_group_field: null,
+        sel_group_list: oldstate.sel_group_list
+      }, _this.Update);
+    });
+
+    defineProperty(assertThisInitialized(_this), "_renderGroupTags", function () {
+      return _this.state.sel_group_list.map(function (group, index) {
+        return /*#__PURE__*/React__default.createElement(Tag, {
+          key: index,
+          color: "#9cc177",
+          closable: true,
+          onClose: function onClose() {
+            return _this.groupDelete(index);
+          }
+        }, group.sel_group_field);
+      });
+    });
+
+    defineProperty(assertThisInitialized(_this), "groupDelete", function (i) {
+      var oldstate = assign$2({}, _this.state);
+      var sel_group_list = oldstate.sel_group_list.filter(function (e, index) {
+        return index !== i;
+      });
+
+      _this.setState({
+        sel_group_list: sel_group_list
+      }, _this.Update);
+    });
+
+    defineProperty(assertThisInitialized(_this), "dataSelected", function (value, node, extra) {
+      _this.setState({
+        sel_data_title: value,
+        sel_data: node.props
+      }, _this.Update);
+    });
+
+    defineProperty(assertThisInitialized(_this), "onSelectFilterField", function (item) {
+      _this.setState({
+        sel_filter_field: item.alias,
+        sel_filter_field_type: item.type,
+        filterlistshow: false
+      });
+    });
+
+    defineProperty(assertThisInitialized(_this), "onOrderChange", function (value) {
+      _this.setState({
+        sel_order_fields: value
+      }, _this.Update);
+    });
+
+    defineProperty(assertThisInitialized(_this), "onAddFilter", function () {
+      var oldstate = assign$2({}, _this.state);
+      oldstate.sel_filter_list.push({
+        sel_filter_field: oldstate.sel_filter_field,
+        sel_filter_field_type: oldstate.sel_filter_field_type,
+        sel_filter_rel: oldstate.sel_filter_rel,
+        sel_filter_value: oldstate.sel_filter_value
+      });
+
+      _this.setState({
+        sel_filter_field: null,
+        sel_filter_field_type: null,
+        sel_filter_rel: {
+          value: "equal",
+          children: "等于"
+        },
+        sel_filter_value: null,
+        filterlistshow: true,
+        sel_filter_list: oldstate.sel_filter_list
+      }, _this.Update);
+    });
+
+    defineProperty(assertThisInitialized(_this), "onfeatureSelected", function (fea) {
+      _this.setState({
+        sel_filter_fea: fea
+      }, _this.Update);
+    });
+
+    return _this;
+  }
+
+  createClass(QueryBuilder, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var config = this.props.config;
+
+      if (!config) {
+        return;
+      }
+
+      this.setState(config);
+    }
+  }, {
+    key: "UNSAFE_componentWillReceiveProps",
+    value: function UNSAFE_componentWillReceiveProps(newProps) {
+      if (newProps.config && newProps.config !== this.props.config) {
+        var config = newProps.config;
+
+        if (!config) {
+          return;
+        }
+
+        this.setState({
+          sel_data: config.source,
+          sel_filter_list: config.filterlist || [],
+          sel_cal_list: config.callist || [],
+          sel_group_list: config.grouplist || [],
+          sel_order_fields: config.orderfields || [],
+          sel_filter_fea: config.filterfea
+        });
+      }
+    }
+  }, {
+    key: "Update",
+    value: function Update() {
+      var _this$state = this.state,
+          sel_data = _this$state.sel_data,
+          sel_filter_list = _this$state.sel_filter_list,
+          sel_cal_list = _this$state.sel_cal_list,
+          sel_group_list = _this$state.sel_group_list,
+          sel_order_fields = _this$state.sel_order_fields,
+          sel_filter_fea = _this$state.sel_filter_fea;
+      this.props.onChange({
+        source: sel_data ? sel_data : null,
+        filterlist: sel_filter_list || [],
+        callist: sel_cal_list || [],
+        grouplist: sel_group_list || [],
+        orderfields: sel_order_fields || [],
+        filterfea: sel_filter_fea
+      });
+    }
+  }, {
+    key: "onLocationChange",
+    value: function onLocationChange() {}
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var _this$props = this.props,
+          fielddatas = _this$props.fielddatas,
+          sourcedata = _this$props.sourcedata;
+      var calculatedatas = [{
+        title: "数量",
+        value: "count"
+      }, {
+        title: "汇总",
+        value: "sum"
+      }, {
+        title: "最小值",
+        value: "min"
+      }, {
+        title: "最大值",
+        value: "max"
+      }, {
+        title: "平均值",
+        value: "avg"
+      }, {
+        title: "标准差",
+        value: "stddev"
+      }];
+      var _this$state2 = this.state,
+          filterlistshow = _this$state2.filterlistshow,
+          sel_data_title = _this$state2.sel_data_title,
+          sel_cal_list = _this$state2.sel_cal_list,
+          sel_data = _this$state2.sel_data,
+          cal_title = _this$state2.cal_title,
+          callistshow = _this$state2.callistshow,
+          sel_filter_list = _this$state2.sel_filter_list,
+          sel_filter_field = _this$state2.sel_filter_field,
+          sel_filter_field_type = _this$state2.sel_filter_field_type,
+          sel_filter_rel = _this$state2.sel_filter_rel,
+          sel_group_list = _this$state2.sel_group_list;
+      return /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement(Row, {
+        className: "querybuilder"
+      }, /*#__PURE__*/React__default.createElement(Col, null, /*#__PURE__*/React__default.createElement(Divider, {
+        orientation: "left"
+      }, "\u8D44\u6E90"), /*#__PURE__*/React__default.createElement("div", {
+        className: "item"
+      }, /*#__PURE__*/React__default.createElement(TreeSelect, {
+        showSearch: true,
+        allowClear: true,
+        treeDataSimpleMode: true,
+        value: sel_data && sel_data.value,
+        style: {
+          minWidth: "150px"
+        },
+        dropdownStyle: {
+          maxHeight: 400,
+          overflow: "auto"
+        },
+        treeData: sourcedata,
+        onSelect: this.dataSelected,
+        placeholder: "\u9009\u62E9\u6570\u636E",
+        treeDefaultExpandAll: true
+      }))), /*#__PURE__*/React__default.createElement(Col, null, /*#__PURE__*/React__default.createElement(Divider, {
+        orientation: "left"
+      }, "\u7B5B\u9009\u6761\u4EF6"), /*#__PURE__*/React__default.createElement("div", {
+        className: "item"
+      }, this._renderFilterTags(), sel_filter_list.length === 0 && /*#__PURE__*/React__default.createElement("span", {
+        className: "itemlabel",
+        style: {
+          color: "#9cc177"
+        }
+      }, "\u6DFB\u52A0\u7B5B\u9009\u6761\u4EF6"), /*#__PURE__*/React__default.createElement(Popover, {
+        placement: "bottom",
+        overlayClassName: "querybuilder_popover",
+        title: filterlistshow ? sel_data_title : /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement("a", {
+          style: {
+            margin: "0 2px 0 -10px"
+          },
+          onClick: function onClick() {
+            _this2.setState({
+              filterlistshow: true
+            });
+          }
+        }, /*#__PURE__*/React__default.createElement(LeftOutlined$2, null)), sel_data_title, " - ", sel_filter_field, sel_filter_field_type === "esriFieldTypeString" ? /*#__PURE__*/React__default.createElement(Select, {
+          defaultValue: "equal",
+          onChange: function onChange(value, option) {
+            _this2.setState({
+              sel_filter_rel: option.props
+            });
+          },
+          style: {
+            width: 100
+          }
+        }, /*#__PURE__*/React__default.createElement(Select.Option, {
+          value: "equal"
+        }, "\u7B49\u4E8E"), /*#__PURE__*/React__default.createElement(Select.Option, {
+          value: "notequal"
+        }, "\u4E0D\u7B49\u4E8E"), /*#__PURE__*/React__default.createElement(Select.Option, {
+          value: "contain"
+        }, "\u5305\u542B")) : /*#__PURE__*/React__default.createElement(Select, {
+          defaultValue: "equal",
+          onChange: function onChange(value, option) {
+            _this2.setState({
+              sel_filter_rel: option.props
+            });
+          },
+          style: {
+            width: 100
+          }
+        }, /*#__PURE__*/React__default.createElement(Select.Option, {
+          value: "equal"
+        }, "\u7B49\u4E8E"), /*#__PURE__*/React__default.createElement(Select.Option, {
+          value: "notequal"
+        }, "\u4E0D\u7B49\u4E8E"), /*#__PURE__*/React__default.createElement(Select.Option, {
+          value: "bigger"
+        }, "\u5927\u4E8E"), /*#__PURE__*/React__default.createElement(Select.Option, {
+          value: "smaller"
+        }, "\u5C0F\u4E8E"), /*#__PURE__*/React__default.createElement(Select.Option, {
+          value: "between"
+        }, "\u4ECB\u4E8E\u4E4B\u95F4"), /*#__PURE__*/React__default.createElement(Select.Option, {
+          value: "null"
+        }, "\u4E3A\u7A7A"), /*#__PURE__*/React__default.createElement(Select.Option, {
+          value: "notnull"
+        }, "\u4E0D\u4E3A\u7A7A"))),
+        content: filterlistshow ? /*#__PURE__*/React__default.createElement(List, {
+          className: "field_listitem",
+          itemLayout: "horizontal",
+          split: false,
+          dataSource: fielddatas.filter(function (e) {
+            return e.type === "esriFieldTypeString" || e.type === "esriFieldTypeDouble";
+          }),
+          renderItem: function renderItem(item) {
+            return /*#__PURE__*/React__default.createElement(List.Item, {
+              onClick: function onClick() {
+                return _this2.onSelectFilterField(item);
+              }
+            }, /*#__PURE__*/React__default.createElement(List.Item.Meta, {
+              avatar: /*#__PURE__*/React__default.createElement(Tag, {
+                color: "rgb(156, 193, 119)"
+              }, /*#__PURE__*/React__default.createElement("i", {
+                className: "iconfont ".concat(item.type === "esriFieldTypeString" ? "icon-Abc1" : "icon-number")
+              })),
+              title: /*#__PURE__*/React__default.createElement("a", null, item.alias)
+            }));
+          }
+        }) : /*#__PURE__*/React__default.createElement(React__default.Fragment, null, sel_filter_field_type === "esriFieldTypeString" ? /*#__PURE__*/React__default.createElement(Input, {
+          style: {
+            width: "100%"
+          },
+          size: "large",
+          onChange: function onChange(e) {
+            return _this2.filterValueChange(e.target.value);
+          },
+          placeholder: "\u8F93\u5165\u503C"
+        }) : sel_filter_rel.value === "between" ? /*#__PURE__*/React__default.createElement(Input.Group, {
+          compact: true
+        }, /*#__PURE__*/React__default.createElement(InputNumber, {
+          style: {
+            width: "auto",
+            textAlign: "center"
+          },
+          placeholder: "\u6700\u5C0F\u503C"
+        }), /*#__PURE__*/React__default.createElement(Input, {
+          style: {
+            width: 30,
+            borderLeft: 0,
+            pointerEvents: "none",
+            backgroundColor: "#fff"
+          },
+          placeholder: "~",
+          disabled: true
+        }), /*#__PURE__*/React__default.createElement(InputNumber, {
+          style: {
+            width: "auto",
+            textAlign: "center",
+            borderLeft: 0
+          },
+          placeholder: "\u6700\u5927\u503C"
+        })) : sel_filter_rel.value === "null" || sel_filter_rel.value === "notnull" ? null : /*#__PURE__*/React__default.createElement(InputNumber, {
+          style: {
+            width: "100%"
+          },
+          onChange: this.filterValueChange
+        }), /*#__PURE__*/React__default.createElement(Button, {
+          onClick: this.onAddFilter,
+          type: "primary"
+        }, "\u6DFB\u52A0\u7B5B\u9009")),
+        trigger: "hover"
+      }, /*#__PURE__*/React__default.createElement(Button, {
+        icon: /*#__PURE__*/React__default.createElement(PlusOutlined$2, null)
+      })))), /*#__PURE__*/React__default.createElement(Col, null, /*#__PURE__*/React__default.createElement(Divider, {
+        orientation: "left"
+      }, "\u67E5\u770B"), /*#__PURE__*/React__default.createElement("div", {
+        className: "item"
+      }, this._renderCalTags(), sel_cal_list.length === 0 && /*#__PURE__*/React__default.createElement("span", {
+        className: "itemlabel",
+        style: {
+          color: "#9cc177"
+        }
+      }, "\u539F\u59CB\u6570\u636E"), /*#__PURE__*/React__default.createElement(Popover, {
+        overlayClassName: "querybuilder_popover",
+        placement: "bottom",
+        title: cal_title === "基本统计" ? "基本统计" : /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement("a", {
+          style: {
+            margin: "0 2px 0 -10px"
+          },
+          onClick: function onClick() {
+            _this2.setState({
+              sel_cal: "default",
+              callistshow: true,
+              cal_title: "基本统计"
+            });
+          }
+        }, /*#__PURE__*/React__default.createElement(LeftOutlined$2, null)), cal_title),
+        content: callistshow ? /*#__PURE__*/React__default.createElement(List, {
+          className: "cal_listitem",
+          itemLayout: "horizontal",
+          split: false,
+          dataSource: calculatedatas,
+          renderItem: function renderItem(item) {
+            return /*#__PURE__*/React__default.createElement(List.Item, {
+              onClick: function onClick() {
+                return _this2.onSelectCal(item);
+              }
+            }, /*#__PURE__*/React__default.createElement(List.Item.Meta, {
+              title: /*#__PURE__*/React__default.createElement("a", null, item.title)
+            }));
+          }
+        }) : /*#__PURE__*/React__default.createElement(List, {
+          className: "field_listitem",
+          itemLayout: "horizontal",
+          split: false,
+          dataSource: fielddatas.filter(function (e) {
+            return e.type === "esriFieldTypeDouble";
+          }).concat([{
+            alias: "*",
+            name: "*",
+            type: "esriFieldTypeDouble"
+          }]),
+          renderItem: function renderItem(item) {
+            return /*#__PURE__*/React__default.createElement(List.Item, {
+              onClick: function onClick() {
+                return _this2.onSelectField(item);
+              }
+            }, /*#__PURE__*/React__default.createElement(List.Item.Meta, {
+              avatar: /*#__PURE__*/React__default.createElement("i", {
+                className: "iconfont icon-number"
+              }),
+              title: /*#__PURE__*/React__default.createElement("a", null, item.alias)
+            }));
+          }
+        }),
+        trigger: "hover"
+      }, /*#__PURE__*/React__default.createElement(Button, {
+        icon: /*#__PURE__*/React__default.createElement(PlusOutlined$2, null)
+      })))), /*#__PURE__*/React__default.createElement(Col, null, /*#__PURE__*/React__default.createElement(Divider, {
+        orientation: "left"
+      }, "\u5206\u7EC4\u6761\u4EF6"), /*#__PURE__*/React__default.createElement("div", {
+        className: "item"
+      }, this._renderGroupTags(), sel_group_list.length === 0 && /*#__PURE__*/React__default.createElement("span", {
+        className: "itemlabel",
+        style: {
+          color: "#9cc177"
+        }
+      }, "\u6DFB\u52A0\u4E00\u4E2A\u5206\u7EC4"), /*#__PURE__*/React__default.createElement(Popover, {
+        placement: "bottom",
+        overlayClassName: "querybuilder_popover",
+        title: sel_data_title,
+        content: /*#__PURE__*/React__default.createElement(List, {
+          className: "field_listitem",
+          itemLayout: "horizontal",
+          split: false,
+          dataSource: fielddatas.filter(function (e) {
+            return e.type === "esriFieldTypeString";
+          }),
+          renderItem: function renderItem(item) {
+            return /*#__PURE__*/React__default.createElement(List.Item, {
+              onClick: function onClick() {
+                return _this2.onSelectGroupField(item);
+              }
+            }, /*#__PURE__*/React__default.createElement(List.Item.Meta, {
+              avatar: /*#__PURE__*/React__default.createElement(Tag, {
+                color: "rgb(156, 193, 119)"
+              }, /*#__PURE__*/React__default.createElement("i", {
+                className: "iconfont icon-Abc1"
+              })),
+              title: /*#__PURE__*/React__default.createElement("a", null, item.alias)
+            }));
+          }
+        }),
+        trigger: "hover"
+      }, /*#__PURE__*/React__default.createElement(Button, {
+        icon: /*#__PURE__*/React__default.createElement(PlusOutlined$2, null)
+      })))), /*#__PURE__*/React__default.createElement(Col, null, /*#__PURE__*/React__default.createElement(Divider, {
+        orientation: "left"
+      }, "\u8303\u56F4\u7B5B\u9009"), /*#__PURE__*/React__default.createElement("div", {
+        className: "item"
+      }, /*#__PURE__*/React__default.createElement("span", {
+        className: "itemlabel",
+        style: {
+          color: "#9cc177"
+        }
+      }, this._renderFeaFilterTags()), /*#__PURE__*/React__default.createElement(Popover, {
+        placement: "bottom",
+        title: "\u9009\u62E9\u533A\u57DF\u8303\u56F4",
+        content: /*#__PURE__*/React__default.createElement(LoctionSelect, {
+          featureSelected: this.onfeatureSelected
+        }),
+        trigger: "click"
+      }, /*#__PURE__*/React__default.createElement(Button, {
+        icon: /*#__PURE__*/React__default.createElement(PlusOutlined$2, null)
+      })))), /*#__PURE__*/React__default.createElement(Col, null, /*#__PURE__*/React__default.createElement(Popover, {
+        placement: "bottom",
+        overlayStyle: {
+          width: 200
+        },
+        overlayClassName: "querybuilder_popover",
+        title: sel_data_title,
+        content: /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement(Divider, {
+          style: {
+            marginTop: 0
+          },
+          orientation: "left"
+        }, "\u6392\u5E8F"), /*#__PURE__*/React__default.createElement(Select, {
+          mode: "multiple",
+          style: {
+            width: "100%",
+            padding: "0 10px"
+          },
+          placeholder: "\u9009\u62E9\u6392\u5E8F\u5B57\u6BB5",
+          onChange: this.onOrderChange
+        }, fielddatas.map(function (field) {
+          return /*#__PURE__*/React__default.createElement(Option, {
+            key: field.name
+          }, field.alias);
+        }))),
+        trigger: "click"
+      }, /*#__PURE__*/React__default.createElement(Button, {
+        className: "otherbtn",
+        icon: /*#__PURE__*/React__default.createElement(EllipsisOutlined$2, null)
+      })))));
+    }
+  }]);
+
+  return QueryBuilder;
+}(PureComponent);
+
+/**
+ * 图表图片导出
+ * @param chart chart 实例
+ * @param name 图片名称，可选，默认名为 'G2Chart'
+ */
+var downloadImage = function downloadImage(_ref) {
+  var chart = _ref.chart,
+      name = _ref.name,
+      subtitle = _ref.subtitle,
+      width = _ref.width,
+      height = _ref.height;
+  var link = document.createElement("a");
+  var filename = "".concat(name, ".png");
+  setTimeout(function () {
+    var canvas = document.createElement('canvas');
+    canvas.height = height || 400;
+    canvas.width = width || 600;
+    var ctx = canvas.getContext("2d");
+    ctx.fillStyle = '#fff';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.textAlign = "center";
+    ctx.fillStyle = '#000';
+    ctx.font = "20px 'Microsoft YaHei'";
+    ctx.fillText(name, canvas.width / 2, 20);
+    ctx.fillStyle = '#808080';
+    ctx.font = "16px 'Microsoft YaHei'";
+    ctx.fillText(subtitle, canvas.width / 2, 60);
+    ctx.drawImage(chart.get('canvas')._cfg.el, 0, 70);
+    var dataURL = canvas.toDataURL(); //const dataURL = chart.toDataURL("image/jpeg");
+
+    if (window.Blob && window.URL) {
+      var arr = dataURL.split(",");
+      var mime = arr[0].match(/:(.*?);/)[1];
+      var bstr = atob(arr[1]);
+      var n = bstr.length;
+      var u8arr = new Uint8Array(n);
+
+      while (n--) {
+        u8arr[n] = bstr.charCodeAt(n);
+      }
+
+      var blobObj = new Blob([u8arr], {
+        type: mime
+      });
+
+      if (window.navigator.msSaveBlob) {
+        window.navigator.msSaveBlob(blobObj, filename);
+      } else {
+        link.addEventListener("click", function () {
+          link.download = filename;
+          link.href = window.URL.createObjectURL(blobObj);
+        });
+      }
+    } else {
+      link.addEventListener("click", function () {
+        link.download = filename;
+        link.href = dataURL;
+      });
+    }
+
+    var e = document.createEvent("MouseEvents");
+    e.initEvent("click", false, false);
+    link.dispatchEvent(e);
+  }, 16);
+};
+
+function _createSuper$b(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$b(); return function _createSuperInternal() { var Super = getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$b() { if (typeof Reflect === "undefined" || !Reflect.construct) { return false; } if (Reflect.construct.sham) { return false; } if (typeof Proxy === "function") { return true; } try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+var Panel = Collapse.Panel;
+var customPanelStyle = {
+  background: "#EEE",
+  borderRadius: 4,
+  marginBottom: 14,
+  marginRight: 10,
+  border: 0,
+  overflow: "hidden"
+};
+var styles = {
+  mainTitle: {
+    fontSize: 20,
+    color: "black",
+    textAlign: "center"
+  },
+  subTitle: {
+    fontSize: 16,
+    color: "gray",
+    textAlign: "center"
+  }
+};
+
+var ChartVisual = /*#__PURE__*/function (_Component) {
+  inherits(ChartVisual, _Component);
+
+  var _super = _createSuper$b(ChartVisual);
+
+  function ChartVisual() {
+    var arguments$1 = arguments;
+
+    var _this;
+
+    classCallCheck(this, ChartVisual);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments$1[_key];
+    }
+
+    _this = _super.call.apply(_super, [this].concat(args));
+
+    defineProperty(assertThisInitialized(_this), "state", {
+      axisstr: "",
+      chartIns: null,
+      axisnum: "",
+      charttype: "bar",
+      mainTitle: "标题",
+      showmaintitle: true,
+      subTitle: "副标题",
+      showsubtitle: true,
+      chartwidth: 600,
+      chartheight: 400
+    });
+
+    defineProperty(assertThisInitialized(_this), "changeDataType", function (type) {
+      var typestr = "";
+
+      switch (type) {
+        case "esriFieldTypeInteger":
+        case "esriFieldTypeDouble":
+          typestr = "数值";
+          break;
+
+        case "esriFieldTypeString":
+          typestr = "字符串";
+          break;
+
+        case "esriFieldTypeDate":
+          typestr = "日期";
+          break;
+      }
+
+      return typestr;
+    });
+
+    defineProperty(assertThisInitialized(_this), "saveImage", function () {
+      var chartIns = _this.state.chartIns;
+      downloadImage({
+        chart: chartIns,
+        name: _this.state.mainTitle || "图表",
+        subtitle: _this.state.subTitle || "",
+        width: _this.state.chartwidth,
+        height: _this.state.chartheight
+      });
+    });
+
+    defineProperty(assertThisInitialized(_this), "onShowMainTitleChange", function (checked) {
+      _this.setState({
+        showmaintitle: checked
+      }, _this.Update);
+    });
+
+    defineProperty(assertThisInitialized(_this), "onShowSubTitleChange", function (checked) {
+      _this.setState({
+        showsubtitle: checked
+      }, _this.Update);
+    });
+
+    defineProperty(assertThisInitialized(_this), "onMainTitleChange", function (e) {
+      var value = e.target.value;
+
+      _this.setState({
+        mainTitle: value
+      }, _this.Update);
+    });
+
+    defineProperty(assertThisInitialized(_this), "onSubTitleChange", function (e) {
+      var value = e.target.value;
+
+      _this.setState({
+        subTitle: value
+      }, _this.Update);
+    });
+
+    defineProperty(assertThisInitialized(_this), "renderTitle", function () {
+      var _this$state = _this.state,
+          mainTitle = _this$state.mainTitle,
+          subTitle = _this$state.subTitle,
+          showmaintitle = _this$state.showmaintitle,
+          showsubtitle = _this$state.showsubtitle;
+      return [/*#__PURE__*/React__default.createElement("h3", {
+        className: "main-title",
+        style: styles.mainTitle
+      }, showmaintitle ? mainTitle : ""), /*#__PURE__*/React__default.createElement("h4", {
+        className: "sub-title",
+        style: styles.subTitle
+      }, showsubtitle ? subTitle : "")];
+    });
+
+    defineProperty(assertThisInitialized(_this), "onChartChange", function (e) {
+      _this.setState({
+        charttype: e.target.value
+      }, _this.Update);
+    });
+
+    return _this;
+  }
+
+  createClass(ChartVisual, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.setState(this.props.config);
+    }
+  }, {
+    key: "UNSAFE_componentWillReceiveProps",
+    value: function UNSAFE_componentWillReceiveProps(newProps) {
+      if (newProps.config !== this.props.config) {
+        this.setState(newProps.config);
+      }
+    }
+  }, {
+    key: "Update",
+    value: function Update() {
+      var _this$state2 = this.state,
+          charttype = _this$state2.charttype,
+          axisstr = _this$state2.axisstr,
+          axisnum = _this$state2.axisnum,
+          mainTitle = _this$state2.mainTitle,
+          subTitle = _this$state2.subTitle,
+          showmaintitle = _this$state2.showmaintitle,
+          showsubtitle = _this$state2.showsubtitle,
+          chartwidth = _this$state2.chartwidth,
+          chartheight = _this$state2.chartheight;
+      this.props.onChange && this.props.onChange({
+        charttype: charttype,
+        axisstr: axisstr,
+        axisnum: axisnum,
+        mainTitle: mainTitle,
+        subTitle: subTitle,
+        showmaintitle: showmaintitle,
+        showsubtitle: showsubtitle,
+        chartwidth: chartwidth,
+        chartheight: chartheight
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var _this$props = this.props,
+          data = _this$props.data,
+          fields = _this$props.fields,
+          model = _this$props.model;
+      var _this$state3 = this.state,
+          charttype = _this$state3.charttype,
+          chartwidth = _this$state3.chartwidth,
+          chartheight = _this$state3.chartheight;
+      var cols = {
+        sales: {
+          tickInterval: 20
+        }
+      };
+      var DataView = DataSet.DataView;
+      var piedv = new DataView();
+      piedv.source(data).transform({
+        type: "percent",
+        field: this.state.axisnum,
+        dimension: this.state.axisstr,
+        as: "percent"
+      });
+      var piecols = {
+        percent: {
+          formatter: function formatter(val) {
+            val = val * 100 + "%";
+            return val;
+          }
+        }
+      };
+      var columns = [{
+        title: "全部",
+        dataIndex: "name",
+        render: function render(text) {
+          return /*#__PURE__*/React__default.createElement("a", null, text);
+        }
+      }, {
+        title: "字段类型",
+        dataIndex: "type",
+        render: function render(text) {
+          return /*#__PURE__*/React__default.createElement("a", null, _this2.changeDataType(text));
+        }
+      }];
+      var rowSelection = {
+        onChange: function onChange(selectedRowKeys, selectedRows) {
+          var axisstrs = selectedRows.filter(function (e) {
+            return e.type === "esriFieldTypeString";
+          });
+          var axisnums = selectedRows.filter(function (e) {
+            return e.type == "esriFieldTypeDouble" || e.type == "esriFieldTypeInteger";
+          });
+
+          if (axisstrs.length == 0) {
+            return;
+          }
+
+          if (axisnums.length == 0) {
+            return;
+          }
+
+          _this2.setState({
+            axisstr: axisstrs[0].name
+          }, _this2.Update);
+
+          _this2.setState({
+            axisnum: axisnums[0].name
+          }, _this2.Update);
+        },
+        getCheckboxProps: function getCheckboxProps(record) {
+          return {
+            name: record.name
+          };
+        }
+      };
+      var chartoptions = {
+        onGetG2Instance: function onGetG2Instance(chartIns) {
+          _this2.setState({
+            chartIns: chartIns
+          });
+        },
+        className: "chart_div",
+        height: chartheight - 100,
+        width: chartwidth,
+        data: charttype === "pie" ? piedv : data,
+        padding: ['10%', '20%', '20%', '10%'],
+        scale: charttype === "pie" ? piecols : cols
+      };
+      var show = model === "show";
+      return /*#__PURE__*/React__default.createElement("div", {
+        className: "chartvisual"
+      }, /*#__PURE__*/React__default.createElement(Row, {
+        style: {
+          height: show ? "100%" : "calc(100vh - 380px)",
+          overflowY: "auto",
+          overflowX: "hidden"
+        }
+      }, /*#__PURE__*/React__default.createElement(Col, {
+        span: show ? 24 : 18,
+        push: show ? 0 : 6,
+        className: show ? "chartshow" : "chartedit"
+      }, /*#__PURE__*/React__default.createElement(Resizable, {
+        style: {
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          border: "solid 1px #ddd",
+          background: "#FFF"
+        },
+        className: "chartresizable",
+        onResizeStop: function onResizeStop(e, direction, ref, d) {
+          _this2.setState({
+            chartwidth: chartwidth + d.width,
+            chartheight: chartheight + d.height
+          }, _this2.Update);
+        },
+        size: {
+          width: chartwidth,
+          height: chartheight
+        }
+      }, charttype === "pie" ? /*#__PURE__*/React__default.createElement(Chart, chartoptions, this.renderTitle(), /*#__PURE__*/React__default.createElement(Coord, {
+        type: "theta"
+      }), /*#__PURE__*/React__default.createElement(Axis, {
+        name: "percent"
+      }), /*#__PURE__*/React__default.createElement(Legend, {
+        position: "right",
+        offsetX: -chartwidth / 8
+      }), /*#__PURE__*/React__default.createElement(Tooltip, {
+        showTitle: false,
+        itemTpl: "<li><span style=\"background-color:{color};\" class=\"g2-tooltip-marker\"></span>{name}: {value}</li>"
+      }), /*#__PURE__*/React__default.createElement(Geom, {
+        type: "intervalStack",
+        position: "percent",
+        color: this.state.axisstr,
+        tooltip: [this.state.axisstr + "*percent", function (item, percent) {
+          percent = (percent * 100).toFixed(2) || 0 + "%";
+          return {
+            name: item,
+            value: percent
+          };
+        }],
+        style: {
+          lineWidth: 1,
+          stroke: "#fff"
+        }
+      })) : null, charttype === "bar" ? /*#__PURE__*/React__default.createElement(Chart, chartoptions, this.renderTitle(), /*#__PURE__*/React__default.createElement(Axis, {
+        name: this.state.axisstr
+      }), /*#__PURE__*/React__default.createElement(Axis, {
+        name: this.state.axisnum
+      }), /*#__PURE__*/React__default.createElement(Tooltip, null), /*#__PURE__*/React__default.createElement(Geom, {
+        type: "interval",
+        position: "".concat(this.state.axisstr, "*").concat(this.state.axisnum)
+      })) : null, charttype === "line" ? /*#__PURE__*/React__default.createElement(Chart, chartoptions, this.renderTitle(), /*#__PURE__*/React__default.createElement(Axis, {
+        name: this.state.axisstr
+      }), /*#__PURE__*/React__default.createElement(Axis, {
+        name: this.state.axisnum
+      }), /*#__PURE__*/React__default.createElement(Tooltip, null), /*#__PURE__*/React__default.createElement(Geom, {
+        type: "line",
+        position: "".concat(this.state.axisstr, "*").concat(this.state.axisnum),
+        size: 2,
+        color: "type"
+      }), ",", /*#__PURE__*/React__default.createElement(Geom, {
+        type: "point",
+        position: "".concat(this.state.axisstr, "*").concat(this.state.axisnum),
+        size: 4,
+        shape: "circle",
+        style: {
+          stroke: "#fff",
+          lineWidth: 1
+        }
+      })) : null)), /*#__PURE__*/React__default.createElement(Col, {
+        span: show ? 0 : 6,
+        pull: 18
+      }, /*#__PURE__*/React__default.createElement(Collapse, {
+        bordered: false,
+        defaultActiveKey: ["1"],
+        expandIcon: function expandIcon(_ref) {
+          var isActive = _ref.isActive;
+          return /*#__PURE__*/React__default.createElement(CaretRightOutlined$2, {
+            rotate: isActive ? 90 : 0
+          });
+        }
+      }, /*#__PURE__*/React__default.createElement(Radio.Group, {
+        onChange: this.onChartChange,
+        style: {
+          padding: 10
+        },
+        defaultValue: "bar",
+        buttonStyle: "solid"
+      }, /*#__PURE__*/React__default.createElement(Radio.Button, {
+        value: "bar"
+      }, /*#__PURE__*/React__default.createElement(BarChartOutlined$2, null)), /*#__PURE__*/React__default.createElement(Radio.Button, {
+        value: "pie"
+      }, /*#__PURE__*/React__default.createElement(PieChartOutlined$2, null)), /*#__PURE__*/React__default.createElement(Radio.Button, {
+        value: "line"
+      }, /*#__PURE__*/React__default.createElement(LineChartOutlined$2, null))), /*#__PURE__*/React__default.createElement(Panel, {
+        header: "\u9009\u62E9\u5B57\u6BB5",
+        key: "1",
+        style: customPanelStyle
+      }, /*#__PURE__*/React__default.createElement(Table, {
+        style: {
+          backgroundColor: "#fff"
+        },
+        pagination: false,
+        size: "small",
+        bordered: false,
+        scroll: {
+          y: 140
+        },
+        rowSelection: rowSelection,
+        columns: columns,
+        dataSource: fields.filter(function (e) {
+          return e.type == "esriFieldTypeDate" || e.type == "esriFieldTypeString" || e.type == "esriFieldTypeDouble" || e.type == "esriFieldTypeInteger";
+        })
+      })), /*#__PURE__*/React__default.createElement(Panel, {
+        header: "\u753B\u5E03",
+        key: "2",
+        style: customPanelStyle
+      }, /*#__PURE__*/React__default.createElement("p", null, "\u6807\u9898:", " ", /*#__PURE__*/React__default.createElement(Switch, {
+        size: "small",
+        defaultChecked: true,
+        onChange: this.onShowMainTitleChange
+      }), /*#__PURE__*/React__default.createElement(Input, {
+        style: {
+          width: 200,
+          margin: "0px 10px"
+        },
+        onChange: this.onMainTitleChange
+      })), /*#__PURE__*/React__default.createElement("p", null, "\u526F\u6807\u9898:", " ", /*#__PURE__*/React__default.createElement(Switch, {
+        size: "small",
+        defaultChecked: true,
+        onChange: this.onShowSubTitleChange
+      }), /*#__PURE__*/React__default.createElement(Input, {
+        style: {
+          width: 200,
+          margin: "0px 10px"
+        },
+        onChange: this.onSubTitleChange
+      })))), /*#__PURE__*/React__default.createElement(Button, {
+        className: "QueryBtn",
+        onClick: this.saveImage,
+        type: "primary"
+      }, "\u4FDD\u5B58\u4E3A\u56FE\u7247"))));
+    }
+  }]);
+
+  return ChartVisual;
+}(Component);
+
+function _createSuper$c(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$c(); return function _createSuperInternal() { var Super = getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$c() { if (typeof Reflect === "undefined" || !Reflect.construct) { return false; } if (Reflect.construct.sham) { return false; } if (typeof Proxy === "function") { return true; } try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+var StatisticAnalysis = /*#__PURE__*/function (_Component) {
+  inherits(StatisticAnalysis, _Component);
+
+  var _super = _createSuper$c(StatisticAnalysis);
+
+  function StatisticAnalysis() {
+    var arguments$1 = arguments;
+
+    var _this;
+
+    classCallCheck(this, StatisticAnalysis);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments$1[_key];
+    }
+
+    _this = _super.call.apply(_super, [this].concat(args));
+
+    defineProperty(assertThisInitialized(_this), "state", {
+      queryparams: {
+        source: null,
+        grouplist: []
+      },
+      geoshow: true,
+      currid: null,
+      title: "",
+      visualType: "table",
+      groupAreavalue: "country",
+      groupAreaFieldvalue: "",
+      fielddatas: []
+    });
+
+    defineProperty(assertThisInitialized(_this), "onQuery", function () {
+      var _params;
+
+      var _this$state$querypara = _this.state.queryparams,
+          source = _this$state$querypara.source,
+          callist = _this$state$querypara.callist,
+          filterlist = _this$state$querypara.filterlist,
+          grouplist = _this$state$querypara.grouplist,
+          orderfields = _this$state$querypara.orderfields,
+          filterfea = _this$state$querypara.filterfea;
+      var outStatistics = callist.map(function (cal) {
+        return {
+          statisticType: cal.sel_cal.value,
+          onStatisticField: cal.sel_field.name,
+          outStatisticFieldName: cal.sel_cal.title === "数量" ? cal.sel_cal.title : cal.sel_field.alias + "的" + cal.sel_cal.title
+        };
+      });
+      var wheres = filterlist.map(function (cal) {
+        var filter = "";
+
+        switch (cal.sel_filter_rel.value) {
+          case "equal":
+            filter = cal.sel_filter_field + " = '" + cal.sel_filter_value + "' ";
+            break;
+
+          case "notequal":
+            filter = cal.sel_filter_field + " != '" + cal.sel_filter_value + "' ";
+            break;
+
+          case "contain":
+            filter = cal.sel_filter_field + " like '%" + cal.sel_filter_value + "%' ";
+            break;
+        }
+
+        return filter;
+      });
+      var groupfield = grouplist.map(function (e) {
+        return e.sel_group_field;
+      }).join(",");
+      return axios.get(source.url + "/" + source.layerid + "/query", {
+        params: (_params = {
+          where: wheres.length > 0 ? wheres.join(" and ") : "1=1",
+          outFields: "*",
+          returnGeometry: true,
+          returnIdsOnly: false,
+          returnCountOnly: false,
+          outSr: 4326
+        }, defineProperty(_params, "outFields", "*"), defineProperty(_params, "inSr", 4326), defineProperty(_params, "geometry", filterfea ? filterfea.geom : ""), defineProperty(_params, "geometryType", "esriGeometryPolygon"), defineProperty(_params, "spatialRel", "esriSpatialRelContains"), defineProperty(_params, "orderByFields", orderfields.join(",")), defineProperty(_params, "groupByFieldsForStatistics", groupfield), defineProperty(_params, "outStatistics", outStatistics.length > 0 ? JSON.stringify(outStatistics) : ""), defineProperty(_params, "f", "pjson"), _params)
+      }).then(function (response) {
+        if (!response.data.error) {
+          _this.props.statisticsActions.loadStatisticData(response.data);
+        }
+      })["catch"](function (e) {});
+    });
+
+    defineProperty(assertThisInitialized(_this), "onChartConfigChange", function (params) {
+      _this.setState({
+        chartconfig: params
+      });
+    });
+
+    defineProperty(assertThisInitialized(_this), "onVisualChange", function (e) {
+      _this.setState({
+        visualType: e.target.value
+      });
+    });
+
+    defineProperty(assertThisInitialized(_this), "onQueryChange", function (query) {
+      if (!query.source) { return; }
+
+      if (!_this.state.queryparams.source || query.source.id !== _this.state.queryparams.source.id) {
+        _this.getFields(query.source);
+      }
+
+      _this.setState({
+        queryparams: query
+      });
+    });
+
+    defineProperty(assertThisInitialized(_this), "getFields", function (item) {
+      return axios.get(item.url + "/" + item.layerid + "?f=json").then(function (response) {
+        _this.setState({
+          fielddatas: response.data.fields
+        });
+      })["catch"](function (e) {});
+    });
+
+    defineProperty(assertThisInitialized(_this), "downloadData", function (columns, data) {
+      var title = _this.props.title;
+      var option = {};
+      option.fileName = title || 'excel';
+      option.datas = [{
+        sheetData: data,
+        sheetName: 'sheet',
+        sheetFilter: columns.map(function (e) {
+          return e.title;
+        }),
+        sheetHeader: columns.map(function (e) {
+          return e.title;
+        })
+      }];
+      var toExcel = new ExportJsonExcel(option);
+      toExcel.saveExcel();
+    });
+
+    return _this;
+  }
+
+  createClass(StatisticAnalysis, [{
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var themlist = this.props.thematics.themlist;
+      var visualType = this.state.visualType;
+      var sourcedata = themlist.length > 0 ? themlist.map(function (e) {
+        e.pId = e.pid;
+        e.title = e.name;
+        e.value = e.name;
+        e.layerid = e.layers;
+        e.selectable = e.pid === 1 ? false : true;
+        return e;
+      }) : [];
+      var statisticlist = this.props.statistics.statisticlist;
+      var columns = statisticlist.fields.filter(function (e) {
+        return e.name != "OBJECTID" && e.name.toUpperCase().indexOf("SHAPE") == -1;
+      }).map(function (field) {
+        return {
+          title: field.alias,
+          dataIndex: field.name,
+          width: _.max([field.alias.replace(/[^\x00-\xff]/g, "01").length * 20, 130]),
+          key: field.name,
+          //field.type  length
+          render: function render(text) {
+            return field.type === "esriFieldTypeDouble" ? Number.isNaN(Number(text)) ? 0 : Number.isInteger(text) ? text : Number(text).toFixed(3) : text;
+          }
+        };
+      });
+      var data = statisticlist.features.map(function (fea) {
+        return fea.attributes;
+      });
+      return /*#__PURE__*/React__default.createElement(SideBar, this.props.sideprops, /*#__PURE__*/React__default.createElement(QueryBuilder, {
+        config: this.state.queryparams,
+        sourcedata: sourcedata,
+        fielddatas: this.state.fielddatas,
+        onChange: this.onQueryChange
+      }), /*#__PURE__*/React__default.createElement(Space, {
+        style: {
+          margin: '10px'
+        }
+      }, /*#__PURE__*/React__default.createElement(Button, {
+        disabled: this.state.queryparams.source ? false : true,
+        className: "QueryBtn",
+        onClick: this.onQuery,
+        type: "primary"
+      }, "\u83B7\u53D6\u6570\u636E"), /*#__PURE__*/React__default.createElement(Radio.Group, {
+        defaultValue: "table",
+        buttonStyle: "solid",
+        onChange: this.onVisualChange
+      }, /*#__PURE__*/React__default.createElement(Radio.Button, {
+        value: "table"
+      }, "\u8868\u683C"), /*#__PURE__*/React__default.createElement(Radio.Button, {
+        value: "chart"
+      }, "\u7EDF\u8BA1\u56FE")), visualType === "table" ? /*#__PURE__*/React__default.createElement(Button, {
+        onClick: function onClick() {
+          return _this2.downloadData(columns, data);
+        }
+      }, "\u4E0B\u8F7D") : null), visualType === "table" ? /*#__PURE__*/React__default.createElement(Table, {
+        className: "querytable",
+        columns: columns,
+        dataSource: data,
+        scroll: {
+          x: columns.length * 100,
+          y: "calc(100vh - 490px)"
+        }
+      }) : visualType === "chart" ? /*#__PURE__*/React__default.createElement(ChartVisual, {
+        model: "edit",
+        onChange: this.onChartConfigChange,
+        config: this.state.chartconfig,
+        data: data,
+        fields: statisticlist.fields
+      }) : null);
+    }
+  }]);
+
+  return StatisticAnalysis;
+}(Component);
+
+export { AreaLocation, AttributesFillter, ChartVisual, layerswitch as LayerSwitch, POIList, POISearch, QueryBuilder, ResourceCatalog, ResourcesList, SetLocation, SideBar, SpatialQuery, SpatialQueryPanel, ResultList as SpatialResultList, StatisticAnalysis };

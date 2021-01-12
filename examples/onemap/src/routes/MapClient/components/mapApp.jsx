@@ -2,7 +2,7 @@
  * @Author: 史涛
  * @Date: 2019-01-05 17:40:59
  * @Last Modified by: 史涛
- * @Last Modified time: 2021-01-11 16:12:10
+ * @Last Modified time: 2021-01-12 14:18:17
  */
 Date.prototype.Format = function (fmt) {
   //author: meizz
@@ -44,7 +44,8 @@ import {
   SpatialResultList,
   POISearch,
   POIList,
-  LayerSwitch
+  LayerSwitch,
+  StatisticAnalysis
 } from "../../../../lib/onemap-components-dev";
 
 import ToolBar from "../modules/ToolBar/toolbar";
@@ -206,10 +207,12 @@ class mapApp extends React.Component {
       map3d,
       query,
       thematics,
+      statistics,
       toolbar,
       analysis,
       draw,
       thematicActions,
+      statisticsActions,
       queryActions,
       layersActions,
       mapBoxActions,
@@ -270,6 +273,17 @@ class mapApp extends React.Component {
                 mapBoxActions={mapBoxActions}
               ></ResourceCatalog>
             ) : null}
+            <StatisticAnalysis
+             thematics={thematics}
+             statistics={statistics}
+             statisticsActions={statisticsActions}
+            sideprops={{
+              title: "统计分析",
+              placement: "left",
+              className:"statics_panel",
+              visible: true,
+            }}
+            ></StatisticAnalysis>
             <ToolBar
               map3d={map3d}
               mapConfig={mapConfig}
