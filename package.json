@@ -42,7 +42,7 @@
     "@babel/preset-react": "^7.12.10",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-postcss": "^4.0.0",
-    "styled-jsx": "^3.3.2",
+    "styled-jsx": "^5.1.0",
     "less": "^3.13.0",
     "postcss": "^8.2.1",
     "@babel/plugin-syntax-jsx": "^7.12.1",
